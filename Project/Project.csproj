@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{41D62828-F18B-43CB-86B6-C4EECB2F97E3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Project</RootNamespace>
+    <AssemblyName>Project</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\BaseBusiness.cs" />
+    <Compile Include="Business\UserBusiness.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Tools\CustomGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\CustomGridView.Designer.cs">
+      <DependentUpon>CustomGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BuyInvoice\AddBuyInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BuyInvoice\AddBuyInvoice.Designer.cs">
+      <DependentUpon>AddBuyInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Item\AddItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Item\AddItem.Designer.cs">
+      <DependentUpon>AddItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Business\ItemBusiness.cs" />
+    <Compile Include="Forms\SellInvoice\AddSellInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SellInvoice\AddSellInvoice.Designer.cs">
+      <DependentUpon>AddSellInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SellInvoice\ManageSellInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SellInvoice\ManageSellInvoice.Designer.cs">
+      <DependentUpon>ManageSellInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseRole.Designer.cs">
+      <DependentUpon>ChooseRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseSellType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseSellType.Designer.cs">
+      <DependentUpon>ChooseSellType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseItemStockRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseItemStockRoom.Designer.cs">
+      <DependentUpon>ChooseItemStockRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseStockItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseStockItem.Designer.cs">
+      <DependentUpon>ChooseStockItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseStockRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseStockRoom.Designer.cs">
+      <DependentUpon>ChooseStockRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseItem.Designer.cs">
+      <DependentUpon>ChooseItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BuyInvoice\ManageBuyInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BuyInvoice\ManageBuyInvoice.Designer.cs">
+      <DependentUpon>ManageBuyInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Item\ManageItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Item\ManageItem.Designer.cs">
+      <DependentUpon>ManageItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\User\AddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\User\AddUser.Designer.cs">
+      <DependentUpon>AddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\User\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\User\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\User\ManageRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\User\ManageRoles.Designer.cs">
+      <DependentUpon>ManageRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\User\ManageUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\User\ManageUsers.Designer.cs">
+      <DependentUpon>ManageUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\IConcurrency.cs" />
+    <Compile Include="ViewModel\IBaseBussiness.cs" />
+    <Compile Include="Models\Role\PermissionModel.cs" />
+    <Compile Include="Models\Role\RoleModel.cs" />
+    <Compile Include="Models\SellInvoiceItemModel.cs" />
+    <Compile Include="Models\BuyInvoiceItemModel.cs" />
+    <Compile Include="Models\SellInvoiceModel.cs" />
+    <Compile Include="Models\BuyInvoiceModel.cs" />
+    <Compile Include="Models\ItemModel.cs" />
+    <Compile Include="Models\StockItemModel.cs" />
+    <Compile Include="Models\User\UserModel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BuyInvoice\BuyInvoiceItemRepository.cs" />
+    <Compile Include="Repositories\BuyInvoice\BuyInvoiceRepository.cs" />
+    <Compile Include="Repositories\Item\ItemRepository.cs" />
+    <Compile Include="Repositories\Role\PermissionRepository.cs" />
+    <Compile Include="Repositories\Role\RoleRepository.cs" />
+    <Compile Include="Repositories\SellInvoice\SellTypeRepository.cs" />
+    <Compile Include="Repositories\SellInvoice\SellInvoiceItemRepository.cs" />
+    <Compile Include="Repositories\SellInvoice\SellInvoiceRepository.cs" />
+    <Compile Include="Repositories\Stock\StockItemRepository.cs" />
+    <Compile Include="Repositories\TracingFactor\TracingFactorRepository.cs" />
+    <Compile Include="Models\TypedData\SellTypedData\SellInvoiceItemDataRow.cs" />
+    <Compile Include="Models\TypedData\BuyTypedData\BuyInvoiceItemDataRow.cs" />
+    <Compile Include="Models\TypedData\SellTypedData\SellInvoiceItemDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\TypedData\BuyTypedData\BuyInvoiceItemDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Repositories\Stock\StockRoomRepository.cs" />
+    <Compile Include="Repositories\Unit\UnitRepository.cs" />
+    <Compile Include="Repositories\User\UserRepository.cs" />
+    <Compile Include="Tools\Access.cs" />
+    <Compile Include="Tools\DGVSetting.cs" />
+    <Compile Include="ViewModel\RoleViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
+    <EmbeddedResource Include="Forms\BuyInvoice\AddBuyInvoice.resx">
+      <DependentUpon>AddBuyInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Item\AddItem.resx">
+      <DependentUpon>AddItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SellInvoice\AddSellInvoice.resx">
+      <DependentUpon>AddSellInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SellInvoice\ManageSellInvoice.resx">
+      <DependentUpon>ManageSellInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Shared\ChooseRole.resx">
+      <DependentUpon>ChooseRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Shared\ChooseSellType.resx">
+      <DependentUpon>ChooseSellType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Shared\ChooseItemStockRoom.resx">
+      <DependentUpon>ChooseItemStockRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Shared\ChooseStockItem.resx">
+      <DependentUpon>ChooseStockItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Shared\ChooseStockRoom.resx">
+      <DependentUpon>ChooseStockRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Shared\ChooseItem.resx">
+      <DependentUpon>ChooseItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BuyInvoice\ManageBuyInvoice.resx">
+      <DependentUpon>ManageBuyInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Item\ManageItem.resx">
+      <DependentUpon>ManageItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\User\AddUser.resx">
+      <DependentUpon>AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\User\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\User\ManageUsers.resx">
+      <DependentUpon>ManageUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-product-documents-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-delete-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-plus-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-refresh-love-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-64.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\pngkit_login-icon-png_5186830.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PinClipart.com_black-power-fist-clipart_1856543.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
