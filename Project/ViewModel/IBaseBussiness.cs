@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project
+namespace Project.ViewModel
 {
     public interface IConcurrencyChecker
     {

@@ -38,7 +38,6 @@
             this.BuyInvoiceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreatedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Supplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsFinally = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuyInvoiceGridView)).BeginInit();
             this.SuspendLayout();
@@ -115,8 +114,7 @@
             this.Check,
             this.BuyInvoiceId,
             this.CreatedDate,
-            this.Supplier,
-            this.IsFinally});
+            this.Supplier});
             this.BuyInvoiceGridView.Location = new System.Drawing.Point(0, 93);
             this.BuyInvoiceGridView.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
             this.BuyInvoiceGridView.Name = "BuyInvoiceGridView";
@@ -141,6 +139,7 @@
             this.BuyInvoiceId.HeaderText = "شماره فاکتور";
             this.BuyInvoiceId.MinimumWidth = 6;
             this.BuyInvoiceId.Name = "BuyInvoiceId";
+            this.BuyInvoiceId.ReadOnly = true;
             // 
             // CreatedDate
             // 
@@ -148,6 +147,7 @@
             this.CreatedDate.HeaderText = "تاریخ";
             this.CreatedDate.MinimumWidth = 6;
             this.CreatedDate.Name = "CreatedDate";
+            this.CreatedDate.ReadOnly = true;
             // 
             // Supplier
             // 
@@ -155,14 +155,7 @@
             this.Supplier.HeaderText = "تامین کننده";
             this.Supplier.MinimumWidth = 6;
             this.Supplier.Name = "Supplier";
-            // 
-            // IsFinally
-            // 
-            this.IsFinally.DataPropertyName = "IsFinally";
-            this.IsFinally.HeaderText = "نهایی شده";
-            this.IsFinally.MinimumWidth = 6;
-            this.IsFinally.Name = "IsFinally";
-            this.IsFinally.ReadOnly = true;
+            this.Supplier.ReadOnly = true;
             // 
             // ManageBuyInvoice
             // 
@@ -198,6 +191,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BuyInvoiceId;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Supplier;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsFinally;
     }
 }

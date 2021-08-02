@@ -1,6 +1,5 @@
 C:\Users\ArefAs\source\repos\Project\Project\bin\Debug\Project.exe
 C:\Users\ArefAs\source\repos\Project\Project\bin\Debug\Project.pdb
-C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.csprojAssemblyReference.cache
 C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.AddBuyInvoice.resources
 C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.AddItem.resources
 C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.AddSellInvoice.resources
@@ -21,3 +20,4 @@ C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.Properties.Resour
 C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.csproj.GenerateResource.cache
 C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.exe
 C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.pdb
+C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.csprojAssemblyReference.cache

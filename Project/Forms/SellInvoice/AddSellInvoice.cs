@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Globalization;
 using Project.Models;
 using System.Transactions;
+using Project.ViewModel;
+using Project.Business;
 
 namespace Project
 {
@@ -22,18 +24,14 @@ namespace Project
         public ChooseSellType sellTypeForm;
         public ChooseStockItemForm chooseStockItemForm;
         private ChooseItemStockRoom chooseItemStockRoom;
-        public StockItemRepository stockItemRepository;
-        public SellInvoiceItemRepository sellInvoiceItemRepository;
-        public SellInvoiceRepository sellInvoiceRepository;
         public ItemRepository itemRepository;
+        public SellInvoiceBusiness sellInvoiceBusiness;
 
 
         public AddSellInvoice()
         {
             InitializeComponent();
-            stockItemRepository = new StockItemRepository();
-            sellInvoiceItemRepository = new SellInvoiceItemRepository();
-            sellInvoiceRepository = new SellInvoiceRepository();
+            sellInvoiceBusiness = new SellInvoiceBusiness();
             itemRepository = new ItemRepository();
             dataTable = new SellInvoiceItemDataTable();
             bindingSource1.DataSource = dataTable;
@@ -214,59 +212,29 @@ namespace Project
         {
             if (dataTable.Rows.Count > 0)
             {
-                bool isSuccess = false;
-                DataRow[] r = dataTable.GetErrors();
                 if (!dataTable.HasErrors && SellInvoiceErrorProvider.GetError(SellTypeIdTxt) == "" && SellInvoiceErrorProvider.GetError(InvoiceDatetxt) == "")
                 {
-                    using (TransactionScope transaction = new TransactionScope())
+                    try
                     {
-                        try
+                        PersianCalendar persianCalendar = new PersianCalendar();
+                        string[] persianDate = InvoiceDatetxt.Text.Split('/');
+                        DateTime persianDateTime = persianCalendar.ToDateTime(Convert.ToInt32(persianDate[0]), Convert.ToInt32(persianDate[1]), Convert.ToInt32(persianDate[2]), 0, 0, 0, 0);
+                        SellInvoiceViewModel model = new SellInvoiceViewModel();
+                        model.SellTypeId = int.Parse(SellTypeIdTxt.Text);
+                        model.Customer = CustomerTxt.Text;
+                        model.CreatedDate = persianDateTime;  
+                        model.ItemTable = dataTable;
+                        if(sellInvoiceBusiness.AddSellInvoice(model))
                         {
-                            PersianCalendar persianCalendar = new PersianCalendar();
-                            string[] persianDate = InvoiceDatetxt.Text.Split('/');
-                            DateTime persianDateTime = persianCalendar.ToDateTime(Convert.ToInt32(persianDate[0]), Convert.ToInt32(persianDate[1]), Convert.ToInt32(persianDate[2]), 0, 0, 0, 0);
-                            SellInvoiceModel model = new SellInvoiceModel();
-                            model.SellTypeId = int.Parse(SellTypeIdTxt.Text);
-                            model.Customer = CustomerTxt.Text;
-                            model.CreatedDate = persianDateTime;
-                            model.SellInvoiceId = sellInvoiceRepository.GetLastId() + 1;
-                            bool succsess = sellInvoiceRepository.AddItem(model);
-                            if (succsess)
-                            {
-                                foreach (DataRow item in dataTable.Rows)
-                                {
-                                    item["SellInvoiceId"] = model.SellInvoiceId;
-                                }
-                                if (sellInvoiceItemRepository.UpdateSellInvoiceItem(dataTable) == true)
-                                {
-                                    bool StockUpdateSuccess = true;
-                                    foreach (DataRow item in dataTable.Rows)
-                                    {
-                                        StockUpdateSuccess = stockItemRepository.UpdateStockItem((int)item["StockRoomId"], (int)item["ItemId"], item["TracingFactor"].ToString(), -1 * (int)item["Quantity"]);
-                                        if (!StockUpdateSuccess)
-                                        {
-                                            MessageBox.Show("موجودی کالای " + item["ItemTitle"].ToString() + "کافی نیست. پس از رفع مشکل دوباره تلاش کنید", "خطا");
-                                            break;
-                                        }
-                                    }
-                                    if (StockUpdateSuccess)
-                                    {
-                                        transaction.Complete();
-                                        isSuccess = true;
-                                    }
-                                }
-                            }
-                        }
-                        catch (Exception exp)
-                        {
-                            MessageBox.Show("عملیات با شکست مواجه شد", "ناموفق");
+                            MessageBox.Show("عملیات با موفقیت انجام شد", "موفق");
+                            OnAdded();
                             return;
                         }
                     }
-                    if (isSuccess)
+                    catch (Exception exp)
                     {
-                        MessageBox.Show("عملیات با موفقیت انجام شد", "موفق");
-                        OnAdded();
+                        MessageBox.Show("عملیات با شکست مواجه شد", "ناموفق");
+                        return;
                     }
                 }
                 else

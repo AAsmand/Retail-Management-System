@@ -1,4 +1,5 @@
-﻿using Project.Models;
+﻿using Project.Business;
+using Project.Models;
 using Project.Models.User;
 using Project.Repositories;
 using Project.Tools;
@@ -16,15 +17,11 @@ namespace Project
 {
     public partial class ManageBuyInvoice : Form
     {
-        BuyInvoiceItemRepository buyInvoiceItemRepository;
-        StockItemRepository stockItemRepository;
-        BuyInvoiceRepository buyInvoiceRepository;
+        BuyInvoiceBusiness buyInvoiceBusiness;
         public ManageBuyInvoice()
         {
             InitializeComponent();
-            buyInvoiceItemRepository = new BuyInvoiceItemRepository();
-            stockItemRepository = new StockItemRepository();
-            buyInvoiceRepository = new BuyInvoiceRepository();
+            buyInvoiceBusiness = new BuyInvoiceBusiness();
         }
         private void ConfigureAccess()
         {
@@ -52,7 +49,7 @@ namespace Project
         {
             BuyInvoiceGridView.AutoGenerateColumns = false;
             BuyInvoiceGridView.DataSource = null;
-            BuyInvoiceGridView.DataSource = buyInvoiceRepository.GetData();
+            BuyInvoiceGridView.DataSource = buyInvoiceBusiness.GetBuyInvoices();
         }
 
         private void RefreshBtn_Click(object sender, EventArgs e)
@@ -63,40 +60,26 @@ namespace Project
         private void DeleteBtnTool_Click(object sender, EventArgs e)
         {
             BuyInvoiceGridView.EndEdit();
-            bool isSuccess = false;
-            using (TransactionScope transaction = new TransactionScope())
+            try
             {
-                try
+                List<string> BuyInvoicesId = BuyInvoiceGridView.Rows.Cast<DataGridViewRow>().Where(r => r.Cells["Check"].Value != null).Where(r => int.Parse(r.Cells["Check"].Value.ToString()) == 1).Select(r => r.Cells["BuyInvoiceId"].Value.ToString()).ToList();
+                if (BuyInvoicesId.Count == 0)
+                    MessageBox.Show("هیچ سطری انتخاب نشده است", "خطا");
+                else if (MessageBox.Show("آیا از حذف " + BuyInvoicesId.Count + "فاکتور مطمئن هستید ؟", "هشدار", MessageBoxButtons.YesNo).Equals(DialogResult.Yes))
                 {
-                    List<DataGridViewRow> list2 = BuyInvoiceGridView.Rows.Cast<DataGridViewRow>().Where(r => r.Cells["Check"].Value != null).Where(r => int.Parse(r.Cells["Check"].Value.ToString()) == 1).ToList();
-                    if (list2.Count == 0)
-                        MessageBox.Show("هیچ سطری انتخاب نشده است", "خطا");
-                    else if (MessageBox.Show("آیا از حذف " + list2.Count + "فاکتور مطمئن هستید ؟", "هشدار", MessageBoxButtons.YesNo).Equals(DialogResult.Yes))
+                    if (buyInvoiceBusiness.RemoveBuyInvoices(BuyInvoicesId))
                     {
-                        foreach (DataGridViewRow row in list2)
-                        {
-                            List<BuyInvoiceItemModel> listItem = buyInvoiceItemRepository.GetBuyInvoiceItems((int)row.Cells["BuyInvoiceId"].Value);
-                            foreach (BuyInvoiceItemModel item in listItem)
-                            {
-                                stockItemRepository.UpdateStockItem(item.StockItemId, item.Quantity * -1);
-                            }
-                            buyInvoiceItemRepository.RemoveBuyInvoiceItems((int)row.Cells["BuyInvoiceId"].Value);
-                            buyInvoiceRepository.DeleteItem((int)row.Cells["BuyInvoiceId"].Value);
-                        }
-                        transaction.Complete();
+                        BindBuyInvoiceData();
                         MessageBox.Show("عملیات با موفقیت انجام شد !", "موفق");
-                        isSuccess = true;
-
                     }
-                }
-                catch (Exception)
-                {
-                    transaction.Dispose();
-                    MessageBox.Show("عملیات با شکست مواجه شد !", "ناموفق");
+                    else
+                        MessageBox.Show("عملیات با شکست مواجه شد !", "ناموفق");
                 }
             }
-            if (isSuccess)
-                BindBuyInvoiceData();
+            catch (Exception)
+            {
+                MessageBox.Show("عملیات با شکست مواجه شد !", "ناموفق");
+            }
         }
     }
 }

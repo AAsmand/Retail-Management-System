@@ -1,4 +1,6 @@
 ﻿using Project.Models;
+using Project.Models.User;
+using Project.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,29 +10,17 @@ using System.Text;
 
 namespace Project.Repositories
 {
-    public class BuyInvoiceRepository
+    public class BuyInvoiceRepository:BaseRepository
     {
-        public SqlConnection connection;
-        public SqlCommand command;
-        public SqlDataAdapter adapter;
-        public DataSet ds;
-        public SqlDataReader dr;
-
         public BuyInvoiceRepository()
         {
-            if (connection == null) connection = new SqlConnection("data source=.\\sepidar;Initial Catalog=ProjectDB2;User Id=damavand;Password=damavand");
-            if (command == null) command = new SqlCommand();
-            if (adapter == null) adapter = new SqlDataAdapter();
-            if (ds == null) ds = new DataSet();
-            //if (dr == null) dr = new SqlDataReader();
-
         }
 
         public  DataTable GetData()
         {
 
             command.Connection = connection;
-            command.CommandText = "select * from BuyInvoice";
+            command.CommandText = "select BuyInvoiceId,SRId,Supplier,UserId,CreatedDate,CAST(TimeStamp as int) as TimeStamp from BuyInvoice";
             command.Parameters.Clear();
             connection.Open();
             adapter.SelectCommand = command;
@@ -62,25 +52,21 @@ namespace Project.Repositories
 
         }
 
-        public  bool AddItem(BuyInvoiceModel model)
+        public  bool AddItem(BuyInvoiceViewModel model)
         {
             command.Connection = connection;
-            command.CommandText = "insert into BuyInvoice(BuyInvoiceId,SRId,CreatedDate,Supplier) Values(@BuyInvoiceId,@SRId,@CreatedDate,@Supplier)";
+            command.CommandText = "insert into BuyInvoice(BuyInvoiceId,SRId,CreatedDate,Supplier,UserId) Values(@BuyInvoiceId,@SRId,@CreatedDate,@Supplier,@UserId)";
             command.Parameters.Clear();
             command.Parameters.AddWithValue("@BuyInvoiceId", model.BuyInvoiceId);
             command.Parameters.AddWithValue("@SRId", model.SRId);
             command.Parameters.AddWithValue("@CreatedDate", model.CreatedDate);
             command.Parameters.AddWithValue("@Supplier", model.Supplier);
-           
+            command.Parameters.AddWithValue("@UserId", UserModel.UserId);
+
             connection.Open();
             if (command.ExecuteNonQuery() > 0)
             {
-                //string query2 = "Select @@Identity as newId from BuyInvoice";
-                //command.CommandText = query2;
-                //command.CommandType = CommandType.Text;
-                //var newId = command.ExecuteScalar();
                 connection.Close();
-                //return int.Parse(newId.ToString());
                 return true;
             }
             connection.Close();
@@ -99,6 +85,23 @@ namespace Project.Repositories
             if (ds.Tables["BuyInvoice"].Rows.Count == 0)
                 return 0;
             else return int.Parse(ds.Tables["BuyInvoice"].Rows[0]["BuyInvoiceId"].ToString());
+        }
+
+        public override bool IsNotConcurrent(IConcurrency model)
+        {
+            command.Connection = connection;
+            command.CommandText = "select * from BuyInvoice where BuyInvoiceId=@BuyInvoiceId and CAST(TimeStamp as int)=@TimeStamp";
+            command.Parameters.Clear();
+            command.Parameters.AddWithValue("@BuyInvoiceId", model.Id);
+            command.Parameters.AddWithValue("@TimeStamp", model.TimeStamp);
+            connection.Open();
+            adapter.SelectCommand = command;
+            ds.Clear();
+            adapter.Fill(ds, "BuyInvoiceTimeStamp");
+            connection.Close();
+            if (ds.Tables["BuyInvoiceTimeStamp"].Rows.Count > 0)
+                return true;
+            return false;
         }
         //public static bool EditItem(ItemModel model)
         //{

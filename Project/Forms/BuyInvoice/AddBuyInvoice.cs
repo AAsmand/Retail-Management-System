@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Globalization;
 using Project.Models;
 using System.Transactions;
+using Project.ViewModel;
+using Project.Business;
 
 namespace Project
 {
@@ -20,19 +22,15 @@ namespace Project
         private BuyInvoiceItemDataTable dataTable;
         private ChooseItemForm itemForm;
         private ChooseStockRoomForm stockRoomForm;
-        private StockItemRepository stockItemRepository;
-        private BuyInvoiceItemRepository buyInvoiceItemRepository;
-        private BuyInvoiceRepository buyInvoiceRepository;
         private ItemRepository itemRepository;
+        private BuyInvoiceBusiness buyInvoiceBusiness;
 
 
         public AddBuyInvoice()
         {
             InitializeComponent();
-            stockItemRepository = new StockItemRepository();
-            buyInvoiceItemRepository = new BuyInvoiceItemRepository();
             itemRepository = new ItemRepository();
-            buyInvoiceRepository = new BuyInvoiceRepository();
+            buyInvoiceBusiness = new BuyInvoiceBusiness();
             dataTable = new BuyInvoiceItemDataTable();
             bindingSource1.DataSource = dataTable;
             BuyInvoiceItemGridView.AutoGenerateColumns = false;
@@ -72,7 +70,7 @@ namespace Project
         }
         private void BuyInvoiceItemDataTable_ColumnChanged(object sender, DataColumnChangeEventArgs e)
         {
-            
+
             if (e.Column.ColumnName != "Check")
             {
                 if (e.Row[e.Column].Equals(DBNull.Value) && e.Column.ColumnName == "ItemId")
@@ -116,7 +114,7 @@ namespace Project
                     e.Row["NetPrice"] = (int)e.Row["Total"] + (int)e.Row["Extras"] - (int)e.Row["Offer"];
                     ComputingTotals();
                 }
-            }       
+            }
             BuyInvoiceItemGridView.Refresh();
         }
         public void ItemSelected(object sender, SelectEventArgs e)
@@ -165,67 +163,20 @@ namespace Project
         {
             if (dataTable.Rows.Count > 0)
             {
-                bool isSuccess = false;
                 if (!dataTable.HasErrors && BuyInvoiceErrorProvider.GetError(SRIDTxt) == "" && BuyInvoiceErrorProvider.GetError(InvoiceDatetxt) == "")
                 {
-                    using (TransactionScope transaction = new TransactionScope())
+                    BuyInvoiceViewModel model = new BuyInvoiceViewModel();
+                    PersianCalendar persianCalendar = new PersianCalendar();
+                    string[] persianDate = InvoiceDatetxt.Text.Split('/');
+                    DateTime persianDateTime = persianCalendar.ToDateTime(Convert.ToInt32(persianDate[0]), Convert.ToInt32(persianDate[1]), Convert.ToInt32(persianDate[2]), 0, 0, 0, 0);
+                    model.SRId = SRIDTxt.Text;
+                    model.Supplier = SupplierTxt.Text;
+                    model.CreatedDate = persianDateTime;
+                    model.ItemList = dataTable;
+                    if (buyInvoiceBusiness.AddBuyInvoice(model))
                     {
-                        try
-                        {
-                            PersianCalendar persianCalendar = new PersianCalendar();
-                            string[] persianDate = InvoiceDatetxt.Text.Split('/');
-                            DateTime persianDateTime = persianCalendar.ToDateTime(Convert.ToInt32(persianDate[0]), Convert.ToInt32(persianDate[1]), Convert.ToInt32(persianDate[2]), 0, 0, 0, 0);
-                            BuyInvoiceModel model = new BuyInvoiceModel();
-                            model.SRId = int.Parse(SRIDTxt.Text);
-                            model.Supplier = SupplierTxt.Text;
-                            model.IsFinally = false;
-                            model.CreatedDate = persianDateTime;
-                            model.BuyInvoiceId = buyInvoiceRepository.GetLastId() + 1;
-                            bool succsess = buyInvoiceRepository.AddItem(model);
-                            if (succsess)
-                            {
-                                foreach (BuyInvoiceItemDataRow item in dataTable.Rows)
-                                {
-                                    item.BuyInvoiceId = model.BuyInvoiceId;
-                                    DataTable table = stockItemRepository.GetStockItem(item.ItemId, model.SRId, item.TracingFactor.ToString());
-                                    if (table.Rows.Count == 0)
-                                    {
-                                        StockItemModel stocModel = new StockItemModel()
-                                        {
-                                            ItemId = item.ItemId,
-                                            SRId = int.Parse(SRIDTxt.Text),
-                                            StockValue = 0,
-                                            CreatedDate = persianDateTime,
-                                            TracingFactor = item.TracingFactor
-                                        };
-                                        item.StockItemId = stockItemRepository.AddStockItem(stocModel);
-                                    }
-                                    else if (table.Rows.Count == 1)
-                                    {
-                                        item.StockItemId = int.Parse(table.Rows[0]["StockItemId"].ToString());
-                                    }
-                                }
-                                if (buyInvoiceItemRepository.UpdateBuyInvoiceItem(dataTable) == true)
-                                {
-                                    foreach (BuyInvoiceItemDataRow item in dataTable.Rows)
-                                    {
-                                        stockItemRepository.UpdateStockItem(item.StockItemId, item.Quantity);
-                                    }
-                                    transaction.Complete();
-                                    isSuccess = true;
-                                }
-                            }
-                        }
-                        catch (Exception exp)
-                        {
-                            MessageBox.Show("عملیات با شکست مواجه شد", "ناموفق");
-                            return;
-                        }
-                    }
-                    if (isSuccess)
-                    {
-                        MessageBox.Show("عملیات با موفقیت انجام شد", "موفق");
                         OnAdded();
+                        MessageBox.Show("عملیات با موفقیت انجام شد", "موفق");
                     }
                 }
                 else

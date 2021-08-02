@@ -9,21 +9,8 @@ using System.Text;
 
 namespace Project.Repositories
 {
-    public class BuyInvoiceItemRepository
+    public class BuyInvoiceItemRepository:BaseRepository
     {
-        public SqlConnection connection;
-        public SqlCommand command;
-        public SqlDataAdapter adapter;
-        public DataSet ds;
-        public SqlDataReader dr;
-
-        public BuyInvoiceItemRepository()
-        {
-            if (connection == null) connection = new SqlConnection("data source=.\\sepidar;Initial Catalog=ProjectDB2;User Id=damavand;Password=damavand");
-            if (command == null) command = new SqlCommand();
-            if (adapter == null) adapter = new SqlDataAdapter();
-            if (ds == null) ds = new DataSet();
-        }
         public bool UpdateBuyInvoiceItem(DataTable table)
         {
             ds.Tables.Clear();

@@ -11,19 +11,9 @@ namespace Project.Repositories.User
 {
     public class UserRepository:BaseRepository
     {
-        public SqlConnection connection { get; set; }
-        public SqlCommand command { get; set; }
-        public SqlDataAdapter adapter { get; set; }
-        public DataSet ds { get; set; }
-
         public UserRepository()
         {
-            connection = new SqlConnection("data source=.\\sepidar;Initial Catalog=ProjectDB2;User Id=damavand;Password=damavand");
-            command = new SqlCommand();
-            adapter = new SqlDataAdapter();
-            ds = new DataSet();
         }
-
         public DataTable LoginUser(string username, string password)
         {
             command.Connection = connection;
