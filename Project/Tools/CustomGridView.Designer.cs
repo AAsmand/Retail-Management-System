@@ -1,4 +1,4 @@
-﻿namespace Project
+﻿namespace Project.Tools
 {
     partial class CustomGridView
     {

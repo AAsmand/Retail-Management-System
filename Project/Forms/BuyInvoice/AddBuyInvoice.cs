@@ -22,14 +22,12 @@ namespace Project
         private BuyInvoiceItemDataTable dataTable;
         private ChooseItemForm itemForm;
         private ChooseStockRoomForm stockRoomForm;
-        private ItemRepository itemRepository;
         private BuyInvoiceBusiness buyInvoiceBusiness;
 
 
         public AddBuyInvoice()
         {
             InitializeComponent();
-            itemRepository = new ItemRepository();
             buyInvoiceBusiness = new BuyInvoiceBusiness();
             dataTable = new BuyInvoiceItemDataTable();
             bindingSource1.DataSource = dataTable;
@@ -80,8 +78,8 @@ namespace Project
                 }
                 else if (e.Column.ColumnName == "ItemId")
                 {
-                    DataTable item = itemRepository.FindItem(int.Parse(e.Row[e.Column].ToString()));
-                    if (item.Rows.Count != 1)
+                    string itemTitle = buyInvoiceBusiness.GetItemTitle(int.Parse(e.Row[e.Column].ToString()));
+                    if (itemTitle == "")
                     {
                         e.Row.SetColumnError(e.Column, "شماره کالا معتبر نیست");
                         e.Row["ItemTitle"] = "";
@@ -89,7 +87,7 @@ namespace Project
                     else
                     {
                         e.Row.SetColumnError(e.Column, "");
-                        e.Row["ItemTitle"] = item.Rows[0]["Title"].ToString();
+                        e.Row["ItemTitle"] = itemTitle;
                     }
                 }
                 if (e.Row[e.Column].Equals(DBNull.Value) && e.Column.ColumnName == "Fee")
@@ -115,7 +113,7 @@ namespace Project
                     ComputingTotals();
                 }
             }
-            BuyInvoiceItemGridView.Refresh();
+            //BuyInvoiceItemGridView.Refresh();
         }
         public void ItemSelected(object sender, SelectEventArgs e)
         {

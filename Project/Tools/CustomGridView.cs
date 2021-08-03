@@ -9,7 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace Project
+namespace Project.Tools
 {
     public partial class CustomGridView : DataGridView
     {

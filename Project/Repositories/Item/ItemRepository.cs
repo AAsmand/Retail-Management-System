@@ -5,36 +5,24 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data;
 using Project.Models;
+using Project.ViewModel;
+using Project.Models.User;
 
 namespace Project.Repositories
 {
-    public  class ItemRepository
+    public  class ItemRepository:BaseRepository
     {
-        public  SqlConnection connection { get; set; }
-        public  SqlCommand command { get; set; }
-        public  SqlDataAdapter adapter { get; set; }
-        public  DataSet ds { get; set; }
-        public  SqlDataReader dr { get; set; }
-
         public ItemRepository()
         {
-            if (connection == null) connection = new SqlConnection("data source=.\\sepidar;Initial Catalog=ProjectDB2;User Id=damavand;Password=damavand");
-            if (command == null) command = new SqlCommand();
-            if (adapter == null) adapter = new SqlDataAdapter();
-            if (ds == null) ds = new DataSet();
-            //if (dr == null) dr = new SqlDataReader();
-
         }
-
         public DataTable GetData(int itemId=0)
         {
             if (itemId==0)
-                command = new SqlCommand("select * from Item as i inner join unit as u on u.UnitId=RefUnitId left join TracingFactor as t on t.TracingFactorId=i.TracingFactorId", connection);
+                command = new SqlCommand("select ItemId,i.Title,Description,RefUnitId,HasTracingFactor,i.TracingFactorId,pic,CreatorUserId,u.UnitName,t.Title as TracingFactorTitle , CAST(i.TimeStamp as int) as TimeStamp from Item as i inner join unit as u on u.UnitId=RefUnitId left join TracingFactor as t on t.TracingFactorId=i.TracingFactorId", connection);
             else
             {
-
                 command.Connection = connection;
-                command.CommandText = "select * from Item as i inner join unit as u on u.UnitId=RefUnitId left join TracingFactor as t on t.TracingFactorId=i.TracingFactorId where CAST(ItemId as varchar) like '%'+@Id+'%'";
+                command.CommandText = "select ItemId,i.Title,Description,RefUnitId,HasTracingFactor,i.TracingFactorId,pic,CreatorUserId,u.UnitName ,t.Title as TracingFactorTitle , CAST(i.TimeStamp as int) as TimeStamp from Item as i inner join unit as u on u.UnitId=RefUnitId left join TracingFactor as t on t.TracingFactorId=i.TracingFactorId where CAST(ItemId as varchar) like '%'+@Id+'%'";
                 command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Id", itemId.ToString());
             }
@@ -67,23 +55,23 @@ namespace Project.Repositories
             }
 
         }
-
-        public  bool AddItem(ItemModel model)
+        public  bool AddItem(ItemViewModel model)
         {
             command.Connection = connection;
             command.Parameters.Clear();
             if (model.HasTracingFactor)
             {
-                command.CommandText = "insert into Item(Title,Description,RefUnitId,HasTracingFactor,TracingFactorId,pic) Values(@Title,@Description,@RefUnitId,@HasTracingFactor,@TracingFactorId,@pic)";
+                command.CommandText = "insert into Item(Title,Description,RefUnitId,HasTracingFactor,TracingFactorId,pic,CreatorUserId) Values(@Title,@Description,@RefUnitId,@HasTracingFactor,@TracingFactorId,@pic,@CreatorUserId)";
                 command.Parameters.AddWithValue("@TracingFactorId", model.TracingFactorId);
             }
-            command.CommandText = "insert into Item(Title,Description,RefUnitId,HasTracingFactor,pic) Values(@Title,@Description,@RefUnitId,@HasTracingFactor,@pic)";
+            command.CommandText = "insert into Item(Title,Description,RefUnitId,HasTracingFactor,pic,CreatorUserId) Values(@Title,@Description,@RefUnitId,@HasTracingFactor,@pic,@CreatorUserId)";
             command.Parameters.Clear();
             command.Parameters.AddWithValue("@Title", model.Title);
             command.Parameters.AddWithValue("@Description", model.Description);
             command.Parameters.AddWithValue("@RefUnitId", model.RefUnitId);
             command.Parameters.AddWithValue("@HasTracingFactor", model.HasTracingFactor);
             command.Parameters.AddWithValue("@pic", model.Pic);
+            command.Parameters.AddWithValue("@CreatorUserId",UserModel.UserId);
             connection.Open();
             if (command.ExecuteNonQuery() > 0)
             {
@@ -93,7 +81,7 @@ namespace Project.Repositories
             connection.Close();
             return false;
         }
-        public  bool EditItem(ItemModel model)
+        public  bool EditItem(ItemViewModel model)
         {
             command.Connection = connection;
             command.Parameters.Clear();
@@ -121,7 +109,6 @@ namespace Project.Repositories
             connection.Close();
             return false;
         }
-
         public  DataTable FindItem(int itemId)
         {
 
@@ -135,6 +122,22 @@ namespace Project.Repositories
             adapter.Fill(ds, "Item");
             connection.Close();
             return ds.Tables["Item"];
+        }
+        public override bool IsNotConcurrent(IConcurrency model)
+        {
+            command.Connection = connection;
+            command.CommandText = "select * from Item where ItemId=@ItemId and CAST(TimeStamp as int)=@TimeStamp";
+            command.Parameters.Clear();
+            command.Parameters.AddWithValue("@ItemId", model.Id);
+            command.Parameters.AddWithValue("@TimeStamp", model.TimeStamp);
+            connection.Open();
+            adapter.SelectCommand = command;
+            ds.Clear();
+            adapter.Fill(ds, "ItemTimeStamp");
+            connection.Close();
+            if (ds.Tables["ItemTimeStamp"].Rows.Count > 0)
+                return true;
+            return false;
         }
     }
 }

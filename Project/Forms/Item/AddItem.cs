@@ -10,35 +10,36 @@ using System.Windows.Forms;
 using Project.Business;
 using Project.Models;
 using Project.Repositories;
+using Project.ViewModel;
 
 namespace Project
 {
     public partial class AddItem : Form
     {
         Image Image;
-        ItemModel Model;
+        ItemViewModel Model;
         bool EditMode = false;
         bool isUpdatedImage = false;
         ItemBusiness itemBus;
         public event EventHandler<AddItemEventArg> AddedEvent;
-        private UnitRepository unitRepository;
-        private TracingFactorRepository tracingFactorRepository;
+        private UnitBusiness unitBusiness;
+        private TracingFactorBusiness tracingFactorBusiness;
         public AddItem()
         {
             InitializeComponent();
             itemBus = new ItemBusiness();
-            unitRepository = new UnitRepository();
-            tracingFactorRepository = new TracingFactorRepository();
+            unitBusiness = new UnitBusiness();
+            tracingFactorBusiness = new TracingFactorBusiness();
             HasTracingFactor.Checked = true;
         }
-        public AddItem(ItemModel model)
+        public AddItem(ItemViewModel model)
         {
             Model = model;
             EditMode = true;
             InitializeComponent();
             itemBus = new ItemBusiness();
-            unitRepository = new UnitRepository();
-            tracingFactorRepository = new TracingFactorRepository();
+            unitBusiness = new UnitBusiness();
+            tracingFactorBusiness = new TracingFactorBusiness();
             AddBtn.Text = "ویرایش";
             Titletxt.Text = model.Title;
             Descriptiontxt.Text = model.Description;
@@ -63,76 +64,45 @@ namespace Project
 
         private void AddItem_Load(object sender, EventArgs e)
         {
-            UnitCombo.DataSource = unitRepository.GetData();
+            UnitCombo.DataSource = unitBusiness.GetUnits();
             UnitCombo.DisplayMember = "UnitName";
             UnitCombo.ValueMember = "UnitId";
 
-            TracingCombo.DataSource = tracingFactorRepository.GetData();
+            TracingCombo.DataSource = tracingFactorBusiness.GetTracingFactors();
             TracingCombo.DisplayMember = "Title";
             TracingCombo.ValueMember = "TracingFactorId";
 
             if (EditMode)
             {
                 UnitCombo.SelectedValue = Model.RefUnitId;
-                TracingCombo.SelectedValue = Model.TracingFactorId;
+                if (Model.HasTracingFactor)
+                    TracingCombo.SelectedValue = int.Parse(Model.TracingFactorId);
             }
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-
             if (AddItemErrorProvider.GetError(Titletxt) == "")
             {
                 if (EditMode)
                 {
-                    if (HasTracingFactor.Checked)
+
+                    if (itemBus.EditItem(Model.ItemId, Titletxt.Text, Descriptiontxt.Text, (int)UnitCombo.SelectedValue, HasTracingFactor.Checked, HasTracingFactor.Checked ? TracingCombo.SelectedValue.ToString() : "0", PicAddressTxt.Text, Model.Pic, Image, isUpdatedImage))
                     {
-                        if (itemBus.EditItem(Model.ItemId, Titletxt.Text, Descriptiontxt.Text, (int)UnitCombo.SelectedValue, HasTracingFactor.Checked, (int)TracingCombo.SelectedValue, PicAddressTxt.Text, Model.Pic, Image, isUpdatedImage))
-                        {
-                            MessageBox.Show("عملیات با موفقیت انجام شد");
-                            if (AddedEvent != null)
-                                AddedEvent.Invoke(this, new AddItemEventArg() { IsSuccess = true });
-                            // this.DialogResult = DialogResult.OK;
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("عملیات با شکست مواجه شد");
-                        }
+                        MessageBox.Show("عملیات با موفقیت انجام شد");
+                        if (AddedEvent != null)
+                            AddedEvent.Invoke(this, new AddItemEventArg() { IsSuccess = true });
+                        this.Close();
                     }
                     else
                     {
-                        if (itemBus.EditItem(Model.ItemId, Titletxt.Text, Descriptiontxt.Text, (int)UnitCombo.SelectedValue, HasTracingFactor.Checked, 0, PicAddressTxt.Text, Model.Pic, Image, isUpdatedImage))
-                        {
-                            MessageBox.Show("عملیات با موفقیت انجام شد");
-                            if (AddedEvent != null)
-                                AddedEvent.Invoke(this, new AddItemEventArg() { IsSuccess = true });
-                            // this.DialogResult = DialogResult.OK;
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("عملیات با شکست مواجه شد");
-                        }
+                        MessageBox.Show("عملیات با شکست مواجه شد");
                     }
+
                 }
                 else
                 {
-                    if (HasTracingFactor.Checked)
-                    {
-                        if (itemBus.AddItem(Titletxt.Text, Descriptiontxt.Text, (int)UnitCombo.SelectedValue, HasTracingFactor.Checked, (int)TracingCombo.SelectedValue, PicAddressTxt.Text, Image))
-                        {
-                            MessageBox.Show("عملیات با موفقیت انجام شد");
-                            AddedEvent.Invoke(this, new AddItemEventArg() { IsSuccess = true });
-                            this.DialogResult = DialogResult.OK;
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("عملیات با شکست مواجه شد");
-                        }
-                    }
-                    if (itemBus.AddItem(Titletxt.Text, Descriptiontxt.Text, (int)UnitCombo.SelectedValue, HasTracingFactor.Checked, 0, PicAddressTxt.Text, Image))
+                    if (itemBus.AddItem(Titletxt.Text, Descriptiontxt.Text, (int)UnitCombo.SelectedValue, HasTracingFactor.Checked, HasTracingFactor.Checked ? TracingCombo.SelectedValue.ToString() : "0", PicAddressTxt.Text, Image))
                     {
                         MessageBox.Show("عملیات با موفقیت انجام شد");
                         AddedEvent.Invoke(this, new AddItemEventArg() { IsSuccess = true });

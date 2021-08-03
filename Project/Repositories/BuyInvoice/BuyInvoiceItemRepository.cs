@@ -71,7 +71,7 @@ namespace Project.Repositories
             ds.Clear();
             adapter.Fill(ds, "Item");
             connection.Close();
-            return ds.Tables["Item"].Rows.Cast<DataRow>().Select(r=>new BuyInvoiceItemModel() {BuyInvoiceItemId=(int)r["BuyInvoiceItemId"],BuyInvoiceId=(int)r["BuyInvoiceId"],Quantity= (int)r["Quantity"],StockItemId= (int)r["Quantity"] }).ToList();
+            return ds.Tables["Item"].Rows.Cast<DataRow>().Select(r=>new BuyInvoiceItemModel() {BuyInvoiceItemId=(int)r["BuyInvoiceItemId"],BuyInvoiceId=(int)r["BuyInvoiceId"],Quantity= (int)r["Quantity"],StockItemId= (int)r["StockId"] }).ToList();
         }
     }
 }

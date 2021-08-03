@@ -62,14 +62,20 @@ namespace Project
             SellInvoiceGridView.EndEdit();
             try
             {
-                List<string> selectedId = SellInvoiceGridView.Rows.Cast<DataGridViewRow>().Where(r => r.Cells["Check"].Value != null).Where(r => int.Parse(r.Cells["Check"].Value.ToString()) == 1).Select(r => r.Cells["SellInvoiceId"].ToString()).ToList();
+                List<string> selectedId = SellInvoiceGridView.Rows.Cast<DataGridViewRow>().Where(r => r.Cells["Check"].Value != null).Where(r => int.Parse(r.Cells["Check"].Value.ToString()) == 1).Select(r => r.Cells["SellInvoiceId"].Value.ToString()).ToList();
                 if (selectedId.Count == 0)
                     MessageBox.Show("هیچ سطری انتخاب نشده است", "خطا");
                 else if (MessageBox.Show("آیا از حذف " + selectedId.Count + "فاکتور مطمئن هستید ؟", "هشدار", MessageBoxButtons.YesNo).Equals(DialogResult.Yes))
                 {
-                    sellInvoiceBusiness.RemoveBuyInvoices(selectedId);
-                    MessageBox.Show("عملیات با موفقیت انجام شد !", "موفق");
-                    BindSellInvoiceData();
+                    if (sellInvoiceBusiness.RemoveSellInvoices(selectedId))
+                    {
+                        MessageBox.Show("عملیات با موفقیت انجام شد !", "موفق");
+                        BindSellInvoiceData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("عملیات با شکست مواجه شد !", "ناموفق");
+                    }
                 }
             }
             catch (Exception exp)

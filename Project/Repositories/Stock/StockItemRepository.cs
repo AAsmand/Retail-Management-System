@@ -70,7 +70,7 @@ namespace Project.Repositories
         public bool UpdateStockItem(int stockItemId, int ChangeValue)
         {
             command.Connection = connection;
-            command.CommandText = "update StockItem set StockValue=StockValue+@ChangeValue where StockItemId=@StockItemId and (StockValue+@ChangeValue)>0";
+            command.CommandText = "update StockItem set StockValue=StockValue+@ChangeValue where StockItemId=@StockItemId and (StockValue+@ChangeValue)>=0";
             command.Parameters.Clear();
             command.Parameters.AddWithValue("@StockItemId", stockItemId);
             command.Parameters.AddWithValue("@ChangeValue", ChangeValue);

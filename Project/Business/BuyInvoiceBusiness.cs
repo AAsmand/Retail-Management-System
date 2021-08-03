@@ -16,13 +16,13 @@ namespace Project.Business
         public BuyInvoiceRepository buyInvoiceRepository;
         BuyInvoiceItemRepository buyInvoiceItemRepository;
         StockItemRepository stockItemRepository;
-        private ItemRepository itemRepository;
+        private ItemBusiness itemBusiness;
         public BuyInvoiceBusiness()
         {
             buyInvoiceRepository = new BuyInvoiceRepository();
             buyInvoiceItemRepository = new BuyInvoiceItemRepository();
             stockItemRepository = new StockItemRepository();
-            itemRepository = new ItemRepository();
+            itemBusiness = new ItemBusiness();
         }
         public List<BuyInvoiceViewModel> GetBuyInvoices()
         {
@@ -99,6 +99,10 @@ namespace Project.Business
                 }
             }
             catch (Exception exp) { return false; }
+        }
+        public string GetItemTitle(int itemId)
+        {
+            return itemBusiness.ItemExist(itemId);
         }
     }
 }

@@ -49,6 +49,8 @@
     <Compile Include="Business\BaseBusiness.cs" />
     <Compile Include="Business\SellInvoiceBusiness.cs" />
     <Compile Include="Business\BuyInvoiceBusiness.cs" />
+    <Compile Include="Business\TracingFactorBusiness.cs" />
+    <Compile Include="Business\UnitBusiness.cs" />
     <Compile Include="Business\UserBusiness.cs" />
     <Compile Include="Models\TypedData\BuyTypedData\BuyInvoice\BuyInvoiceRow.cs" />
     <Compile Include="Models\TypedData\BuyTypedData\BuyInvoice\BuyInvoiceTable.cs">
@@ -172,7 +174,7 @@
     <Compile Include="Models\BuyInvoiceItemModel.cs" />
     <Compile Include="ViewModel\SellInvoiceViewModel.cs" />
     <Compile Include="ViewModel\BuyInvoiceViewModel.cs" />
-    <Compile Include="Models\ItemModel.cs" />
+    <Compile Include="ViewModel\ItemViewModel.cs" />
     <Compile Include="Models\StockItemModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Program.cs" />

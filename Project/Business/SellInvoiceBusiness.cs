@@ -16,13 +16,13 @@ namespace Project.Business
         public SellInvoiceRepository sellInvoiceRepository;
         SellInvoiceItemRepository sellInvoiceItemRepository;
         StockItemRepository stockItemRepository;
-        private ItemRepository itemRepository;
+        private ItemBusiness itemBusiness;
         public SellInvoiceBusiness()
         {
             sellInvoiceRepository = new SellInvoiceRepository();
             sellInvoiceItemRepository = new SellInvoiceItemRepository();
             stockItemRepository = new StockItemRepository();
-            itemRepository = new ItemRepository();
+            itemBusiness = new ItemBusiness();
         }
         public List<SellInvoiceViewModel> GetSellInvoices()
         {
@@ -69,27 +69,32 @@ namespace Project.Business
             return false;
         }
 
-        public bool RemoveBuyInvoices(List<string> sellInvoicesId)
+        public bool RemoveSellInvoices(List<string> sellInvoicesId)
         {
             try
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    foreach (string id in sellInvoicesId)
+                    foreach (string invoiceId in sellInvoicesId)
                     {
-                        List<SellInvoiceItemModel> listItem = sellInvoiceItemRepository.GetSellInvoiceItems(int.Parse(id));
+                        List<SellInvoiceItemModel> listItem = sellInvoiceItemRepository.GetSellInvoiceItems(int.Parse(invoiceId));
                         foreach (SellInvoiceItemModel item in listItem)
                         {
                             if (!stockItemRepository.UpdateStockItem(item.StockRoomId, item.ItemId, item.TracingFactor, item.Quantity)) return false;
                         }
-                        if (!sellInvoiceItemRepository.RemoveBuyInvoiceItems(int.Parse(id))) return false;
-                        if (!sellInvoiceRepository.DeleteItem(int.Parse(id))) return false;
+                        if (!sellInvoiceItemRepository.RemoveBuyInvoiceItems(int.Parse(invoiceId))) return false;
+                        if (!sellInvoiceRepository.DeleteItem(int.Parse(invoiceId))) return false;
                     }
                     scope.Complete();
                     return true;
                 }
             }
             catch (Exception exp) { return false; }
+        }
+
+        public string GetItemTitle(int itemId)
+        {
+            return itemBusiness.ItemExist(itemId);
         }
     }
 }

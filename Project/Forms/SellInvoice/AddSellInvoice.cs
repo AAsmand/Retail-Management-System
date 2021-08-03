@@ -24,15 +24,11 @@ namespace Project
         public ChooseSellType sellTypeForm;
         public ChooseStockItemForm chooseStockItemForm;
         private ChooseItemStockRoom chooseItemStockRoom;
-        public ItemRepository itemRepository;
         public SellInvoiceBusiness sellInvoiceBusiness;
-
-
         public AddSellInvoice()
         {
             InitializeComponent();
             sellInvoiceBusiness = new SellInvoiceBusiness();
-            itemRepository = new ItemRepository();
             dataTable = new SellInvoiceItemDataTable();
             bindingSource1.DataSource = dataTable;
             SellInvoiceItemGridView.AutoGenerateColumns = false;
@@ -82,8 +78,8 @@ namespace Project
                 }
                 else if (e.Column.ColumnName == "ItemId")
                 {
-                    DataTable item = itemRepository.FindItem(int.Parse(e.Row[e.Column].ToString()));
-                    if (item.Rows.Count != 1)
+                    string itemTitle = sellInvoiceBusiness.GetItemTitle(int.Parse(e.Row[e.Column].ToString()));
+                    if (itemTitle=="")
                     {
                         e.Row.SetColumnError(e.Column, "شماره کالا معتبر نیست");
                         e.Row["ItemTitle"] = "";
@@ -91,7 +87,7 @@ namespace Project
                     else
                     {
                         e.Row.SetColumnError(e.Column, "");
-                        e.Row["ItemTitle"] = item.Rows[0]["Title"].ToString();
+                        e.Row["ItemTitle"] = itemTitle;
                     }
                 }
                 else if (e.Row[e.Column].Equals(DBNull.Value) && e.Column.ColumnName == "StockRoomId")

@@ -20,4 +20,3 @@ C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.Properties.Resour
 C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.csproj.GenerateResource.cache
 C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.exe
 C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.pdb
-C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.csprojAssemblyReference.cache

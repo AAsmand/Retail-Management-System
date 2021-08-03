@@ -73,7 +73,7 @@ namespace Project
                         MessageBox.Show("عملیات با موفقیت انجام شد !", "موفق");
                     }
                     else
-                        MessageBox.Show("عملیات با شکست مواجه شد !", "ناموفق");
+                        MessageBox.Show("عملیات با شکست مواجه شد ! موجودی انبار کافی نیست", "ناموفق");
                 }
             }
             catch (Exception)

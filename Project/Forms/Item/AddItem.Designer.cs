@@ -55,18 +55,18 @@
             // Titletxt
             // 
             this.Titletxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Titletxt.Location = new System.Drawing.Point(327, 3);
+            this.Titletxt.Location = new System.Drawing.Point(329, 3);
             this.Titletxt.Name = "Titletxt";
-            this.Titletxt.Size = new System.Drawing.Size(660, 32);
+            this.Titletxt.Size = new System.Drawing.Size(658, 32);
             this.Titletxt.TabIndex = 0;
             this.Titletxt.Validating += new System.ComponentModel.CancelEventHandler(this.Titletxt_Validating);
             // 
             // Descriptiontxt
             // 
             this.Descriptiontxt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Descriptiontxt.Location = new System.Drawing.Point(327, 41);
+            this.Descriptiontxt.Location = new System.Drawing.Point(329, 41);
             this.Descriptiontxt.Name = "Descriptiontxt";
-            this.Descriptiontxt.Size = new System.Drawing.Size(660, 260);
+            this.Descriptiontxt.Size = new System.Drawing.Size(658, 260);
             this.Descriptiontxt.TabIndex = 1;
             this.Descriptiontxt.Text = "";
             // 
@@ -74,18 +74,18 @@
             // 
             this.UnitCombo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UnitCombo.FormattingEnabled = true;
-            this.UnitCombo.Location = new System.Drawing.Point(327, 347);
+            this.UnitCombo.Location = new System.Drawing.Point(329, 347);
             this.UnitCombo.Name = "UnitCombo";
-            this.UnitCombo.Size = new System.Drawing.Size(660, 32);
+            this.UnitCombo.Size = new System.Drawing.Size(658, 32);
             this.UnitCombo.TabIndex = 2;
             // 
             // TracingCombo
             // 
             this.TracingCombo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TracingCombo.FormattingEnabled = true;
-            this.TracingCombo.Location = new System.Drawing.Point(327, 307);
+            this.TracingCombo.Location = new System.Drawing.Point(329, 307);
             this.TracingCombo.Name = "TracingCombo";
-            this.TracingCombo.Size = new System.Drawing.Size(660, 32);
+            this.TracingCombo.Size = new System.Drawing.Size(658, 32);
             this.TracingCombo.TabIndex = 3;
             // 
             // pictureBox1
@@ -93,7 +93,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(3, 392);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(215, 229);
+            this.pictureBox1.Size = new System.Drawing.Size(217, 229);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -105,14 +105,14 @@
             // PicAddressTxt
             // 
             this.PicAddressTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PicAddressTxt.Location = new System.Drawing.Point(327, 392);
+            this.PicAddressTxt.Location = new System.Drawing.Point(329, 392);
             this.PicAddressTxt.Name = "PicAddressTxt";
-            this.PicAddressTxt.Size = new System.Drawing.Size(660, 32);
+            this.PicAddressTxt.Size = new System.Drawing.Size(658, 32);
             this.PicAddressTxt.TabIndex = 5;
             // 
             // SelectPic
             // 
-            this.SelectPic.Location = new System.Drawing.Point(224, 392);
+            this.SelectPic.Location = new System.Drawing.Point(226, 392);
             this.SelectPic.Name = "SelectPic";
             this.SelectPic.Size = new System.Drawing.Size(97, 32);
             this.SelectPic.TabIndex = 6;
@@ -128,7 +128,7 @@
             this.AddBtn.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.AddBtn.Location = new System.Drawing.Point(3, 627);
             this.AddBtn.Name = "AddBtn";
-            this.AddBtn.Size = new System.Drawing.Size(215, 45);
+            this.AddBtn.Size = new System.Drawing.Size(217, 45);
             this.AddBtn.TabIndex = 7;
             this.AddBtn.Text = "افزودن";
             this.AddBtn.UseVisualStyleBackColor = false;
@@ -195,7 +195,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.53985F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.46015F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 222F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.Titletxt, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.AddBtn, 3, 5);
@@ -227,7 +227,7 @@
             // HasTracingFactor
             // 
             this.HasTracingFactor.AutoSize = true;
-            this.HasTracingFactor.Location = new System.Drawing.Point(267, 307);
+            this.HasTracingFactor.Location = new System.Drawing.Point(269, 307);
             this.HasTracingFactor.Name = "HasTracingFactor";
             this.HasTracingFactor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.HasTracingFactor.Size = new System.Drawing.Size(54, 28);
