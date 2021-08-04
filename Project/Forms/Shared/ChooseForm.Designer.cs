@@ -1,6 +1,9 @@
-﻿namespace Project
+﻿using Project.Business.ChooseBusiness;
+using Project.Repositories;
+
+namespace Project.Forms.Shared
 {
-    partial class ChooseSellType
+    partial class ChooseForm<TBusiness> where TBusiness : IChooseBusiness, new()
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +31,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SellTypeGrid = new System.Windows.Forms.DataGridView();
+            this.components = new System.ComponentModel.Container();
             this.CancelBtn = new System.Windows.Forms.Button();
             this.SelectBtn = new System.Windows.Forms.Button();
-            this.SellTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SellTypeTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.SellTypeGrid)).BeginInit();
+            this.ChooseGridView = new Project.Tools.CustomGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.ChooseGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // SellTypeGrid
-            // 
-            this.SellTypeGrid.AllowUserToAddRows = false;
-            this.SellTypeGrid.AllowUserToDeleteRows = false;
-            this.SellTypeGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.SellTypeGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SellTypeGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SellTypeId,
-            this.SellTypeTitle});
-            this.SellTypeGrid.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SellTypeGrid.Location = new System.Drawing.Point(0, 0);
-            this.SellTypeGrid.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
-            this.SellTypeGrid.Name = "SellTypeGrid";
-            this.SellTypeGrid.RowHeadersWidth = 51;
-            this.SellTypeGrid.Size = new System.Drawing.Size(418, 215);
-            this.SellTypeGrid.TabIndex = 0;
-            this.SellTypeGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ItemGrid_CellDoubleClick);
             // 
             // CancelBtn
             // 
@@ -83,23 +67,21 @@
             this.SelectBtn.UseVisualStyleBackColor = false;
             this.SelectBtn.Click += new System.EventHandler(this.SelectBtn_Click);
             // 
-            // SellTypeId
+            // ChooseGridView
             // 
-            this.SellTypeId.DataPropertyName = "SellTypeId";
-            this.SellTypeId.HeaderText = "شماره نوع فروش";
-            this.SellTypeId.MinimumWidth = 6;
-            this.SellTypeId.Name = "SellTypeId";
-            this.SellTypeId.ReadOnly = true;
+            this.ChooseGridView.AllowUserToAddRows = false;
+            this.ChooseGridView.AllowUserToDeleteRows = false;
+            this.ChooseGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ChooseGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ChooseGridView.Location = new System.Drawing.Point(8, 12);
+            this.ChooseGridView.Name = "ChooseGridView";
+            this.ChooseGridView.ReadOnly = true;
+            this.ChooseGridView.RowHeadersWidth = 51;
+            this.ChooseGridView.Size = new System.Drawing.Size(398, 204);
+            this.ChooseGridView.TabIndex = 5;
+            this.ChooseGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ChooseGridView_CellDoubleClick);
             // 
-            // SellTypeTitle
-            // 
-            this.SellTypeTitle.DataPropertyName = "SellTypeTitle";
-            this.SellTypeTitle.HeaderText = "عنوان";
-            this.SellTypeTitle.MinimumWidth = 6;
-            this.SellTypeTitle.Name = "SellTypeTitle";
-            this.SellTypeTitle.ReadOnly = true;
-            // 
-            // ChooseSellType
+            // ChooseForm
             // 
             this.AcceptButton = this.SelectBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 29F);
@@ -107,26 +89,23 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.CancelButton = this.CancelBtn;
             this.ClientSize = new System.Drawing.Size(418, 256);
+            this.Controls.Add(this.ChooseGridView);
             this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.SelectBtn);
-            this.Controls.Add(this.SellTypeGrid);
             this.Font = new System.Drawing.Font("IRTerafik", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
-            this.Name = "ChooseSellType";
+            this.Name = "ChooseForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Text = "انتخاب نوع فروش";
-            this.Load += new System.EventHandler(this.ChooseSellType_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.SellTypeGrid)).EndInit();
+            this.Text = "انتخاب کالا";
+            this.Load += new System.EventHandler(this.ChooseItemForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ChooseGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView SellTypeGrid;
         private System.Windows.Forms.Button CancelBtn;
         private System.Windows.Forms.Button SelectBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SellTypeId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SellTypeTitle;
+        private Tools.CustomGridView ChooseGridView;
     }
 }

@@ -27,6 +27,16 @@ namespace Project.Tools
             this.ContextMenuStrip = Gridmenu;
             this.KeyDown += GridView_KeyDown;
         }
+        public CustomGridView()
+        {
+            InitializeComponent();
+            Gridmenu = new ContextMenuStrip();
+            HideColumn = new ToolStripMenuItem("ستون های مخفی");
+            Gridmenu.Items.Add(HideColumn);
+            HideColumn.DropDownItemClicked += HideColumn_DropDownItemClicked;
+            this.ContextMenuStrip = Gridmenu;
+            this.KeyDown += GridView_KeyDown;
+        }
         public void Init()
         {
             List<string> list = ReadDataGridViewSetting();
@@ -38,7 +48,7 @@ namespace Project.Tools
             {
                 string column = this.Columns[this.CurrentCell.ColumnIndex].Name;
                 this.Columns[column].Visible = false;
-                
+
                 HideColumn.DropDownItems.Add(this.Columns[column].HeaderText);
             }
         }

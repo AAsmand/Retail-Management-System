@@ -17,12 +17,16 @@ namespace Project.Business
         SellInvoiceItemRepository sellInvoiceItemRepository;
         StockItemRepository stockItemRepository;
         private ItemBusiness itemBusiness;
+        private SellTypeBusiness sellTypeBusiness;
+        private StockItemBusiness stockItemBusiness;
         public SellInvoiceBusiness()
         {
             sellInvoiceRepository = new SellInvoiceRepository();
             sellInvoiceItemRepository = new SellInvoiceItemRepository();
             stockItemRepository = new StockItemRepository();
             itemBusiness = new ItemBusiness();
+            sellTypeBusiness = new SellTypeBusiness();
+            stockItemBusiness = new StockItemBusiness();
         }
         public List<SellInvoiceViewModel> GetSellInvoices()
         {
@@ -92,9 +96,17 @@ namespace Project.Business
             catch (Exception exp) { return false; }
         }
 
-        public string GetItemTitle(int itemId)
+        public ItemViewModel GetItem(int itemId)
         {
-            return itemBusiness.ItemExist(itemId);
+            return itemBusiness.GetItem(itemId);
+        }
+        public SellTypeViewModel GetSellType(int sellTypeId)
+        {
+            return sellTypeBusiness.GetSellType(sellTypeId);
+        }
+        public StockItemViewModel GetStockItem(int stockItemId)
+        {
+            return stockItemBusiness.GetStockItem(stockItemId);
         }
     }
 }

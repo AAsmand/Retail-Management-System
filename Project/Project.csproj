@@ -47,16 +47,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\BaseBusiness.cs" />
+    <Compile Include="Business\ChooseBusiness\IChooseBusiness.cs" />
+    <Compile Include="Business\RoleBusiness.cs" />
     <Compile Include="Business\SellInvoiceBusiness.cs" />
     <Compile Include="Business\BuyInvoiceBusiness.cs" />
+    <Compile Include="Business\SellTypeBusiness.cs" />
+    <Compile Include="Business\StockItemBusiness.cs" />
+    <Compile Include="Business\StockRoomBusiness.cs" />
     <Compile Include="Business\TracingFactorBusiness.cs" />
     <Compile Include="Business\UnitBusiness.cs" />
     <Compile Include="Business\UserBusiness.cs" />
+    <Compile Include="Forms\Shared\ChooseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseForm.Designer.cs">
+      <DependentUpon>ChooseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\TypedData\BuyTypedData\BuyInvoice\BuyInvoiceRow.cs" />
     <Compile Include="Models\TypedData\BuyTypedData\BuyInvoice\BuyInvoiceTable.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\IChooseRepository.cs" />
     <Compile Include="Tools\CustomGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -87,42 +99,6 @@
     </Compile>
     <Compile Include="Forms\SellInvoice\ManageSellInvoice.Designer.cs">
       <DependentUpon>ManageSellInvoice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Shared\ChooseRole.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Shared\ChooseRole.Designer.cs">
-      <DependentUpon>ChooseRole.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Shared\ChooseSellType.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Shared\ChooseSellType.Designer.cs">
-      <DependentUpon>ChooseSellType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Shared\ChooseItemStockRoom.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Shared\ChooseItemStockRoom.Designer.cs">
-      <DependentUpon>ChooseItemStockRoom.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Shared\ChooseStockItem.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Shared\ChooseStockItem.Designer.cs">
-      <DependentUpon>ChooseStockItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Shared\ChooseStockRoom.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Shared\ChooseStockRoom.Designer.cs">
-      <DependentUpon>ChooseStockRoom.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Shared\ChooseItem.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Shared\ChooseItem.Designer.cs">
-      <DependentUpon>ChooseItem.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -175,7 +151,7 @@
     <Compile Include="ViewModel\SellInvoiceViewModel.cs" />
     <Compile Include="ViewModel\BuyInvoiceViewModel.cs" />
     <Compile Include="ViewModel\ItemViewModel.cs" />
-    <Compile Include="Models\StockItemModel.cs" />
+    <Compile Include="ViewModel\StockItemViewModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -203,6 +179,8 @@
     <Compile Include="Tools\Access.cs" />
     <Compile Include="Tools\DGVSetting.cs" />
     <Compile Include="ViewModel\RoleViewModel.cs" />
+    <Compile Include="ViewModel\SellTypeViewModel.cs" />
+    <Compile Include="ViewModel\StockRoomViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
     <EmbeddedResource Include="Forms\BuyInvoice\AddBuyInvoice.resx">
       <DependentUpon>AddBuyInvoice.cs</DependentUpon>
@@ -216,23 +194,8 @@
     <EmbeddedResource Include="Forms\SellInvoice\ManageSellInvoice.resx">
       <DependentUpon>ManageSellInvoice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Shared\ChooseRole.resx">
-      <DependentUpon>ChooseRole.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Shared\ChooseSellType.resx">
-      <DependentUpon>ChooseSellType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Shared\ChooseItemStockRoom.resx">
-      <DependentUpon>ChooseItemStockRoom.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Shared\ChooseStockItem.resx">
-      <DependentUpon>ChooseStockItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Shared\ChooseStockRoom.resx">
-      <DependentUpon>ChooseStockRoom.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Shared\ChooseItem.resx">
-      <DependentUpon>ChooseItem.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Shared\ChooseForm.resx">
+      <DependentUpon>ChooseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

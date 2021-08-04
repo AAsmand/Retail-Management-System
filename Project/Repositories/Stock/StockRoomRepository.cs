@@ -8,25 +8,14 @@ using System.Data;
 
 namespace Project.Repositories
 {
-    public class StockRoomRepository
+    public class StockRoomRepository :  BaseRepository, IChooseRepository
     {
-        public SqlConnection connection;
-        public SqlCommand command;
-        public SqlDataAdapter adapter;
-        public DataSet ds;
-        public SqlDataReader dr;
-
         public StockRoomRepository()
         {
-            if (connection == null) connection = new SqlConnection("data source=.\\sepidar;Initial Catalog=ProjectDB2;User Id=damavand;Password=damavand");
-            if (command == null) command = new SqlCommand();
-            if (adapter == null) adapter = new SqlDataAdapter();
-            if (ds == null) ds = new DataSet();
-
         }
-        public DataTable GetData(int srId=0)
+        public DataTable GetData(int srId = 0)
         {
-            if (srId==0)
+            if (srId == 0)
                 command = new SqlCommand("select * from StockRoom ", connection);
             else
             {
@@ -35,6 +24,30 @@ namespace Project.Repositories
                 command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Id", srId.ToString());
             }
+            connection.Open();
+            adapter.SelectCommand = command;
+            ds.Clear();
+            adapter.Fill(ds, "StockRoom");
+            connection.Close();
+            return ds.Tables["StockRoom"];
+        }
+
+        public DataTable GetDataToChoose(params object[] parameter)
+        {
+            command.Connection = connection;
+            command.Parameters.Clear();
+            if (parameter.Length > 0 && (int)parameter[0] > 0)
+            {  
+                command.CommandText = "select * from StockRoom where CAST(SRId as varchar) like '%'+@Id+'%'";
+                command.Parameters.AddWithValue("@Id", parameter[0].ToString());
+                if(parameter.Length>1 && (int)parameter[1]>0)
+                {
+                    command.CommandText = "select * from StockRoom as s inner join StockItem as si on si.StockRoomId=s.StockRoomId where CAST(SRId as varchar) like '%'+@Id+'%' and CAST(ItemId as varchar) like '%'+@ItemId+'%'";
+                    command.Parameters.AddWithValue("@ItemId", parameter[1].ToString());
+                }
+            }
+            else
+                command = new SqlCommand("select * from StockRoom ", connection);
             connection.Open();
             adapter.SelectCommand = command;
             ds.Clear();

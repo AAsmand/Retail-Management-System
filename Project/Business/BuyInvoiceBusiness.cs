@@ -17,12 +17,14 @@ namespace Project.Business
         BuyInvoiceItemRepository buyInvoiceItemRepository;
         StockItemRepository stockItemRepository;
         private ItemBusiness itemBusiness;
+        private StockRoomBusiness stockRoomBusiness;
         public BuyInvoiceBusiness()
         {
             buyInvoiceRepository = new BuyInvoiceRepository();
             buyInvoiceItemRepository = new BuyInvoiceItemRepository();
             stockItemRepository = new StockItemRepository();
             itemBusiness = new ItemBusiness();
+            stockRoomBusiness = new StockRoomBusiness();
         }
         public List<BuyInvoiceViewModel> GetBuyInvoices()
         {
@@ -44,7 +46,7 @@ namespace Project.Business
                             DataTable table = stockItemRepository.GetStockItem(item.ItemId, int.Parse(model.SRId), item.TracingFactor.ToString());
                             if (table.Rows.Count == 0)
                             {
-                                StockItemModel stockModel = new StockItemModel()
+                                StockItemViewModel stockModel = new StockItemViewModel()
                                 {
                                     ItemId = item.ItemId,
                                     SRId = int.Parse(model.SRId),
@@ -100,9 +102,13 @@ namespace Project.Business
             }
             catch (Exception exp) { return false; }
         }
-        public string GetItemTitle(int itemId)
+        public ItemViewModel GetItem(int itemId)
         {
-            return itemBusiness.ItemExist(itemId);
+            return itemBusiness.GetItem(itemId);
+        }
+        public StockRoomViewModel GetStockRoom(int stockRoomId)
+        {
+            return stockRoomBusiness.GetDataForChoose(stockRoomId).Rows.Cast<DataRow>().Select(r => new StockRoomViewModel() { SRId = (int)r["SRId"], Title = r["Title"].ToString(), Address = r["Address"].ToString() }).FirstOrDefault();
         }
     }
 }

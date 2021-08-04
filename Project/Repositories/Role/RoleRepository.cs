@@ -9,19 +9,10 @@ using System.Text;
 
 namespace Project.Repositories.Role
 {
-    public class RoleRepository
+    public class RoleRepository : BaseRepository, IChooseRepository
     {
-        public SqlConnection connection { get; set; }
-        public SqlCommand command { get; set; }
-        public SqlDataAdapter adapter { get; set; }
-        public DataSet ds { get; set; }
-
         public RoleRepository()
         {
-            connection = new SqlConnection("data source=.\\sepidar;Initial Catalog=ProjectDB2;User Id=damavand;Password=damavand");
-            command = new SqlCommand();
-            adapter = new SqlDataAdapter();
-            ds = new DataSet();
         }
 
         public DataTable GetUserRoles(int userId)
@@ -41,10 +32,10 @@ namespace Project.Repositories.Role
         {
             command.Connection = connection;
             command.Parameters.Clear();
-            if (sameRoleId != "")
+            if (sameRoleId != "0")
             {
                 command.CommandText = "select * from Roles where CAST(RoleId as varchar) like '%'+@Id+'%'";
-                command.Parameters.AddWithValue("@Id",sameRoleId);
+                command.Parameters.AddWithValue("@Id", sameRoleId);
             }
             else
             {
@@ -57,7 +48,7 @@ namespace Project.Repositories.Role
             connection.Close();
             return ds.Tables["Roles"];
         }
-        public bool AddUserRole(int userId,int roleId)
+        public bool AddUserRole(int userId, int roleId)
         {
             command.Connection = connection;
             command.Parameters.Clear();
@@ -65,7 +56,7 @@ namespace Project.Repositories.Role
             command.Parameters.Clear();
             command.Parameters.AddWithValue("@UserId", userId);
             command.Parameters.AddWithValue("@RoleId", roleId);
-           
+
             connection.Open();
             if (command.ExecuteNonQuery() > 0)
             {
@@ -92,6 +83,24 @@ namespace Project.Repositories.Role
             }
             connection.Close();
             return false;
+        }
+
+        public DataTable GetDataToChoose(params object[] parameter)
+        {
+            return GetRoles(parameter[0].ToString());
+        }
+        public DataTable GetRole(int roleId)
+        {
+            command.Connection = connection;
+            command.Parameters.Clear();
+            command.CommandText = "select * from Roles where RoleId=@Id";
+            command.Parameters.AddWithValue("@Id", roleId);
+            connection.Open();
+            adapter.SelectCommand = command;
+            ds.Clear();
+            adapter.Fill(ds, "Roles");
+            connection.Close();
+            return ds.Tables["Roles"];
         }
     }
 }

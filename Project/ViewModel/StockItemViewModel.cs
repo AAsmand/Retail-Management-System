@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.Models
+namespace Project.ViewModel
 {
-    public class StockItemModel
+    public class StockItemViewModel
     {
         public int StockItemId { get; set; }
         public int ItemId { get; set; }

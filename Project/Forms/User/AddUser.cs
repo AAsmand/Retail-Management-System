@@ -1,4 +1,5 @@
 ﻿using Project.Business;
+using Project.Forms.Shared;
 using Project.Models.Role;
 using Project.ViewModel;
 using System;
@@ -19,7 +20,7 @@ namespace Project.Forms.User
         UserViewModel user;
         public event EventHandler AddedEvent;
         private List<RoleViewModel> RoleList;
-        private ChooseRoll chooseRollForm;
+        private ChooseForm<RoleBusiness> chooseRollForm;
         private UserBusiness userBusiness;
         public AddUser()
         {
@@ -81,7 +82,7 @@ namespace Project.Forms.User
                 if (e.ColumnIndex == RolesGridView.Columns["SelectRoleBtn"].Index)
                 {
                     object o = RolesGridView.Rows[e.RowIndex].Cells["RoleId"].Value;
-                    chooseRollForm = new ChooseRoll(RolesGridView.Rows[e.RowIndex].Cells["RoleId"].Value != null ? RolesGridView.Rows[e.RowIndex].Cells["RoleId"].Value.ToString() : "", RoleList);
+                    chooseRollForm = new ChooseForm<RoleBusiness>(RolesGridView.Rows[e.RowIndex].Cells["RoleId"].Value != null ? (int)RolesGridView.Rows[e.RowIndex].Cells["RoleId"].Value : 0, RoleList);
                     chooseRollForm.MdiParent = this.MdiParent;
                     chooseRollForm.ControlBox = false;
                     chooseRollForm.FormBorderStyle = FormBorderStyle.None;
@@ -90,17 +91,17 @@ namespace Project.Forms.User
                 }
             }
         }
-        private void RoleSelected(object sender, SelectRoleEventArgs args)
+        private void RoleSelected(object sender, SelectEventArgs args)
         {
-            if (RoleList.Any(r => r.RoleId == args.RoleId.ToString()))
+            if (RoleList.Any(r => r.RoleId == args.Id.ToString()))
             {
                 MessageBox.Show("این نقش پیش ازین انتخاب شده است", "خطا");
                 RolesGridView.Rows.Remove(RolesGridView.CurrentRow);
             }
             else
             {
-                RolesGridView.CurrentRow.Cells["RoleId"].Value = args.RoleId.ToString();
-                RolesGridView.CurrentRow.Cells["RoleName"].Value = args.RoleName;
+                RolesGridView.CurrentRow.Cells["RoleId"].Value = args.Id.ToString();
+                RolesGridView.CurrentRow.Cells["RoleName"].Value = userBusiness.GetRole(args.Id).RoleName;
             }
         }
 

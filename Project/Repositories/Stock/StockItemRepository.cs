@@ -1,4 +1,5 @@
 ﻿using Project.Models;
+using Project.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,20 +9,10 @@ using System.Text;
 
 namespace Project.Repositories
 {
-    public class StockItemRepository
+    public class StockItemRepository:BaseRepository,IChooseRepository
     {
-        public SqlConnection connection;
-        public SqlCommand command;
-        public SqlDataAdapter adapter;
-        public DataSet ds;
-        public SqlDataReader dr;
-
         public StockItemRepository()
         {
-            if (connection == null) connection = new SqlConnection("data source=.\\sepidar;Initial Catalog=ProjectDB2;User Id=damavand;Password=damavand");
-            if (command == null) command = new SqlCommand();
-            if (adapter == null) adapter = new SqlDataAdapter();
-            if (ds == null) ds = new DataSet();
         }
 
         public DataTable GetStockItem(int itemId, int stockRoomId, string tracingFactor)
@@ -39,7 +30,7 @@ namespace Project.Repositories
             connection.Close();
             return ds.Tables["StockRoom"];
         }
-        public StockItemModel GetStockItem(int stockItemId)
+        public StockItemViewModel GetStockItem(int stockItemId)
         {
             command.Connection = connection;
             command.CommandText = "select * from StockItem where StockItemId=@Id";
@@ -53,14 +44,14 @@ namespace Project.Repositories
             connection.Close();
             if (ds.Tables["StockItem"].Rows.Count == 1)
             {
-                StockItemModel model = new StockItemModel()
+                StockItemViewModel model = new StockItemViewModel()
                 {
                     StockItemId = (int)ds.Tables["StockItem"].Rows[0]["StockItemId"],
                     ItemId = (int)ds.Tables["StockItem"].Rows[0]["ItemId"],
                     SRId = (int)ds.Tables["StockItem"].Rows[0]["SRId"],
                     StockValue = (int)ds.Tables["StockItem"].Rows[0]["StockValue"],
-                    CreatedDate = DateTime.Parse(ds.Tables["StockItem"].Rows[0]["StockValue"].ToString()),
-                    TracingFactor = ds.Tables["StockItem"].Rows[0]["StockValue"].ToString()
+                    CreatedDate = DateTime.Parse(ds.Tables["StockItem"].Rows[0]["CreatedDate"].ToString()),
+                    TracingFactor = ds.Tables["StockItem"].Rows[0]["TracingFactor"].ToString()
                 };
                 return model;
             }
@@ -139,7 +130,7 @@ namespace Project.Repositories
             return ds.Tables["StockItem"];
         }
 
-        public int AddStockItem(StockItemModel model)
+        public int AddStockItem(StockItemViewModel model)
         {
             command.Connection = connection;
             command.CommandText = "insert into StockItem(ItemId,SRId,StockValue,TracingFactor,CreatedDate) Values(@ItemId,@SRId,@StockValue,@TracingFactor,@CreatedDate)";
@@ -161,6 +152,11 @@ namespace Project.Repositories
             }
             connection.Close();
             return 0;
+        }
+
+        public DataTable GetDataToChoose(params object[] parameter)
+        {
+            return GetStockItems((int)parameter[0], (int)parameter[1]);
         }
     }
 }

@@ -13,6 +13,7 @@ using Project.Models;
 using System.Transactions;
 using Project.ViewModel;
 using Project.Business;
+using Project.Forms.Shared;
 
 namespace Project
 {
@@ -20,10 +21,10 @@ namespace Project
     {
         public event EventHandler AddedEvent;
         public SellInvoiceItemDataTable dataTable;
-        public ChooseItemForm itemForm;
-        public ChooseSellType sellTypeForm;
-        public ChooseStockItemForm chooseStockItemForm;
-        private ChooseItemStockRoom chooseItemStockRoom;
+        public ChooseForm<ItemBusiness> itemForm;
+        public ChooseForm<SellTypeBusiness> sellTypeForm;
+        public ChooseForm<StockItemBusiness> chooseStockItemForm;
+        private ChooseForm<StockRoomBusiness> chooseItemStockRoom;
         public SellInvoiceBusiness sellInvoiceBusiness;
         public AddSellInvoice()
         {
@@ -78,8 +79,8 @@ namespace Project
                 }
                 else if (e.Column.ColumnName == "ItemId")
                 {
-                    string itemTitle = sellInvoiceBusiness.GetItemTitle(int.Parse(e.Row[e.Column].ToString()));
-                    if (itemTitle=="")
+                    ItemViewModel item = sellInvoiceBusiness.GetItem(int.Parse(e.Row[e.Column].ToString()));
+                    if (item == null)
                     {
                         e.Row.SetColumnError(e.Column, "شماره کالا معتبر نیست");
                         e.Row["ItemTitle"] = "";
@@ -87,7 +88,14 @@ namespace Project
                     else
                     {
                         e.Row.SetColumnError(e.Column, "");
-                        e.Row["ItemTitle"] = itemTitle;
+                        e.Row["ItemTitle"] = item.Title;
+                        SellInvoiceItemGridView.CurrentRow.Cells["HasTracingFactor"].Value = item.HasTracingFactor;
+                        if (item.HasTracingFactor)
+                        {
+                            SellInvoiceItemGridView.CurrentRow.Cells["TracingFactor"].Value = "";
+                            SellInvoiceItemGridView.CurrentRow.Cells["TracingFactor"].ReadOnly = true;
+                        }
+
                     }
                 }
                 else if (e.Row[e.Column].Equals(DBNull.Value) && e.Column.ColumnName == "StockRoomId")
@@ -113,6 +121,11 @@ namespace Project
                 }
                 else if (e.Column.ColumnName == "Quantity")
                 {
+                    if ((int)e.Row["HasTracingFactor"] <= 0)
+                    {
+                        e.Row.SetColumnError(e.Column, "تعداد باید بیشتر از 0 باشد");
+                        return;
+                    }
                     if ((int)e.Row["HasTracingFactor"] != 0)
                     {
                         if ((int)e.Row[e.Column] > (int)e.Row["StockValue"])
@@ -120,7 +133,6 @@ namespace Project
                             e.Row.SetColumnError(e.Column, "تعداد بیشتر از موجودی است");
                             return;
                         }
-
                     }
 
                     e.Row.SetColumnError(e.Column, "");
@@ -136,18 +148,12 @@ namespace Project
         }
         public void ItemSelected(object sender, SelectEventArgs e)
         {
-            SellInvoiceItemGridView.CurrentRow.Cells["ItemId"].Value = e.ItemId;
-            SellInvoiceItemGridView.CurrentRow.Cells["HasTracingFactor"].Value = e.HasTracingFactor;
-            if (e.HasTracingFactor)
-            {
-                SellInvoiceItemGridView.CurrentRow.Cells["TracingFactor"].Value = "";
-                SellInvoiceItemGridView.CurrentRow.Cells["TracingFactor"].ReadOnly = true;
-            }
-
+            SellInvoiceItemGridView.CurrentRow.Cells["ItemId"].Value = e.Id;
         }
-        public void StockRoomSelected(object sender, SelectStockItemEventArgs e)
+        public void StockRoomSelected(object sender, SelectEventArgs e)
         {
-            DataGridViewRow row = SellInvoiceItemGridView.Rows.Cast<DataGridViewRow>().SingleOrDefault(r => (int)r.Cells["ItemId"].Value == (int)SellInvoiceItemGridView.CurrentRow.Cells["ItemId"].Value && r.Cells["StockRoomId"].Value != DBNull.Value && int.Parse(r.Cells["StockRoomId"].Value.ToString()) == e.SRId && r.Cells["TracingFactor"].Value.ToString() == e.TracingFactor);
+            StockItemViewModel model = sellInvoiceBusiness.GetStockItem(e.Id);
+            DataGridViewRow row = SellInvoiceItemGridView.Rows.Cast<DataGridViewRow>().SingleOrDefault(r => (int)r.Cells["ItemId"].Value == (int)SellInvoiceItemGridView.CurrentRow.Cells["ItemId"].Value && r.Cells["StockRoomId"].Value != DBNull.Value && int.Parse(r.Cells["StockRoomId"].Value.ToString()) == model.SRId && r.Cells["TracingFactor"].Value.ToString() == model.TracingFactor);
             if (row != null)
             {
                 MessageBox.Show("آیتم تکراری است . تغییرات را بر رکورد قبلی اعمال نمایید", "خطا");
@@ -156,22 +162,22 @@ namespace Project
             }
             else
             {
-                SellInvoiceItemGridView.CurrentRow.Cells["StockRoomId"].Value = e.SRId;
-                SellInvoiceItemGridView.CurrentRow.Cells["TracingFactor"].Value = e.TracingFactor;
-                SellInvoiceItemGridView.CurrentRow.Cells["StockValue"].Value = e.StockValue;
+                SellInvoiceItemGridView.CurrentRow.Cells["StockRoomId"].Value = e.Id;
+                SellInvoiceItemGridView.CurrentRow.Cells["TracingFactor"].Value = model.TracingFactor;
+                SellInvoiceItemGridView.CurrentRow.Cells["StockValue"].Value = model.StockValue;
             }
 
         }
-        public void ItemStockRoomSelected(object sender, SelectStockRoomEventArgs e)
+        public void ItemStockRoomSelected(object sender, SelectEventArgs e)
         {
-            SellInvoiceItemGridView.CurrentRow.Cells["StockRoomId"].Value = e.SRId;
+            SellInvoiceItemGridView.CurrentRow.Cells["StockRoomId"].Value = e.Id;
         }
 
         private void SRIDTxt_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                sellTypeForm = new ChooseSellType(int.Parse(SellTypeIdTxt.Text != "" ? SellTypeIdTxt.Text : "0"));
+                sellTypeForm = new ChooseForm<SellTypeBusiness>(int.Parse(SellTypeIdTxt.Text != "" ? SellTypeIdTxt.Text : "0"));
                 //stockRoomForm.MdiParent = this.MdiParent;
                 sellTypeForm.ControlBox = false;
                 sellTypeForm.FormBorderStyle = FormBorderStyle.None;
@@ -180,11 +186,10 @@ namespace Project
                 sellTypeForm.Show();
             }
         }
-        public void SellTypeSelected(object sender, SelectSellTypeEventArgs e)
+        public void SellTypeSelected(object sender, SelectEventArgs e)
         {
-
-            SellTypeIdTxt.Text = e.SellTypeId.ToString();
-            SellTypeTitle.Text = e.SellTypeTitle;
+            SellTypeIdTxt.Text = e.Id.ToString();
+            SellTypeTitle.Text = sellInvoiceBusiness.GetSellType(e.Id).SellTypeTitle;
             SellInvoiceErrorProvider.SetError(SellTypeIdTxt, "");
         }
 
@@ -218,9 +223,9 @@ namespace Project
                         SellInvoiceViewModel model = new SellInvoiceViewModel();
                         model.SellTypeId = int.Parse(SellTypeIdTxt.Text);
                         model.Customer = CustomerTxt.Text;
-                        model.CreatedDate = persianDateTime;  
+                        model.CreatedDate = persianDateTime;
                         model.ItemTable = dataTable;
-                        if(sellInvoiceBusiness.AddSellInvoice(model))
+                        if (sellInvoiceBusiness.AddSellInvoice(model))
                         {
                             MessageBox.Show("عملیات با موفقیت انجام شد", "موفق");
                             OnAdded();
@@ -264,7 +269,7 @@ namespace Project
                 SellInvoiceItemGridView.EndEdit();
                 if (e.ColumnIndex == SellInvoiceItemGridView.Columns["SelectItemBtn"].Index)
                 {
-                    itemForm = new ChooseItemForm(SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value != DBNull.Value ? (int)SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value : 0);
+                    itemForm = new ChooseForm<ItemBusiness>(SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value != DBNull.Value ? (int)SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value : 0);
                     itemForm.MdiParent = this.MdiParent;
                     itemForm.ControlBox = false;
                     itemForm.FormBorderStyle = FormBorderStyle.None;
@@ -281,7 +286,7 @@ namespace Project
                 {
                     if (SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemTitle"].Value.ToString() != "" && SellInvoiceItemGridView.Rows[e.RowIndex].Cells["StockRoomId"].Value.ToString() != "")
                     {
-                        chooseStockItemForm = new ChooseStockItemForm(SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value != DBNull.Value ? (int)SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value : 0, SellInvoiceItemGridView.Rows[e.RowIndex].Cells["StockRoomId"].Value != DBNull.Value ? (int)SellInvoiceItemGridView.Rows[e.RowIndex].Cells["StockRoomId"].Value : 0);
+                        chooseStockItemForm = new ChooseForm<StockItemBusiness>(SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value != DBNull.Value ? (int)SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value : 0, SellInvoiceItemGridView.Rows[e.RowIndex].Cells["StockRoomId"].Value != DBNull.Value ? (int)SellInvoiceItemGridView.Rows[e.RowIndex].Cells["StockRoomId"].Value : 0);
                         chooseStockItemForm.MdiParent = this.MdiParent;
                         chooseStockItemForm.ControlBox = false;
                         chooseStockItemForm.FormBorderStyle = FormBorderStyle.None;
@@ -302,7 +307,7 @@ namespace Project
             {
                 if (SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemTitle"].Value.ToString() != "")
                 {
-                    chooseItemStockRoom = new ChooseItemStockRoom(SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value != DBNull.Value ? (int)SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value : 0, SellInvoiceItemGridView.Rows[e.RowIndex].Cells["StockRoomId"].Value != DBNull.Value ? (int)SellInvoiceItemGridView.Rows[e.RowIndex].Cells["StockRoomId"].Value : 0);
+                    chooseItemStockRoom = new ChooseForm<StockRoomBusiness>(SellInvoiceItemGridView.Rows[e.RowIndex].Cells["StockRoomId"].Value != DBNull.Value ? (int)SellInvoiceItemGridView.Rows[e.RowIndex].Cells["StockRoomId"].Value : 0, SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value != DBNull.Value ? (int)SellInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value : 0);
                     chooseItemStockRoom.MdiParent = this.MdiParent;
                     chooseItemStockRoom.ControlBox = false;
                     chooseItemStockRoom.FormBorderStyle = FormBorderStyle.None;
@@ -317,7 +322,7 @@ namespace Project
 
         private void SellTypeBtn_Click(object sender, EventArgs e)
         {
-            sellTypeForm = new ChooseSellType(int.Parse(SellTypeIdTxt.Text != "" ? SellTypeIdTxt.Text : "0"));
+            sellTypeForm = new ChooseForm<SellTypeBusiness>(int.Parse(SellTypeIdTxt.Text != "" ? SellTypeIdTxt.Text : "0"));
             sellTypeForm.MdiParent = this.MdiParent;
             sellTypeForm.ControlBox = false;
             sellTypeForm.FormBorderStyle = FormBorderStyle.None;

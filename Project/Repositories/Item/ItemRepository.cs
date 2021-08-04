@@ -10,7 +10,7 @@ using Project.Models.User;
 
 namespace Project.Repositories
 {
-    public  class ItemRepository:BaseRepository
+    public  class ItemRepository:BaseRepository, IChooseRepository
     {
         public ItemRepository()
         {
@@ -113,7 +113,7 @@ namespace Project.Repositories
         {
 
             command.Connection = connection;
-            command.CommandText = "select TOP 1 * from Item where ItemId=@Id";
+            command.CommandText = "select TOP 1 ItemId,Title,Description,RefUnitId,HasTracingFactor,TracingFactorId,pic,CreatorUserId,CAST(TimeStamp as int) as TimeStamp from Item where ItemId=@Id";
             command.Parameters.Clear();
             command.Parameters.AddWithValue("@Id", itemId);
             connection.Open();
@@ -138,6 +138,25 @@ namespace Project.Repositories
             if (ds.Tables["ItemTimeStamp"].Rows.Count > 0)
                 return true;
             return false;
+        }
+
+        public DataTable GetDataToChoose(params object[] parameter)
+        {
+            if (parameter.Length>0&&(int)parameter[0]>0)
+            {
+                command.Connection = connection;
+                command.CommandText = "select ItemId,Title,HasTracingFactor from Item where CAST(ItemId as varchar) like '%'+@Id+'%'";
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@Id", parameter[0].ToString());
+            }
+            else
+                command = new SqlCommand("select ItemId,Title,HasTracingFactor from Item", connection);
+            connection.Open();
+            adapter.SelectCommand = command;
+            ds.Clear();
+            adapter.Fill(ds, "Item");
+            connection.Close();
+            return ds.Tables["Item"];
         }
     }
 }

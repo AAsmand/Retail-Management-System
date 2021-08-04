@@ -13,6 +13,7 @@ using Project.Models;
 using System.Transactions;
 using Project.ViewModel;
 using Project.Business;
+using Project.Forms.Shared;
 
 namespace Project
 {
@@ -20,8 +21,8 @@ namespace Project
     {
         public event EventHandler AddedEvent;
         private BuyInvoiceItemDataTable dataTable;
-        private ChooseItemForm itemForm;
-        private ChooseStockRoomForm stockRoomForm;
+        private ChooseForm<ItemBusiness> itemForm;
+        private ChooseForm<StockRoomBusiness> stockRoomForm;
         private BuyInvoiceBusiness buyInvoiceBusiness;
 
 
@@ -68,7 +69,6 @@ namespace Project
         }
         private void BuyInvoiceItemDataTable_ColumnChanged(object sender, DataColumnChangeEventArgs e)
         {
-
             if (e.Column.ColumnName != "Check")
             {
                 if (e.Row[e.Column].Equals(DBNull.Value) && e.Column.ColumnName == "ItemId")
@@ -78,8 +78,8 @@ namespace Project
                 }
                 else if (e.Column.ColumnName == "ItemId")
                 {
-                    string itemTitle = buyInvoiceBusiness.GetItemTitle(int.Parse(e.Row[e.Column].ToString()));
-                    if (itemTitle == "")
+                    ItemViewModel item = buyInvoiceBusiness.GetItem(int.Parse(e.Row[e.Column].ToString()));
+                    if (item==null)
                     {
                         e.Row.SetColumnError(e.Column, "شماره کالا معتبر نیست");
                         e.Row["ItemTitle"] = "";
@@ -87,7 +87,8 @@ namespace Project
                     else
                     {
                         e.Row.SetColumnError(e.Column, "");
-                        e.Row["ItemTitle"] = itemTitle;
+                        e.Row["ItemTitle"] = item.Title;
+                        BuyInvoiceItemGridView.CurrentRow.Cells["TracingFactor"].ReadOnly = !item.HasTracingFactor;
                     }
                 }
                 if (e.Row[e.Column].Equals(DBNull.Value) && e.Column.ColumnName == "Fee")
@@ -117,15 +118,14 @@ namespace Project
         }
         public void ItemSelected(object sender, SelectEventArgs e)
         {
-            BuyInvoiceItemGridView.CurrentRow.Cells["ItemId"].Value = e.ItemId;
-            BuyInvoiceItemGridView.CurrentRow.Cells["TracingFactor"].ReadOnly = !e.HasTracingFactor;
+            BuyInvoiceItemGridView.CurrentRow.Cells["ItemId"].Value = e.Id;
         }
 
         private void SRIDTxt_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                stockRoomForm = new ChooseStockRoomForm(int.Parse(SRIDTxt.Text != "" ? SRIDTxt.Text : "0"));
+                stockRoomForm = new ChooseForm<StockRoomBusiness>(int.Parse(SRIDTxt.Text != "" ? SRIDTxt.Text : "0"));
                 //stockRoomForm.MdiParent = this.MdiParent;
                 stockRoomForm.ControlBox = false;
                 stockRoomForm.FormBorderStyle = FormBorderStyle.None;
@@ -134,10 +134,10 @@ namespace Project
                 stockRoomForm.Show();
             }
         }
-        public void StockRoomSelected(object sender, SelectStockRoomEventArgs e)
+        public void StockRoomSelected(object sender, SelectEventArgs e)
         {
-            SRIDTxt.Text = e.SRId.ToString();
-            SRTitleTxt.Text = e.Title;
+            SRIDTxt.Text = e.Id.ToString();
+            SRTitleTxt.Text = buyInvoiceBusiness.GetStockRoom(e.Id).Title;
             BuyInvoiceErrorProvider.SetError(SRIDTxt, "");
         }
 
@@ -195,7 +195,7 @@ namespace Project
 
         private void StockBtn_Click(object sender, EventArgs e)
         {
-            stockRoomForm = new ChooseStockRoomForm(int.Parse(SRIDTxt.Text != "" ? SRIDTxt.Text : "0"));
+            stockRoomForm = new ChooseForm<StockRoomBusiness>(int.Parse(SRIDTxt.Text != "" ? SRIDTxt.Text : "0"));
             stockRoomForm.MdiParent = this.MdiParent;
             stockRoomForm.ControlBox = false;
             stockRoomForm.FormBorderStyle = FormBorderStyle.None;
@@ -214,7 +214,7 @@ namespace Project
                 BuyInvoiceItemGridView.EndEdit();
                 if (e.ColumnIndex == BuyInvoiceItemGridView.Columns["SelectItemBtn"].Index)
                 {
-                    itemForm = new ChooseItemForm(BuyInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value != DBNull.Value ? (int)BuyInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value : 0);
+                    itemForm = new ChooseForm<ItemBusiness>(BuyInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value != DBNull.Value ? (int)BuyInvoiceItemGridView.Rows[e.RowIndex].Cells["ItemId"].Value : 0);
                     itemForm.MdiParent = this.MdiParent;
                     itemForm.ControlBox = false;
                     itemForm.FormBorderStyle = FormBorderStyle.None;
