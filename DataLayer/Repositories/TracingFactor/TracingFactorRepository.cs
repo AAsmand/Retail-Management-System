@@ -4,22 +4,14 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using Utility.Interfaces;
 
 namespace Project.Repositories
 {
-    public class TracingFactorRepository
+    public class TracingFactorRepository:BaseRepository,ITracingFactorRepository
     {
-        public SqlConnection connection;
-        public SqlCommand command;
-        public SqlDataAdapter adapter;
-        public DataSet ds;
-
         public TracingFactorRepository()
         {
-            if (connection == null) connection = new SqlConnection("data source=.\\sepidar;Initial Catalog=ProjectDB2;User Id=damavand;Password=damavand");
-            if (command == null) command = new SqlCommand();
-            if (adapter == null) adapter = new SqlDataAdapter();
-            if (ds == null) ds = new DataSet();
         }
 
         public DataTable GetData()

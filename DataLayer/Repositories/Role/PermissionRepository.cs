@@ -4,22 +4,14 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using Utility.Interfaces;
 
 namespace Project.Repositories.Role
 {
-    public class PermissionRepository
+    public class PermissionRepository:BaseRepository,IPermissionRepository
     {
-        public SqlConnection connection { get; set; }
-        public SqlCommand command { get; set; }
-        public SqlDataAdapter adapter { get; set; }
-        public DataSet ds { get; set; }
-
         public PermissionRepository()
         {
-            connection = new SqlConnection("data source=.\\sepidar;Initial Catalog=ProjectDB2;User Id=damavand;Password=damavand");
-            command = new SqlCommand();
-            adapter = new SqlDataAdapter();
-            ds = new DataSet();
         }
 
         public DataTable GetRolesPermissions(int roleId)

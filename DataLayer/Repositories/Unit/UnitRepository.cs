@@ -4,24 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data;
-
+using Utility.Interfaces;
 
 namespace Project.Repositories
 {
-    public class UnitRepository
+    public class UnitRepository:BaseRepository,IUnitRepository
     {
-        public SqlConnection connection;
-        public SqlCommand command;
-        public SqlDataAdapter adapter;
-        public DataSet ds;
-
         public UnitRepository()
         {
-            if (connection == null) connection = new SqlConnection("data source=.\\sepidar;Initial Catalog=ProjectDB2;User Id=damavand;Password=damavand");
-            if (command == null) command = new SqlCommand();
-            if (adapter == null) adapter = new SqlDataAdapter();
-            if (ds == null) ds = new DataSet();
-
         }
         public DataTable GetData()
         {

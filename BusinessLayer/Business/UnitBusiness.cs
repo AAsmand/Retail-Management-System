@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Project.Business
 {
-    public class UnitBusiness
+    public class UnitBusiness:IUnitBusiness
     {
         UnitRepository unitRepository;
 

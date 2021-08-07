@@ -5,16 +5,17 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using Utility.Interfaces;
 
 namespace Project.Repositories
 {
-    public class BaseRepository
+    public class BaseRepository:IBaseRepository
     {
-        public SqlConnection connection;
-        public SqlCommand command;
-        public SqlDataAdapter adapter;
-        public DataSet ds;
-        public SqlDataReader dr;
+        public SqlConnection connection { get; set; }
+        public SqlCommand command { get; set; }
+        public SqlDataAdapter adapter { get; set; }
+        public DataSet ds { get; set; }
+        public SqlDataReader dr { get; set; }
 
         public BaseRepository()
         {

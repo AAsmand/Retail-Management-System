@@ -6,10 +6,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using Utility.Interfaces;
 
 namespace Project.Repositories.User
 {
-    public class UserRepository:BaseRepository
+    public class UserRepository:BaseRepository,IUserRepository
     {
         public UserRepository()
         {

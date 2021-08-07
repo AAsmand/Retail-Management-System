@@ -7,10 +7,11 @@ using System.Data;
 using Project.Models;
 using Project.ViewModel;
 using Project.Models.User;
+using Utility.Interfaces;
 
 namespace Project.Repositories
 {
-    public  class ItemRepository:BaseRepository, IChooseRepository
+    public  class ItemRepository:BaseRepository,IItemRepository
     {
         public ItemRepository()
         {

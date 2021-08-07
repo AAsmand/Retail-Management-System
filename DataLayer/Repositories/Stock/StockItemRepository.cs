@@ -6,10 +6,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using Utility.Interfaces;
 
 namespace Project.Repositories
 {
-    public class StockItemRepository:BaseRepository,IChooseRepository
+    public class StockItemRepository:BaseRepository, IStockItemRepository
     {
         public StockItemRepository()
         {

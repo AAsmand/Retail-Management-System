@@ -6,15 +6,15 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using Utility.Interfaces;
 
 namespace Project.Repositories.Role
 {
-    public class RoleRepository : BaseRepository, IChooseRepository
+    public class RoleRepository : BaseRepository,IRoleRepository
     {
         public RoleRepository()
         {
         }
-
         public DataTable GetUserRoles(int userId)
         {
             command.Connection = connection;

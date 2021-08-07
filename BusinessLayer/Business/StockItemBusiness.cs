@@ -1,5 +1,4 @@
-﻿using Project.Business.ChooseBusiness;
-using Project.Repositories;
+﻿using Project.Repositories;
 using Project.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Text;
 
 namespace Project.Business
 {
-    public class StockItemBusiness : IChooseBusiness
+    public class StockItemBusiness: BaseBusiness<StockItemViewModel,StockItemRepository>, IStockItemBusiness
     {
         StockItemRepository stockItemRepository;
         public StockItemBusiness()

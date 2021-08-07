@@ -1,5 +1,4 @@
-﻿using Project.Business.ChooseBusiness;
-using Project.Repositories.Role;
+﻿using Project.Repositories.Role;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +7,7 @@ using System.Text;
 
 namespace Project.Business
 {
-    public class RoleBusiness : IChooseBusiness
+    public class RoleBusiness: IRoleBusiness
     {
         RoleRepository roleRepository;
         public RoleBusiness()

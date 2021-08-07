@@ -40,18 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\BuyInvoice\BuyInvoiceItemRepository.cs" />
     <Compile Include="Repositories\BuyInvoice\BuyInvoiceRepository.cs" />
-    <Compile Include="Repositories\IChooseRepository.cs" />
     <Compile Include="Repositories\Item\ItemRepository.cs" />
     <Compile Include="Repositories\Role\PermissionRepository.cs" />
     <Compile Include="Repositories\Role\RoleRepository.cs" />
-    <Compile Include="Repositories\SellInvoice\SellInvoiceItemRepository.cs" />
-    <Compile Include="Repositories\SellInvoice\SellInvoiceRepository.cs" />
-    <Compile Include="Repositories\SellInvoice\SellTypeRepository.cs" />
+    <Compile Include="Repositories\SaleInvoice\SaleInvoiceItemRepository.cs" />
+    <Compile Include="Repositories\SaleInvoice\SaleInvoiceRepository.cs" />
+    <Compile Include="Repositories\SaleInvoice\SaleTypeRepository.cs" />
     <Compile Include="Repositories\Stock\StockItemRepository.cs" />
     <Compile Include="Repositories\Stock\StockRoomRepository.cs" />
     <Compile Include="Repositories\TracingFactor\TracingFactorRepository.cs" />

@@ -11,7 +11,7 @@ using System.Transactions;
 
 namespace Project.Business
 {
-    public class BuyInvoiceBusiness : BaseBusiness<BuyInvoiceViewModel, BuyInvoiceRepository>
+    public class BuyInvoiceBusiness : BaseBusiness<BuyInvoiceViewModel, BuyInvoiceRepository>, IBuyInvoiceBusiness
     {
         public BuyInvoiceRepository buyInvoiceRepository;
         BuyInvoiceItemRepository buyInvoiceItemRepository;
@@ -108,7 +108,7 @@ namespace Project.Business
         }
         public StockRoomViewModel GetStockRoom(int stockRoomId)
         {
-            return stockRoomBusiness.GetDataForChoose(stockRoomId).Rows.Cast<DataRow>().Select(r => new StockRoomViewModel() { SRId = (int)r["SRId"], Title = r["Title"].ToString(), Address = r["Address"].ToString() }).FirstOrDefault();
+            return stockRoomBusiness.GetStockRoom(stockRoomId).Rows.Cast<DataRow>().Select(r => new StockRoomViewModel() { SRId = (int)r["SRId"], Title = r["Title"].ToString(), Address = r["Address"].ToString() }).FirstOrDefault();
         }
     }
 }

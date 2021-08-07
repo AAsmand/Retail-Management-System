@@ -4,10 +4,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using Utility.Interfaces;
 
 namespace Project.Repositories
 {
-    public class BuyInvoiceItemRepository:BaseRepository
+    public class BuyInvoiceItemRepository:BaseRepository,IBuyInvoiceItemRepository
     {
         public bool UpdateBuyInvoiceItem(DataTable table)
         {

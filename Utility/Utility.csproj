@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,12 +42,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="IConcurrency.cs" />
+    <Compile Include="Interfaces\IBusinesses\IBuyInvoiceBusiness.cs" />
+    <Compile Include="Interfaces\IBusinesses\IItemBusiness.cs" />
+    <Compile Include="Interfaces\IBusinesses\IRoleBusiness.cs" />
+    <Compile Include="Interfaces\IBusinesses\ISaleInvoiceBusiness.cs" />
+    <Compile Include="Interfaces\IBusinesses\ISaleTypeBusiness.cs" />
+    <Compile Include="Interfaces\IBusinesses\IStockItemBusiness.cs" />
+    <Compile Include="Interfaces\IBusinesses\IStockRoomBusiness.cs" />
+    <Compile Include="Interfaces\IBusinesses\ITracingFactorBusiness.cs" />
+    <Compile Include="Interfaces\IBusinesses\IUnitBusiness.cs" />
+    <Compile Include="Interfaces\IBusinesses\IUserBusiness.cs" />
+    <Compile Include="Interfaces\IConcurrency.cs" />
+    <Compile Include="Interfaces\IRepositories\IBaseRepository.cs" />
+    <Compile Include="Interfaces\IBaseUiView.cs" />
+    <Compile Include="Interfaces\IRepositories\IBuyInvoiceItemRepository.cs" />
+    <Compile Include="Interfaces\IRepositories\IBuyInvoiceRepository.cs" />
+    <Compile Include="Interfaces\IRepositories\IChooseRepository.cs" />
+    <Compile Include="Interfaces\IRepositories\IItemRepository.cs" />
+    <Compile Include="Interfaces\IRepositories\IPermissionRepository.cs" />
+    <Compile Include="Interfaces\IRepositories\IRoleRepository.cs" />
+    <Compile Include="Interfaces\IRepositories\ISaleInvoiceItemRepository.cs" />
+    <Compile Include="Interfaces\IRepositories\ISaleInvoiceRepository.cs" />
+    <Compile Include="Interfaces\IRepositories\ISaleTypeRepository.cs" />
+    <Compile Include="Interfaces\IRepositories\IStockItemRepository.cs" />
+    <Compile Include="Interfaces\IRepositories\IStockRoomRepository.cs" />
+    <Compile Include="Interfaces\IRepositories\ITracingFactorRepository.cs" />
+    <Compile Include="Interfaces\IRepositories\IUnitRepository.cs" />
+    <Compile Include="Interfaces\IRepositories\IUserRepository.cs" />
     <Compile Include="Models\BuyInvoiceItemModel.cs" />
     <Compile Include="Models\Role\PermissionModel.cs" />
     <Compile Include="Models\Role\RoleModel.cs" />
-    <Compile Include="Models\SellInvoiceItemModel.cs" />
+    <Compile Include="Models\SaleInvoiceItemModel.cs" />
     <Compile Include="Models\TypedData\BuyTypedData\BuyInvoiceItemDataRow.cs" />
     <Compile Include="Models\TypedData\BuyTypedData\BuyInvoiceItemDataTable.cs">
       <SubType>Component</SubType>
@@ -54,21 +81,22 @@
     <Compile Include="Models\TypedData\BuyTypedData\BuyInvoice\BuyInvoiceTable.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Models\TypedData\SellTypedData\SellInvoiceItemDataRow.cs" />
+    <Compile Include="Models\TypedData\SellTypedData\SaleInvoiceItemDataRow.cs" />
     <Compile Include="Models\TypedData\SellTypedData\SellInvoiceItemDataTable.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BuyInvoiceViewModel.cs" />
-    <Compile Include="ViewModel\IBaseBussiness.cs" />
+    <Compile Include="Interfaces\IConcurrencyChecker.cs" />
     <Compile Include="ViewModel\ItemViewModel.cs" />
     <Compile Include="ViewModel\RoleViewModel.cs" />
-    <Compile Include="ViewModel\SellInvoiceViewModel.cs" />
-    <Compile Include="ViewModel\SellTypeViewModel.cs" />
+    <Compile Include="ViewModel\SaleInvoiceViewModel.cs" />
+    <Compile Include="ViewModel\SaleTypeViewModel.cs" />
     <Compile Include="ViewModel\StockItemViewModel.cs" />
     <Compile Include="ViewModel\StockRoomViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

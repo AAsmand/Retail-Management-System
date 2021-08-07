@@ -1,5 +1,4 @@
-﻿using Project.Business.ChooseBusiness;
-using Project.Models;
+﻿using Project.Models;
 using Project.Repositories;
 using Project.ViewModel;
 using System;
@@ -13,7 +12,7 @@ using System.Transactions;
 
 namespace Project.Business
 {
-    public class ItemBusiness:BaseBusiness<ItemViewModel,ItemRepository>,IChooseBusiness
+    public class ItemBusiness:BaseBusiness<ItemViewModel,ItemRepository>,IItemBusiness
     {
         private ItemRepository itemRepository;
         public ItemBusiness()
@@ -94,7 +93,7 @@ namespace Project.Business
             return item.Rows.Cast<DataRow>().Select(r => new ItemViewModel() { ItemId = (int)r["ItemId"], Title = r["Title"].ToString(), Description = r["Description"].ToString(), TimeStamp = (int)r["TimeStamp"], UserId = (int)r["CreatorUserId"], HasTracingFactor = !string.IsNullOrEmpty(r["HasTracingFactor"].ToString()) ? (bool)r["HasTracingFactor"] : false, TracingFactorId = r["TracingFactorId"].ToString(), Pic = r["pic"].ToString() }).ToList()[0];
         }
 
-        public DataTable GetDataForChoose(params object[] parameters)
+        public DataTable GetData(params object[] parameters)
         {
             return itemRepository.GetDataToChoose(parameters);
         }

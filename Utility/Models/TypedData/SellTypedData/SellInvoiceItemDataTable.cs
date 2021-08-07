@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Project.Repositories.TypedData
 {
-    public class SellInvoiceItemDataTable:DataTable
+    public class SaleInvoiceItemDataTable:DataTable
     {
-        public SellInvoiceItemDataTable()
+        public SaleInvoiceItemDataTable()
         {
             Columns.Add(new DataColumn("SellInvoiceItemId", typeof(int)));
             Columns.Add(new DataColumn("SellInvoiceId", typeof(int)));
@@ -27,28 +27,28 @@ namespace Project.Repositories.TypedData
         }
         protected override Type GetRowType()
         {
-            return typeof(SellInvoiceItemDataRow);
+            return typeof(SaleInvoiceItemDataRow);
         }
 
         protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
         {
-            return new SellInvoiceItemDataRow(builder);
+            return new SaleInvoiceItemDataRow(builder);
         }
-        public SellInvoiceItemDataRow this[int idx]
+        public SaleInvoiceItemDataRow this[int idx]
         {
-            get { return (SellInvoiceItemDataRow)Rows[idx]; }
+            get { return (SaleInvoiceItemDataRow)Rows[idx]; }
         }
-        public void Add(SellInvoiceItemDataRow row)
+        public void Add(SaleInvoiceItemDataRow row)
         {
             Rows.Add(row);
         }
-        public void Remove(SellInvoiceItemDataRow row)
+        public void Remove(SaleInvoiceItemDataRow row)
         {
             Rows.Remove(row);
         }
-        public new SellInvoiceItemDataRow NewRow()
+        public new SaleInvoiceItemDataRow NewRow()
         {
-            SellInvoiceItemDataRow row = (SellInvoiceItemDataRow)NewRow();
+            SaleInvoiceItemDataRow row = (SaleInvoiceItemDataRow)NewRow();
             return row;
         }
     }

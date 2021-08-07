@@ -1,5 +1,4 @@
-﻿using Project.Business.ChooseBusiness;
-using Project.Repositories;
+﻿using Project.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,16 +7,16 @@ using System.Text;
 
 namespace Project.Business
 {
-    public class StockRoomBusiness : IChooseBusiness
+    public class StockRoomBusiness: IStockRoomBusiness
     {
         StockRoomRepository stockRoomRepository;
         public StockRoomBusiness()
         {
             stockRoomRepository = new StockRoomRepository();
         }
-        public DataTable GetDataForChoose(params object[] parameters)
+        public DataTable GetStockRoom(int id)
         {
-            return stockRoomRepository.GetDataToChoose(parameters);
+            return stockRoomRepository.GetData(id);
         }
     }
 }

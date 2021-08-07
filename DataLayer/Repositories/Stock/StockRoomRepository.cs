@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data;
-
+using Utility.Interfaces;
 
 namespace Project.Repositories
 {
-    public class StockRoomRepository :  BaseRepository, IChooseRepository
+    public class StockRoomRepository :  BaseRepository,IStockRoomRepository
     {
         public StockRoomRepository()
         {

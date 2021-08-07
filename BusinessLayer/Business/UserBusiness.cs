@@ -1,5 +1,4 @@
-﻿using Project.Business.ChooseBusiness;
-using Project.Models.Role;
+﻿using Project.Models.Role;
 using Project.Models.User;
 using Project.Repositories.Role;
 using Project.Repositories.User;
@@ -13,7 +12,7 @@ using System.Transactions;
 
 namespace Project.Business
 {
-    public class UserBusiness:BaseBusiness<UserViewModel,UserRepository>,IChooseBusiness
+    public class UserBusiness:BaseBusiness<UserViewModel,UserRepository>, IUserBusiness
     {
         private RoleRepository roleRepository;
         private UserRepository userRepository;
@@ -161,11 +160,6 @@ namespace Project.Business
                     return null;
             }
             catch (Exception exp) { return null; }
-        }
-
-        public DataTable GetDataForChoose(params object[] parameters)
-        {
-            return userRepository.GetUsers();
         }
         public RoleViewModel GetRole(int roleId)
         {

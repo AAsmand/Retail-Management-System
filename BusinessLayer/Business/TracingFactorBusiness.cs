@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Project.Business
 {
-    public class TracingFactorBusiness
+    public class TracingFactorBusiness: ITracingFactorBusiness
     {
         TracingFactorRepository tracingFactorRepository;
         public TracingFactorBusiness()

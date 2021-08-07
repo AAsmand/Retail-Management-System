@@ -2,4 +2,3 @@ C:\Users\ArefAs\source\repos\Project\Utility\bin\Debug\Utility.dll
 C:\Users\ArefAs\source\repos\Project\Utility\bin\Debug\Utility.pdb
 C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Utility.dll
 C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Utility.pdb
-C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Utility.csprojAssemblyReference.cache

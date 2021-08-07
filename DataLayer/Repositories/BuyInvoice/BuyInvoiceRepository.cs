@@ -6,10 +6,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using Utility.Interfaces;
 
 namespace Project.Repositories
 {
-    public class BuyInvoiceRepository:BaseRepository
+    public class BuyInvoiceRepository:BaseRepository, IBuyInvoiceRepository
     {
         public BuyInvoiceRepository()
         {
@@ -102,25 +103,5 @@ namespace Project.Repositories
                 return true;
             return false;
         }
-        //public static bool EditItem(ItemModel model)
-        //{
-        //    command.Connection = connection;
-        //    command.CommandText = "update Item set Title=@Title, Description=@Description, RefUnitId=@RefUnitId ,TracingFactorId=@TracingFactorId ,pic=@pic where ItemId=@Id";
-        //    command.Parameters.Clear();
-        //    command.Parameters.AddWithValue("@Id", model.ItemId);
-        //    command.Parameters.AddWithValue("@Title", model.Title);
-        //    command.Parameters.AddWithValue("@Description", model.Description);
-        //    command.Parameters.AddWithValue("@RefUnitId", model.RefUnitId);
-        //    command.Parameters.AddWithValue("@TracingFactorId", model.TracingFactorId);
-        //    command.Parameters.AddWithValue("@pic", model.Pic);
-        //    connection.Open();
-        //    if (command.ExecuteNonQuery() > 0)
-        //    {
-        //        connection.Close();
-        //        return true;
-        //    }
-        //    connection.Close();
-        //    return false;
-        //}
     }
 }
