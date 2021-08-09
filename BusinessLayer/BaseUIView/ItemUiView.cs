@@ -1,4 +1,5 @@
-﻿using Project.Repositories;
+﻿using Project.Business;
+using Project.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,11 +12,11 @@ namespace BusinessLayer.Business.BaseUIView
 {
     public class ItemUiView : IBaseUiView
     {
-        private ItemRepository itemRepository;
+        private ItemBusiness itemBusiness;
         int _id;
         public ItemUiView(int id=0)
         {
-            itemRepository = new ItemRepository();
+            itemBusiness = new ItemBusiness();
             _id = id;
         }
         public List<DataGridViewColumn> GetColumn()
@@ -29,7 +30,7 @@ namespace BusinessLayer.Business.BaseUIView
 
         public DataTable GetData()
         {
-            return itemRepository.GetDataToChoose(_id);
+            return itemBusiness.GetData(_id);
         }
     }
 }

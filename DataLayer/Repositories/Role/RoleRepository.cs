@@ -84,11 +84,6 @@ namespace Project.Repositories.Role
             connection.Close();
             return false;
         }
-
-        public DataTable GetDataToChoose(params object[] parameter)
-        {
-            return GetRoles(parameter[0].ToString());
-        }
         public DataTable GetRole(int roleId)
         {
             command.Connection = connection;

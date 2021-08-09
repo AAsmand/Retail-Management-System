@@ -15,9 +15,9 @@ namespace Project.Business
         {
             stockItemRepository = new StockItemRepository();
         }
-        public DataTable GetDataForChoose(params object[] parameters)
+        public DataTable GetData(int itemId=0,int SRId=0,string tracingFactor="")
         {
-            return stockItemRepository.GetDataToChoose(parameters);
+            return stockItemRepository.GetStockItems(itemId,SRId,tracingFactor);
         }
 
         public StockItemViewModel GetStockItem(int stockItem)

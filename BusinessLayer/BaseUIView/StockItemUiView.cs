@@ -1,4 +1,5 @@
-﻿using Project.Repositories;
+﻿using Project.Business;
+using Project.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,11 +12,11 @@ namespace BusinessLayer.Business.BaseUIView
 {
     public class StockItemUiView : IBaseUiView
     {
-        private StockItemRepository stockItemRepository;
+        private StockItemBusiness stockItemBusiness;
         int _itemId,_stockRoomId;
         public StockItemUiView(int itemId=0,int stockRoomId=0)
         {
-            stockItemRepository = new StockItemRepository();
+            stockItemBusiness = new StockItemBusiness();
             _itemId = itemId;
             _stockRoomId = stockRoomId;
         }
@@ -31,7 +32,7 @@ namespace BusinessLayer.Business.BaseUIView
 
         public DataTable GetData()
         {
-            return stockItemRepository.GetDataToChoose(_itemId, _stockRoomId);
+            return stockItemBusiness.GetData(_itemId, _stockRoomId);
         }
     }
 }

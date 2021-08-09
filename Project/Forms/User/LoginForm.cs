@@ -1,4 +1,5 @@
-﻿using Project.Business;
+﻿using Framework.IOC;
+using Project.Business;
 using Project.Models.Role;
 using Project.Models.User;
 using System;
@@ -14,10 +15,10 @@ namespace Project.Forms.User
 {
     public partial class LoginForm : Form
     {
-        UserBusiness userBusiness;
-        public LoginForm()
+        IUserBusiness userBusiness;
+        public LoginForm(IUserBusiness userBusiness)
         {
-            userBusiness = new UserBusiness();
+            this.userBusiness = userBusiness;
             InitializeComponent();
         }
 
@@ -35,13 +36,14 @@ namespace Project.Forms.User
                 {
                     this.DialogResult = DialogResult.OK;
                     MessageBox.Show("ورود با موفقیت انجام شد", "موفق", MessageBoxButtons.OK);
+                    this.Close();
                 }
                 else
                 {
                     MessageBox.Show("چنین کاربری در سیستم وجود ندارد", "خطا", MessageBoxButtons.OK);
                 }
             }
-            catch(Exception)
+            catch(Exception exp)
             {
                 MessageBox.Show("ارتباط با پایگاه داده با خطا مواجه شد", "خطا", MessageBoxButtons.OK);
             }
@@ -58,7 +60,6 @@ namespace Project.Forms.User
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

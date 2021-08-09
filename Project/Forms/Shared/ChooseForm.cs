@@ -21,7 +21,6 @@ namespace Project.Forms.Shared
         {
             uiView = view;
             InitializeComponent();
-
         }
         private void ChooseItemForm_Load(object sender, EventArgs e)
         {

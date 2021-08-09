@@ -6,11 +6,10 @@ using System.Data.SqlClient;
 using System.Data;
 using Project.Models;
 using Project.ViewModel;
-using Project.Models.User;
 
 namespace Utility.Interfaces
 {
-    public interface IItemRepository:IBaseRepository,IChooseRepository
+    public interface IItemRepository:IBaseRepository
     {
         DataTable GetData(int itemId = 0);
         bool DeleteItem(int itemId);

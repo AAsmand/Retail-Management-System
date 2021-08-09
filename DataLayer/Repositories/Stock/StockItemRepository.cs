@@ -154,10 +154,5 @@ namespace Project.Repositories
             connection.Close();
             return 0;
         }
-
-        public DataTable GetDataToChoose(params object[] parameter)
-        {
-            return GetStockItems((int)parameter[0], (int)parameter[1]);
-        }
     }
 }

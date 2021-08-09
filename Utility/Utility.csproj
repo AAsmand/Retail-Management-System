@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBase.cs" />
     <Compile Include="Interfaces\IBusinesses\IBuyInvoiceBusiness.cs" />
     <Compile Include="Interfaces\IBusinesses\IItemBusiness.cs" />
     <Compile Include="Interfaces\IBusinesses\IRoleBusiness.cs" />
@@ -57,7 +58,6 @@
     <Compile Include="Interfaces\IBaseUiView.cs" />
     <Compile Include="Interfaces\IRepositories\IBuyInvoiceItemRepository.cs" />
     <Compile Include="Interfaces\IRepositories\IBuyInvoiceRepository.cs" />
-    <Compile Include="Interfaces\IRepositories\IChooseRepository.cs" />
     <Compile Include="Interfaces\IRepositories\IItemRepository.cs" />
     <Compile Include="Interfaces\IRepositories\IPermissionRepository.cs" />
     <Compile Include="Interfaces\IRepositories\IRoleRepository.cs" />
@@ -85,7 +85,6 @@
     <Compile Include="Models\TypedData\SellTypedData\SellInvoiceItemDataTable.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BuyInvoiceViewModel.cs" />
     <Compile Include="Interfaces\IConcurrencyChecker.cs" />
@@ -99,4 +98,7 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>Copy "$(ProjectDir)$(OutDir)$(TargetName).*" "$(SolutionDir)Project\bin\debug\Plugins"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

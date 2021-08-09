@@ -18,6 +18,6 @@ namespace Project.Business
         bool AddItem(string title, string description, int refUnitId, bool hasTracingFactor, string tracingFactorId, string pic, Image image);
         bool RemoveItems(List<int> itemIds);
         ItemViewModel GetItem(int itemId);
-        DataTable GetData(params object[] parameters);
+        DataTable GetData(int id = 0);
     }
 }

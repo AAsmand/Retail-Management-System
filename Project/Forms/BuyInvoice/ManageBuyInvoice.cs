@@ -1,4 +1,5 @@
-﻿using Project.Business;
+﻿using Framework.IOC;
+using Project.Business;
 using Project.Models;
 using Project.Models.User;
 using Project.Repositories;
@@ -17,11 +18,11 @@ namespace Project
 {
     public partial class ManageBuyInvoice : Form
     {
-        BuyInvoiceBusiness buyInvoiceBusiness;
-        public ManageBuyInvoice()
+        IBuyInvoiceBusiness buyInvoiceBusiness;
+        public ManageBuyInvoice(IBuyInvoiceBusiness buyInvoiceBusiness)
         {
             InitializeComponent();
-            buyInvoiceBusiness = new BuyInvoiceBusiness();
+            this.buyInvoiceBusiness = buyInvoiceBusiness;
         }
         private void ConfigureAccess()
         {
@@ -39,7 +40,7 @@ namespace Project
         }
         private void AddBtnTool_Click(object sender, EventArgs e)
         {
-            AddBuyInvoice addBuyInvoice = new AddBuyInvoice();
+            AddBuyInvoice addBuyInvoice = IOC.Container.GetInstance<AddBuyInvoice>();
             addBuyInvoice.AddedEvent += RefreshBtn_Click;
             addBuyInvoice.MdiParent = this.MdiParent;
             addBuyInvoice.Show();

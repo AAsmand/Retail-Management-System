@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Utility.Interfaces
 {
-    public interface IStockRoomRepository:IBaseRepository,IChooseRepository
+    public interface IStockRoomRepository
     {
          DataTable GetData(int srId = 0);
     }

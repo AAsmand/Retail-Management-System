@@ -14,9 +14,9 @@ namespace Project.Business
         {
             roleRepository = new RoleRepository();
         }
-        public DataTable GetDataForChoose(params object[] parameters)
+        public DataTable GetRoles(int roleId)
         {
-            return roleRepository.GetDataToChoose(parameters);
+            return roleRepository.GetRoles(roleId.ToString());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Project.Forms.User;
+﻿using Framework.IOC;
+using Project.Forms.User;
 using Project.Models.User;
 using Project.Tools;
 using System;
@@ -47,7 +48,7 @@ namespace Project
 
         private void FactorButton_Click(object sender, EventArgs e)
         {
-            ManageBuyInvoice manageBuyInvoice = new ManageBuyInvoice();
+            ManageBuyInvoice manageBuyInvoice = IOC.Container.GetInstance<ManageBuyInvoice>();
             manageBuyInvoice.MdiParent = this;
             manageBuyInvoice.Show();
             this.LayoutMdi(MdiLayout.TileVertical);

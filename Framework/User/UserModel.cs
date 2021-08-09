@@ -1,5 +1,4 @@
-﻿using Project.Models.Role;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +16,17 @@ namespace Project.Models.User
         public static bool IsActive { get; set; }
         public static string Avatar { get; set; }
         public static bool IsDeleted { get; set; }
-        public static List<RoleModel> Roles { get; set; }   
+        public static List<int> PermissionsId { get; set; }   
         //public static List<PermissionModel> Permissions { get; set; }
         public static bool HasPermission(int permissionId)
         {
-            foreach (RoleModel item in Roles)
-            {
-                if (item.Permissions.Any(p => p.PermissionId == permissionId))
-                    return true;
-            }
+            //foreach (RoleModel item in Roles)
+            //{
+            //    if (item.Permissions.Any(p => p.PermissionId == permissionId))
+            //        return true;
+            //}
+            if (PermissionsId.Any(p => p == permissionId))
+                return true;
             return false;
         }
 

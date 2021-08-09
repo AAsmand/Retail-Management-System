@@ -93,9 +93,9 @@ namespace Project.Business
             return item.Rows.Cast<DataRow>().Select(r => new ItemViewModel() { ItemId = (int)r["ItemId"], Title = r["Title"].ToString(), Description = r["Description"].ToString(), TimeStamp = (int)r["TimeStamp"], UserId = (int)r["CreatorUserId"], HasTracingFactor = !string.IsNullOrEmpty(r["HasTracingFactor"].ToString()) ? (bool)r["HasTracingFactor"] : false, TracingFactorId = r["TracingFactorId"].ToString(), Pic = r["pic"].ToString() }).ToList()[0];
         }
 
-        public DataTable GetData(params object[] parameters)
+        public DataTable GetData(int id=0)
         {
-            return itemRepository.GetDataToChoose(parameters);
+            return itemRepository.GetData(id);
         }
     }
 }

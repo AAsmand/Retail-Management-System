@@ -16,9 +16,9 @@ namespace Project.Business
         {
             saleTypeRepository = repository;
         }
-        public DataTable GetDataForChoose(params object[] parameters)
+        public DataTable GetData(int saleTypeId=0)
         {
-            return saleTypeRepository.GetDataToChoose(parameters);
+            return saleTypeRepository.GetData(saleTypeId);
         }
         public SaleTypeViewModel GetSellType(int sellTypeId)
         {

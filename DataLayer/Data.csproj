@@ -55,12 +55,20 @@
     <Compile Include="Repositories\TracingFactor\TracingFactorRepository.cs" />
     <Compile Include="Repositories\Unit\UnitRepository.cs" />
     <Compile Include="Repositories\User\UserRepository.cs" />
+    <Compile Include="StuctureMapper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.csproj">
+      <Project>{94e8cb25-02c4-4bb7-a1da-7304331adaab}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{d54a19f0-e4a8-41c5-80d1-2f0239baf421}</Project>
       <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>Copy "$(ProjectDir)$(OutDir)$(TargetName).*" "$(SolutionDir)Project\bin\debug\Plugins"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

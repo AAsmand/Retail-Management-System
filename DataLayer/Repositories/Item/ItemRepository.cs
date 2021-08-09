@@ -140,24 +140,5 @@ namespace Project.Repositories
                 return true;
             return false;
         }
-
-        public DataTable GetDataToChoose(params object[] parameter)
-        {
-            if (parameter.Length>0&&(int)parameter[0]>0)
-            {
-                command.Connection = connection;
-                command.CommandText = "select ItemId,Title,HasTracingFactor from Item where CAST(ItemId as varchar) like '%'+@Id+'%'";
-                command.Parameters.Clear();
-                command.Parameters.AddWithValue("@Id", parameter[0].ToString());
-            }
-            else
-                command = new SqlCommand("select ItemId,Title,HasTracingFactor from Item", connection);
-            connection.Open();
-            adapter.SelectCommand = command;
-            ds.Clear();
-            adapter.Fill(ds, "Item");
-            connection.Close();
-            return ds.Tables["Item"];
-        }
     }
 }

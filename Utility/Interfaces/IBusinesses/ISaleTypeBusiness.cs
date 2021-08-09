@@ -11,7 +11,6 @@ namespace Project.Business
 {
     public interface ISaleTypeBusiness
     {
-        DataTable GetDataForChoose(params object[] parameters);
         SaleTypeViewModel GetSellType(int sellTypeId);
     }
 }

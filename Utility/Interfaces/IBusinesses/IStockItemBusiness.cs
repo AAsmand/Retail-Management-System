@@ -10,7 +10,7 @@ namespace Project.Business
 {
     public interface IStockItemBusiness:IConcurrencyChecker
     {
-        DataTable GetDataForChoose(params object[] parameters);
+        DataTable GetData(int itemId = 0, int SRId = 0, string tracingFactor = "");
         StockItemViewModel GetStockItem(int stockItem);
     }
 }

@@ -22,13 +22,13 @@ namespace Project
         private BuyInvoiceItemDataTable dataTable;
         private ChooseForm itemForm;
         private ChooseForm stockRoomForm;
-        private BuyInvoiceBusiness buyInvoiceBusiness;
+        private IBuyInvoiceBusiness buyInvoiceBusiness;
 
 
-        public AddBuyInvoice()
+        public AddBuyInvoice(IBuyInvoiceBusiness buyInvoiceBusiness)
         {
             InitializeComponent();
-            buyInvoiceBusiness = new BuyInvoiceBusiness();
+            this.buyInvoiceBusiness = buyInvoiceBusiness;
             dataTable = new BuyInvoiceItemDataTable();
             bindingSource1.DataSource = dataTable;
             BuyInvoiceItemGridView.AutoGenerateColumns = false;

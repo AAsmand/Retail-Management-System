@@ -32,18 +32,18 @@ namespace Project.Repositories
             return ds.Tables["StockRoom"];
         }
 
-        public DataTable GetDataToChoose(params object[] parameter)
+        public DataTable GetData(int SRId=0,int itemId=0)
         {
             command.Connection = connection;
             command.Parameters.Clear();
-            if (parameter.Length > 0 && (int)parameter[0] > 0)
+            if (SRId > 0)
             {  
                 command.CommandText = "select * from StockRoom where CAST(SRId as varchar) like '%'+@Id+'%'";
-                command.Parameters.AddWithValue("@Id", parameter[0].ToString());
-                if(parameter.Length>1 && (int)parameter[1]>0)
+                command.Parameters.AddWithValue("@Id", itemId.ToString());
+                if(itemId>0)
                 {
                     command.CommandText = "select * from StockRoom as s inner join StockItem as si on si.StockRoomId=s.StockRoomId where CAST(SRId as varchar) like '%'+@Id+'%' and CAST(ItemId as varchar) like '%'+@ItemId+'%'";
-                    command.Parameters.AddWithValue("@ItemId", parameter[1].ToString());
+                    command.Parameters.AddWithValue("@ItemId", itemId.ToString());
                 }
             }
             else

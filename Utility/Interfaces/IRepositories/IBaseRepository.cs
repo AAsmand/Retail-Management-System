@@ -1,4 +1,6 @@
-﻿using Project.ViewModel;
+﻿
+using Framework;
+using Project.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +10,7 @@ using System.Text;
 
 namespace Utility.Interfaces
 {
-    public interface IBaseRepository
+    public interface IBaseRepository:IBase
     {
         SqlConnection connection { get; set; }
         SqlCommand command { get; set; }

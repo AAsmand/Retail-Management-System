@@ -18,5 +18,9 @@ namespace Project.Business
         {
             return stockRoomRepository.GetData(id);
         }
+        public DataTable GetStockRooms(int SRId=0,int itemId=0)
+        {
+            return stockRoomRepository.GetData(SRId, itemId);
+        }
     }
 }

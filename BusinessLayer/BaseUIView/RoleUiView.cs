@@ -1,4 +1,5 @@
-﻿using Project.Repositories;
+﻿using Project.Business;
+using Project.Repositories;
 using Project.Repositories.Role;
 using Project.ViewModel;
 using System;
@@ -13,12 +14,12 @@ namespace BusinessLayer.Business.BaseUIView
 {
     public class RoleUiView : IBaseUiView
     {
-        private RoleRepository roleRepository;
+        private RoleBusiness roleBusiness;
         int _roleId;
         List<RoleViewModel> currentRole;
         public RoleUiView(List<RoleViewModel> model,int roleId= 0)
         {
-            roleRepository = new RoleRepository();
+            roleBusiness = new RoleBusiness();
             _roleId = roleId;
             currentRole = model;
         }
@@ -32,7 +33,7 @@ namespace BusinessLayer.Business.BaseUIView
 
         public DataTable GetData()
         {
-            return roleRepository.GetDataToChoose(_roleId,currentRole);
+            return roleBusiness.GetRoles(_roleId);
         }
     }
 }

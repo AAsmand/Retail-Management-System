@@ -33,10 +33,5 @@ namespace Project.Repositories
             connection.Close();
             return ds.Tables["SellType"];
         }
-
-        public DataTable GetDataToChoose(params object[] parameter)
-        {
-            return GetData((int)parameter[0]);
-        }
     }
 }

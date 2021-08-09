@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Utility.Interfaces
 {
-    public interface IStockItemRepository:IBaseRepository,IChooseRepository
+    public interface IStockItemRepository
     {
         DataTable GetStockItem(int itemId, int stockRoomId, string tracingFactor);
         StockItemViewModel GetStockItem(int stockItemId);

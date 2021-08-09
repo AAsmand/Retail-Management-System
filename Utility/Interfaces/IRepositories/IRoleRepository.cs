@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Utility.Interfaces
 {
-    public interface IRoleRepository:IBaseRepository,IChooseRepository
+    public interface IRoleRepository:IBaseRepository
     {
         DataTable GetUserRoles(int userId);
         DataTable GetRoles(string sameRoleId);

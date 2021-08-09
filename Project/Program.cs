@@ -1,4 +1,5 @@
-﻿using Project.Forms.User;
+﻿using Framework.IOC;
+using Project.Forms.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,6 @@ namespace Project
 {
     static class Program
     {
-        static LoginForm login;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -18,12 +18,12 @@ namespace Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            login = new LoginForm();
+            LoginForm login = IOC.Container.GetInstance<LoginForm>();
             Application.Run(login);
             Application.ThreadException += Exception_Handle;
             if (login.DialogResult.Equals(DialogResult.OK))
             {
-                Application.Run(new MainForm());
+                Application.Run(IOC.Container.GetInstance<MainForm>());
             }
         }
 

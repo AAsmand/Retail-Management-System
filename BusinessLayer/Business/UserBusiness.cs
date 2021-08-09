@@ -39,8 +39,13 @@ namespace Project.Business
                 UserModel.Avatar = User.Rows[0]["Avatar"].ToString();
                 if (UserModel.IsActive && !UserModel.IsDeleted)
                 {
+                    UserModel.PermissionsId = new List<int>();
                     DataTable Roles = roleRepository.GetUserRoles(UserModel.UserId);
-                    UserModel.Roles = Roles.Rows.Cast<DataRow>().Select(r => new RoleModel() { RoleId = (int)r["RoleId"], RoleName = r["RoleName"].ToString(), IsDeleted = (bool)r["IsDeleted"], Permissions = permissionRepository.GetRolesPermissions((int)r["RoleId"]).Rows.Cast<DataRow>().Select(p => new PermissionModel() { PermissionId = (int)p["PermissionId"], Name = p["Name"].ToString(), ParentId = p["ParentId"] != DBNull.Value ? (int)p["ParentId"] : 0, Description = p["Description"].ToString() }).ToList() }).ToList();
+                    foreach (DataRow item in Roles.Rows)
+                    {
+                        UserModel.PermissionsId.AddRange(permissionRepository.GetRolesPermissions((int)item["RoleId"]).Rows.Cast<DataRow>().Select(p => (int)p["PermissionId"]).ToList());
+                    }
+                    //UserModel.Roles = Roles.Rows.Cast<DataRow>().Select(r => new RoleModel() { RoleId = (int)r["RoleId"], RoleName = r["RoleName"].ToString(), IsDeleted = (bool)r["IsDeleted"], Permissions = permissionRepository.GetRolesPermissions((int)r["RoleId"]).Rows.Cast<DataRow>().Select(p => new PermissionModel() { PermissionId = (int)p["PermissionId"], Name = p["Name"].ToString(), ParentId = p["ParentId"] != DBNull.Value ? (int)p["ParentId"] : 0, Description = p["Description"].ToString() }).ToList() }).ToList();
                     return true;
                 }
                 else

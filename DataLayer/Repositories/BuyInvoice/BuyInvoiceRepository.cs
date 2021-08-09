@@ -1,5 +1,4 @@
-﻿using Project.Models.User;
-using Project.ViewModel;
+﻿using Project.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -61,7 +60,7 @@ namespace Project.Repositories
             command.Parameters.AddWithValue("@SRId", model.SRId);
             command.Parameters.AddWithValue("@CreatedDate", model.CreatedDate);
             command.Parameters.AddWithValue("@Supplier", model.Supplier);
-            command.Parameters.AddWithValue("@UserId", UserModel.UserId);
+            command.Parameters.AddWithValue("@UserId", 1);
 
             connection.Open();
             if (command.ExecuteNonQuery() > 0)
