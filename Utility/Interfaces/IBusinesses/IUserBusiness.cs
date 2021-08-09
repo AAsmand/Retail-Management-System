@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Project.Business
 {
-    public interface IUserBusiness:IConcurrencyChecker,IBase
+    public interface IUserBusiness:IConcurrencyChecker
     {
         bool Login(string username, string password);
         List<RoleViewModel> GetRole(string roleId);

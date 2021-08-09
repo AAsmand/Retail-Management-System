@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\BaseBusiness.cs" />
     <Compile Include="BaseUIView\SaleTypeUiView.cs" />
     <Compile Include="BaseUIView\StockItemUiView.cs" />
     <Compile Include="BaseUIView\StockRoomUiView.cs" />
@@ -62,10 +61,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataLayer\Data.csproj">
-      <Project>{d562f971-8035-43ec-8982-24994c14c58b}</Project>
-      <Name>Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework\Framework.csproj">
       <Project>{94e8cb25-02c4-4bb7-a1da-7304331adaab}</Project>
       <Name>Framework</Name>

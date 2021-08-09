@@ -15,18 +15,25 @@ namespace Project
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        ManageItem manageItem;
+        ManageUsers manageUsers;
+        ManageBuyInvoice manageBuyInvoice;
+        ManageSellInvoice manageSellInvoice;
+        public MainForm(ManageItem manageItem, ManageUsers manageUsers, ManageBuyInvoice manageBuyInvoice, ManageSellInvoice manageSellInvoice)
         {
             InitializeComponent();
             this.IsMdiContainer = true;
             this.LayoutMdi(MdiLayout.TileHorizontal);
+            this.manageItem = manageItem;
+            this.manageUsers = manageUsers;
+            this.manageBuyInvoice = manageBuyInvoice;
+            this.manageSellInvoice = manageSellInvoice;
         }
 
         private void ProductButton_Click(object sender, EventArgs e)
         {
-            ManageItem m = new ManageItem();
-            m.MdiParent = this;
-            m.Show();
+            manageItem.MdiParent = this;
+            manageItem.Show();
             this.LayoutMdi(MdiLayout.TileVertical);
         }
         private void ConfigureAccess()
@@ -48,7 +55,6 @@ namespace Project
 
         private void FactorButton_Click(object sender, EventArgs e)
         {
-            ManageBuyInvoice manageBuyInvoice = IOC.Container.GetInstance<ManageBuyInvoice>();
             manageBuyInvoice.MdiParent = this;
             manageBuyInvoice.Show();
             this.LayoutMdi(MdiLayout.TileVertical);
@@ -56,7 +62,6 @@ namespace Project
 
         private void ManageSellInvoiceBtn_Click(object sender, EventArgs e)
         {
-            ManageSellInvoice manageSellInvoice = new ManageSellInvoice();
             manageSellInvoice.MdiParent = this;
             manageSellInvoice.Show();
             this.LayoutMdi(MdiLayout.TileVertical);
@@ -64,7 +69,6 @@ namespace Project
 
         private void ManageUsersBtn_Click(object sender, EventArgs e)
         {
-            ManageUsers manageUsers = new ManageUsers();
             manageUsers.MdiParent = this;
             manageUsers.Show();
             this.LayoutMdi(MdiLayout.TileVertical);

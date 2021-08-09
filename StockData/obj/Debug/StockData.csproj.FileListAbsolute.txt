@@ -1,0 +1,15 @@
+C:\Users\ArefAs\source\repos\Project\StockData\bin\Debug\StockData.dll
+C:\Users\ArefAs\source\repos\Project\StockData\bin\Debug\StockData.pdb
+C:\Users\ArefAs\source\repos\Project\StockData\bin\Debug\Framework.dll
+C:\Users\ArefAs\source\repos\Project\StockData\bin\Debug\Utility.dll
+C:\Users\ArefAs\source\repos\Project\StockData\bin\Debug\StructureMap.dll
+C:\Users\ArefAs\source\repos\Project\StockData\bin\Debug\StructureMap.Net4.dll
+C:\Users\ArefAs\source\repos\Project\StockData\bin\Debug\Framework.pdb
+C:\Users\ArefAs\source\repos\Project\StockData\bin\Debug\Utility.pdb
+C:\Users\ArefAs\source\repos\Project\StockData\bin\Debug\StructureMap.pdb
+C:\Users\ArefAs\source\repos\Project\StockData\bin\Debug\StructureMap.xml
+C:\Users\ArefAs\source\repos\Project\StockData\bin\Debug\StructureMap.Net4.pdb
+C:\Users\ArefAs\source\repos\Project\StockData\obj\Debug\StockData.csprojAssemblyReference.cache
+C:\Users\ArefAs\source\repos\Project\StockData\obj\Debug\StockData.csproj.CopyComplete
+C:\Users\ArefAs\source\repos\Project\StockData\obj\Debug\StockData.dll
+C:\Users\ArefAs\source\repos\Project\StockData\obj\Debug\StockData.pdb

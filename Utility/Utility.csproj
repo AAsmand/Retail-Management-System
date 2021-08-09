@@ -42,7 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBase.cs" />
+    <Compile Include="Forms\Shared\ChooseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Shared\ChooseForm.Designer.cs">
+      <DependentUpon>ChooseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IBusinesses\IBuyInvoiceBusiness.cs" />
     <Compile Include="Interfaces\IBusinesses\IItemBusiness.cs" />
     <Compile Include="Interfaces\IBusinesses\IRoleBusiness.cs" />
@@ -53,9 +58,6 @@
     <Compile Include="Interfaces\IBusinesses\ITracingFactorBusiness.cs" />
     <Compile Include="Interfaces\IBusinesses\IUnitBusiness.cs" />
     <Compile Include="Interfaces\IBusinesses\IUserBusiness.cs" />
-    <Compile Include="Interfaces\IConcurrency.cs" />
-    <Compile Include="Interfaces\IRepositories\IBaseRepository.cs" />
-    <Compile Include="Interfaces\IBaseUiView.cs" />
     <Compile Include="Interfaces\IRepositories\IBuyInvoiceItemRepository.cs" />
     <Compile Include="Interfaces\IRepositories\IBuyInvoiceRepository.cs" />
     <Compile Include="Interfaces\IRepositories\IItemRepository.cs" />
@@ -69,25 +71,37 @@
     <Compile Include="Interfaces\IRepositories\ITracingFactorRepository.cs" />
     <Compile Include="Interfaces\IRepositories\IUnitRepository.cs" />
     <Compile Include="Interfaces\IRepositories\IUserRepository.cs" />
-    <Compile Include="Models\BuyInvoiceItemModel.cs" />
-    <Compile Include="Models\Role\PermissionModel.cs" />
-    <Compile Include="Models\Role\RoleModel.cs" />
-    <Compile Include="Models\SaleInvoiceItemModel.cs" />
-    <Compile Include="Models\TypedData\BuyTypedData\BuyInvoiceItemDataRow.cs" />
-    <Compile Include="Models\TypedData\BuyTypedData\BuyInvoiceItemDataTable.cs">
+    <Compile Include="Tools\Access.cs" />
+    <Compile Include="Tools\CustomGridView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Models\TypedData\BuyTypedData\BuyInvoice\BuyInvoiceRow.cs" />
-    <Compile Include="Models\TypedData\BuyTypedData\BuyInvoice\BuyInvoiceTable.cs">
+    <Compile Include="Tools\CustomGridView.Designer.cs">
+      <DependentUpon>CustomGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\DGVSetting.cs" />
+    <Compile Include="ViewModel\BuyInvoiceItemViewModel.cs" />
+    <Compile Include="ViewModel\PermissionViewModel.cs" />
+    <Compile Include="ViewModel\RoleFullViewModel.cs" />
+    <Compile Include="ViewModel\SaleInvoiceItemViewModel.cs" />
+    <Compile Include="ViewModel\TypedData\BuyTypedData\BuyInvoiceItemDataRow.cs" />
+    <Compile Include="ViewModel\TypedData\BuyTypedData\BuyInvoiceItemDataTable.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Models\TypedData\SellTypedData\SaleInvoiceItemDataRow.cs" />
-    <Compile Include="Models\TypedData\SellTypedData\SellInvoiceItemDataTable.cs">
+    <Compile Include="ViewModel\TypedData\BuyTypedData\BuyInvoice\BuyInvoiceRow.cs" />
+    <Compile Include="ViewModel\TypedData\BuyTypedData\BuyInvoice\BuyInvoiceTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ViewModel\TypedData\SellTypedData\SaleInvoiceItemDataRow.cs" />
+    <Compile Include="ViewModel\TypedData\SellTypedData\SellInvoiceItemDataTable.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ViewModel\BuyInvoiceViewModel.cs" />
-    <Compile Include="Interfaces\IConcurrencyChecker.cs" />
     <Compile Include="ViewModel\ItemViewModel.cs" />
     <Compile Include="ViewModel\RoleViewModel.cs" />
     <Compile Include="ViewModel\SaleInvoiceViewModel.cs" />
@@ -96,7 +110,58 @@
     <Compile Include="ViewModel\StockRoomViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.csproj">
+      <Project>{94e8cb25-02c4-4bb7-a1da-7304331adaab}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\Shared\ChooseForm.resx">
+      <DependentUpon>ChooseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-delete-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-plus-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-product-documents-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-refresh-love-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PinClipart.com_black-power-fist-clipart_1856543.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngkit_login-icon-png_5186830.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user%281%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>Copy "$(ProjectDir)$(OutDir)$(TargetName).*" "$(SolutionDir)Project\bin\debug\Plugins"</PostBuildEvent>

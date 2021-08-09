@@ -1,4 +1,16 @@
 C:\Users\ArefAs\source\repos\Project\Utility\bin\Debug\Utility.dll
 C:\Users\ArefAs\source\repos\Project\Utility\bin\Debug\Utility.pdb
+C:\Users\ArefAs\source\repos\Project\Utility\bin\Debug\Framework.dll
+C:\Users\ArefAs\source\repos\Project\Utility\bin\Debug\StructureMap.dll
+C:\Users\ArefAs\source\repos\Project\Utility\bin\Debug\StructureMap.Net4.dll
+C:\Users\ArefAs\source\repos\Project\Utility\bin\Debug\Framework.pdb
+C:\Users\ArefAs\source\repos\Project\Utility\bin\Debug\StructureMap.pdb
+C:\Users\ArefAs\source\repos\Project\Utility\bin\Debug\StructureMap.xml
+C:\Users\ArefAs\source\repos\Project\Utility\bin\Debug\StructureMap.Net4.pdb
+C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Utility.csprojAssemblyReference.cache
+C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Project.Forms.Shared.ChooseForm.resources
+C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Utility.Properties.Resources.resources
+C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Utility.csproj.GenerateResource.cache
+C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Utility.csproj.CopyComplete
 C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Utility.dll
 C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Utility.pdb

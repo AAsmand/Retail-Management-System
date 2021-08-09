@@ -65,7 +65,7 @@
             // ProductButton
             // 
             this.ProductButton.Font = new System.Drawing.Font("B Yekan", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ProductButton.Image = global::Project.Properties.Resources.icons8_product_documents_48;
+            this.ProductButton.Image = global::Utility.Properties.Resources.icons8_product_documents_48;
             this.ProductButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ProductButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ProductButton.Name = "ProductButton";
@@ -77,7 +77,7 @@
             // UnitButton
             // 
             this.UnitButton.Font = new System.Drawing.Font("B Yekan", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.UnitButton.Image = global::Project.Properties.Resources.icons8_product_documents_48;
+            this.UnitButton.Image = global::Utility.Properties.Resources.icons8_product_documents_48;
             this.UnitButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.UnitButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.UnitButton.Name = "UnitButton";
@@ -88,7 +88,7 @@
             // FactorButton
             // 
             this.FactorButton.Font = new System.Drawing.Font("B Yekan", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.FactorButton.Image = global::Project.Properties.Resources.icons8_product_documents_48;
+            this.FactorButton.Image = global::Utility.Properties.Resources.icons8_product_documents_48;
             this.FactorButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.FactorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FactorButton.Name = "FactorButton";
@@ -100,7 +100,7 @@
             // ManageSellInvoiceBtn
             // 
             this.ManageSellInvoiceBtn.Font = new System.Drawing.Font("B Yekan", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ManageSellInvoiceBtn.Image = global::Project.Properties.Resources.icons8_product_documents_48;
+            this.ManageSellInvoiceBtn.Image = global::Utility.Properties.Resources.icons8_product_documents_48;
             this.ManageSellInvoiceBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ManageSellInvoiceBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ManageSellInvoiceBtn.Name = "ManageSellInvoiceBtn";
@@ -112,7 +112,7 @@
             // ManageUsersBtn
             // 
             this.ManageUsersBtn.Font = new System.Drawing.Font("B Yekan", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ManageUsersBtn.Image = global::Project.Properties.Resources.icons8_product_documents_48;
+            this.ManageUsersBtn.Image = global::Utility.Properties.Resources.icons8_product_documents_48;
             this.ManageUsersBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ManageUsersBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ManageUsersBtn.Name = "ManageUsersBtn";

@@ -1,0 +1,17 @@
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\StockBusiness.dll
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\StockBusiness.pdb
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\Framework.dll
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\StockData.dll
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\Utility.dll
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\StructureMap.dll
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\StructureMap.Net4.dll
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\Framework.pdb
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\StockData.pdb
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\Utility.pdb
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\StructureMap.pdb
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\StructureMap.xml
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\StructureMap.Net4.pdb
+C:\Users\ArefAs\source\repos\Project\StockBusiness\obj\Debug\StockBusiness.csprojAssemblyReference.cache
+C:\Users\ArefAs\source\repos\Project\StockBusiness\obj\Debug\StockBusiness.csproj.CopyComplete
+C:\Users\ArefAs\source\repos\Project\StockBusiness\obj\Debug\StockBusiness.dll
+C:\Users\ArefAs\source\repos\Project\StockBusiness\obj\Debug\StockBusiness.pdb

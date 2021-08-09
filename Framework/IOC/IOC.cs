@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using StructureMap;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace Framework.IOC
 {
     public static class IOC
     {
-        public static Container Container;
+        private static Lazy<Container> container;
         static IOC()
         {
-            Container = new Container(c =>
+            container = new Lazy<Container>(buildContainer, LazyThreadSafetyMode.ExecutionAndPublication);
+        }
+        private static Container buildContainer()
+        {
+            return new Container(x =>
             {
-                c.AddRegistry<PluginsRegistry>();
+                x.AddRegistry<PluginsRegistry>();
             });
         }
+        public static IContainer Container { get { return container.Value; } }
     }
 }

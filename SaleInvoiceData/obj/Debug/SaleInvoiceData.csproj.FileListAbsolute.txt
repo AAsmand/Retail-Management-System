@@ -1,0 +1,15 @@
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\bin\Debug\SaleInvoiceData.dll
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\bin\Debug\SaleInvoiceData.pdb
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\bin\Debug\Framework.dll
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\bin\Debug\Utility.dll
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\bin\Debug\StructureMap.dll
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\bin\Debug\StructureMap.Net4.dll
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\bin\Debug\Framework.pdb
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\bin\Debug\Utility.pdb
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\bin\Debug\StructureMap.pdb
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\bin\Debug\StructureMap.xml
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\bin\Debug\StructureMap.Net4.pdb
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\obj\Debug\SaleInvoiceData.csprojAssemblyReference.cache
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\obj\Debug\SaleInvoiceData.csproj.CopyComplete
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\obj\Debug\SaleInvoiceData.dll
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceData\obj\Debug\SaleInvoiceData.pdb

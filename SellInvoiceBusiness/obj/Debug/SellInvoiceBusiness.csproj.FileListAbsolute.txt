@@ -1,0 +1,6 @@
+C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\SellInvoiceBusiness.exe
+C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\SellInvoiceBusiness.pdb
+C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\SellInvoiceBusiness.Properties.Resources.resources
+C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\SellInvoiceBusiness.csproj.GenerateResource.cache
+C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\SellInvoiceBusiness.exe
+C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\SellInvoiceBusiness.pdb

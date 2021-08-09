@@ -8,6 +8,6 @@ namespace Project.Business
 {
     public interface IRoleBusiness
     {
-        
+        DataTable GetRoles(int roleId);
     }
 }

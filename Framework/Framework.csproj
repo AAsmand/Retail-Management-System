@@ -48,18 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseBusiness\BaseBusiness.cs" />
+    <Compile Include="BaseBusiness\Interfaces\IBaseUiView.cs" />
+    <Compile Include="BaseBusiness\Interfaces\IConcurrency.cs" />
+    <Compile Include="BaseBusiness\Interfaces\IConcurrencyChecker.cs" />
+    <Compile Include="BaseRepository\BaseRepository.cs" />
+    <Compile Include="BaseRepository\IBaseRepository.cs" />
     <Compile Include="IOC\CustomConvention.cs" />
     <Compile Include="IOC\IOC.cs" />
     <Compile Include="IOC\PluginsRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tools\Access.cs" />
-    <Compile Include="Tools\CustomGridView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Tools\CustomGridView.Designer.cs">
-      <DependentUpon>CustomGridView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Tools\DGVSetting.cs" />
     <Compile Include="User\UserModel.cs" />
   </ItemGroup>
   <ItemGroup>

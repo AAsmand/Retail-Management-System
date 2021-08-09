@@ -5,7 +5,6 @@ C:\Users\ArefAs\source\repos\Project\Run\bin\Debug\StructureMap.Net4.dll
 C:\Users\ArefAs\source\repos\Project\Run\bin\Debug\StructureMap.pdb
 C:\Users\ArefAs\source\repos\Project\Run\bin\Debug\StructureMap.xml
 C:\Users\ArefAs\source\repos\Project\Run\bin\Debug\StructureMap.Net4.pdb
-C:\Users\ArefAs\source\repos\Project\Run\obj\Debug\Run.csprojAssemblyReference.cache
 C:\Users\ArefAs\source\repos\Project\Run\obj\Debug\Project.Forms.User.LoginForm.resources
 C:\Users\ArefAs\source\repos\Project\Run\obj\Debug\Project.MainForm.resources
 C:\Users\ArefAs\source\repos\Project\Run\obj\Debug\Run.Properties.Resources.resources

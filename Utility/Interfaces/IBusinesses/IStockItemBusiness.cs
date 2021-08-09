@@ -12,5 +12,8 @@ namespace Project.Business
     {
         DataTable GetData(int itemId = 0, int SRId = 0, string tracingFactor = "");
         StockItemViewModel GetStockItem(int stockItem);
+        int AddStockItem(StockItemViewModel model);
+        bool UpdateStockItem(int stockRoomId, int itemId, string tracingFactor, int value);
+        bool UpdateStockItem(int stockItemId, int value);
     }
 }
