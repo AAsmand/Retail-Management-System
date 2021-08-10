@@ -12,10 +12,7 @@ namespace Project.Repositories
 {
     public class SaleInvoiceItemRepository:BaseRepository,ISaleInvoiceItemRepository
     {
-        public SaleInvoiceItemRepository()
-        {
-        }
-        public bool UpdateSaleInvoiceItem(DataTable table)
+        public bool UpdateSaleInvoiceItems(DataTable table)
         {
             ds.Tables.Clear();
             ds.Tables.Add(table);

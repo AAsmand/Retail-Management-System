@@ -15,3 +15,5 @@ C:\Users\ArefAs\source\repos\Project\StockBusiness\obj\Debug\StockBusiness.cspro
 C:\Users\ArefAs\source\repos\Project\StockBusiness\obj\Debug\StockBusiness.csproj.CopyComplete
 C:\Users\ArefAs\source\repos\Project\StockBusiness\obj\Debug\StockBusiness.dll
 C:\Users\ArefAs\source\repos\Project\StockBusiness\obj\Debug\StockBusiness.pdb
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\Castle.Core.dll
+C:\Users\ArefAs\source\repos\Project\StockBusiness\bin\Debug\Castle.Core.xml

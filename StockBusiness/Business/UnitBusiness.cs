@@ -20,7 +20,7 @@ namespace Project.Business
         }
         public DataTable GetUnits()
         {
-            return unitRepository.GetData();
+            return unitRepository.GetUnits();
         }
     }
 }

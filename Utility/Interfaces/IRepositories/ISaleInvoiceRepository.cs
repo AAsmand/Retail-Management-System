@@ -9,9 +9,9 @@ namespace Utility.Interfaces
 {
     public interface ISaleInvoiceRepository:IBaseRepository
     {
-        DataTable GetData();
-        bool DeleteItem(int itemId);
-        bool AddItem(SaleInvoiceViewModel model);
-        int GetLastId();
+        DataTable GetSaleInvoices();
+        bool DeleteSaleInvoice(int itemId);
+        bool AddSaleInvoice(SaleInvoiceViewModel model);
+        int GetLastSaleInvoiceId();
     }
 }

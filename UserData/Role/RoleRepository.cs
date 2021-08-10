@@ -9,11 +9,8 @@ using Utility.Interfaces;
 
 namespace Project.Repositories.Role
 {
-    public class RoleRepository : BaseRepository,IRoleRepository
+    public class RoleRepository : BaseRepository, IRoleRepository
     {
-        public RoleRepository()
-        {
-        }
         public DataTable GetUserRoles(int userId)
         {
             command.Connection = connection;
@@ -27,19 +24,12 @@ namespace Project.Repositories.Role
             connection.Close();
             return ds.Tables["UserRoles"];
         }
-        public DataTable GetRoles(string sameRoleId)
+        public DataTable GetRolesByFilter(string sameRoleId="")
         {
             command.Connection = connection;
             command.Parameters.Clear();
-            if (sameRoleId != "0")
-            {
-                command.CommandText = "select * from Roles where CAST(RoleId as varchar) like '%'+@Id+'%'";
-                command.Parameters.AddWithValue("@Id", sameRoleId);
-            }
-            else
-            {
-                command.CommandText = "select * from Roles";
-            }
+            command.CommandText = "select * from Roles where CAST(RoleId as varchar) like '%'+@Id+'%'";
+            command.Parameters.AddWithValue("@Id",sameRoleId);
             connection.Open();
             adapter.SelectCommand = command;
             ds.Clear();

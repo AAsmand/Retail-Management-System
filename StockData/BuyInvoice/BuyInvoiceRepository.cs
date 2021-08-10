@@ -11,11 +11,7 @@ namespace Project.Repositories
 {
     public class BuyInvoiceRepository:BaseRepository, IBuyInvoiceRepository
     {
-        public BuyInvoiceRepository()
-        {
-        }
-
-        public  DataTable GetData()
+        public  DataTable GetBuyInvoices()
         {
 
             command.Connection = connection;
@@ -28,7 +24,7 @@ namespace Project.Repositories
             connection.Close();
             return ds.Tables["BuyInvoice"];
         }
-        public  bool DeleteItem(int buyInvoiceId)
+        public  bool DeleteBuyInvoice(int buyInvoiceId)
         {
             command.Connection = connection;
             command.CommandText = "delete from BuyInvoice where BuyInvoiceId=@Id";
@@ -51,7 +47,7 @@ namespace Project.Repositories
 
         }
 
-        public  bool AddItem(BuyInvoiceViewModel model)
+        public  bool AddBuyInvoice(BuyInvoiceViewModel model)
         {
             command.Connection = connection;
             command.CommandText = "insert into BuyInvoice(BuyInvoiceId,SRId,CreatedDate,Supplier,UserId) Values(@BuyInvoiceId,@SRId,@CreatedDate,@Supplier,@UserId)";
@@ -71,7 +67,7 @@ namespace Project.Repositories
             connection.Close();
             return false;
         }
-        public  int GetLastId()
+        public  int GetLastBuyInvoiceId()
         {
             command.Connection = connection;
             command.CommandText = "select Top 1 BuyInvoiceId from BuyInvoice order by BuyInvoiceId desc";

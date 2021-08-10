@@ -20,7 +20,7 @@ namespace Project
         ItemViewModel Model;
         bool EditMode = false;
         bool isUpdatedImage = false;
-        IItemBusiness itemBus;
+        private IItemBusiness itemBus;
         public event EventHandler<AddItemEventArg> AddedEvent;
         private IUnitBusiness unitBusiness;
         private ITracingFactorBusiness tracingFactorBusiness;
@@ -32,21 +32,24 @@ namespace Project
             this.tracingFactorBusiness = tracingFactorBusiness;
             HasTracingFactor.Checked = true;
         }
-        public AddItem(ItemViewModel model, IUnitBusiness unitBusiness, ITracingFactorBusiness tracingFactorBusiness, IItemBusiness itemBus)
+        public AddItem(bool editMode, ItemViewModel model, IUnitBusiness unitBusiness, ITracingFactorBusiness tracingFactorBusiness, IItemBusiness itemBus)
         {
-            Model = model;
-            EditMode = true;
             InitializeComponent();
             this.itemBus = itemBus;
             this.unitBusiness = unitBusiness;
             this.tracingFactorBusiness = tracingFactorBusiness;
-            AddBtn.Text = "ویرایش";
-            Titletxt.Text = model.Title;
-            Descriptiontxt.Text = model.Description;
-            PicAddressTxt.Text = model.Pic;
-            Image = Image.FromFile(Path.Combine(Application.StartupPath, "Images", PicAddressTxt.Text));
-            pictureBox1.Image = Image;
-            HasTracingFactor.Checked = model.HasTracingFactor;
+            if (editMode)
+            {
+                Model = model;
+                EditMode = true;
+                AddBtn.Text = "ویرایش";
+                Titletxt.Text = model.Title;
+                Descriptiontxt.Text = model.Description;
+                PicAddressTxt.Text = model.Pic;
+                if (model != null) Image = Image.FromFile(Path.Combine(Application.StartupPath, "Images", PicAddressTxt.Text));
+                pictureBox1.Image = Image;
+                HasTracingFactor.Checked = model.HasTracingFactor;
+            }
         }
 
         private void SelectPic_Click(object sender, EventArgs e)
@@ -57,7 +60,6 @@ namespace Project
                 PicAddressTxt.Text = openFileDialog1.SafeFileName;
                 Image = Image.FromFile(openFileDialog1.FileName);
                 pictureBox1.Image = Image;
-
                 isUpdatedImage = true;
             }
         }

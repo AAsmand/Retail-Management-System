@@ -19,3 +19,5 @@ C:\Users\ArefAs\source\repos\Project\SaleInvoiceBusiness\obj\Debug\SaleInvoiceBu
 C:\Users\ArefAs\source\repos\Project\SaleInvoiceBusiness\obj\Debug\SaleInvoiceBusiness.csproj.CopyComplete
 C:\Users\ArefAs\source\repos\Project\SaleInvoiceBusiness\obj\Debug\SaleInvoiceBusiness.dll
 C:\Users\ArefAs\source\repos\Project\SaleInvoiceBusiness\obj\Debug\SaleInvoiceBusiness.pdb
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceBusiness\bin\Debug\Castle.Core.dll
+C:\Users\ArefAs\source\repos\Project\SaleInvoiceBusiness\bin\Debug\Castle.Core.xml

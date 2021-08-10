@@ -17,7 +17,7 @@ namespace Project.Business
         }
         public DataTable GetTracingFactors()
         {
-            return tracingFactorRepository.GetData();
+            return tracingFactorRepository.GetTracingFactors();
         }
     }
 }

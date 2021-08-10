@@ -8,3 +8,6 @@ C:\Users\ArefAs\source\repos\Project\Framework\bin\Debug\StructureMap.Net4.pdb
 C:\Users\ArefAs\source\repos\Project\Framework\obj\Debug\Framework.csproj.CopyComplete
 C:\Users\ArefAs\source\repos\Project\Framework\obj\Debug\Framework.dll
 C:\Users\ArefAs\source\repos\Project\Framework\obj\Debug\Framework.pdb
+C:\Users\ArefAs\source\repos\Project\Framework\bin\Debug\Castle.Core.dll
+C:\Users\ArefAs\source\repos\Project\Framework\bin\Debug\Castle.Core.xml
+C:\Users\ArefAs\source\repos\Project\Framework\obj\Debug\Framework.csprojAssemblyReference.cache

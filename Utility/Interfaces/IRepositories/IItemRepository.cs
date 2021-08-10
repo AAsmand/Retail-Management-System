@@ -11,10 +11,10 @@ namespace Utility.Interfaces
 {
     public interface IItemRepository:IBaseRepository
     {
-        DataTable GetData(int itemId = 0);
+        DataTable GetItemsByFilter(int itemId = 0);
         bool DeleteItem(int itemId);
         bool AddItem(ItemViewModel model);
         bool EditItem(ItemViewModel model);
-        DataTable FindItem(int itemId);
+        DataTable GetItem(int itemId);
     }
 }

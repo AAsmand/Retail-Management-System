@@ -13,8 +13,7 @@ namespace Utility.Interfaces
         StockItemViewModel GetStockItem(int stockItemId);
         bool UpdateStockItem(int stockItemId, int ChangeValue);
         bool UpdateStockItem(int stockRoomId, int itemId, string tracingFactor, int ChangeValue);
-        DataTable GetStockItems(int itemId, int stockRoomId, string tracingFactor = "");
-        DataTable GetStockRoomsForItem(int itemId, int stockRoomId);
+        DataTable GetStockItemsByFilter(int itemId=0, int stockRoomId=0, string tracingFactor = "");
         int AddStockItem(StockItemViewModel model);
     }
 }

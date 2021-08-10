@@ -13,3 +13,5 @@ C:\Users\ArefAs\source\repos\Project\UserData\obj\Debug\UserData.csprojAssemblyR
 C:\Users\ArefAs\source\repos\Project\UserData\obj\Debug\UserData.csproj.CopyComplete
 C:\Users\ArefAs\source\repos\Project\UserData\obj\Debug\UserData.dll
 C:\Users\ArefAs\source\repos\Project\UserData\obj\Debug\UserData.pdb
+C:\Users\ArefAs\source\repos\Project\UserData\bin\Debug\Castle.Core.dll
+C:\Users\ArefAs\source\repos\Project\UserData\bin\Debug\Castle.Core.xml

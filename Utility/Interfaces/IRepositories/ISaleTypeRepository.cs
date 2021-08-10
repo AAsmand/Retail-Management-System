@@ -8,6 +8,7 @@ namespace Utility.Interfaces
 {
     public interface ISaleTypeRepository:IBaseRepository
     {
-        DataTable GetData(int sellTypeId = 0);
+        DataTable GetSaleTypesByFilter(int sellTypeId = 0);
+        DataTable GetSaleType(int saleTypeId);
     }
 }

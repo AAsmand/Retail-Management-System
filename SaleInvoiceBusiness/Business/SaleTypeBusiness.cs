@@ -18,11 +18,11 @@ namespace Project.Business
         }
         public DataTable GetData(int saleTypeId=0)
         {
-            return saleTypeRepository.GetData(saleTypeId);
+            return saleTypeRepository.GetSaleTypesByFilter(saleTypeId);
         }
         public SaleTypeViewModel GetSellType(int sellTypeId)
         {
-            return saleTypeRepository.GetData(sellTypeId).Rows.Cast<DataRow>().Select(r => new SaleTypeViewModel() { SellTypeId = (int)r["SellTypeId"], SellTypeTitle = r["SellTypeTitle"].ToString() }).FirstOrDefault();
+            return saleTypeRepository.GetSaleType(sellTypeId).Rows.Cast<DataRow>().Select(r => new SaleTypeViewModel() { SellTypeId = (int)r["SellTypeId"], SellTypeTitle = r["SellTypeTitle"].ToString() }).FirstOrDefault();
         }
     }
 }

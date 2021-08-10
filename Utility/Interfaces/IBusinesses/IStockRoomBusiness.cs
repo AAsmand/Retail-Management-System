@@ -9,7 +9,7 @@ namespace Project.Business
 {
     public interface IStockRoomBusiness
     {
-        DataTable GetStockRoom(int id);
-        DataTable GetStockRooms(int SRId = 0, int itemId = 0);
+        DataTable GetStockRooms(int id);
+        DataTable GetItemStockRooms(int SRId = 0, int itemId = 0);
     }
 }

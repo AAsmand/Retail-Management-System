@@ -9,23 +9,27 @@ using Utility.Interfaces;
 
 namespace Project.Repositories
 {
-    public  class SaleTypeRepository:BaseRepository,ISaleTypeRepository
+    public class SaleTypeRepository : BaseRepository, ISaleTypeRepository
     {
-        public SaleTypeRepository()
+        public DataTable GetSaleTypesByFilter(int sellTypeId = 0)
         {
+            command.Connection = connection;
+            command.Parameters.Clear();
+            command.CommandText = "select * from SellType where CAST(SellTypeId as varchar) like '%'+@Id+'%'";
+            command.Parameters.AddWithValue("@Id",sellTypeId>0? sellTypeId.ToString():"");
+            connection.Open();
+            adapter.SelectCommand = command;
+            ds.Clear();
+            adapter.Fill(ds, "SellType");
+            connection.Close();
+            return ds.Tables["SellType"];
         }
-        public DataTable GetData(int sellTypeId=0)
+        public DataTable GetSaleType(int sellTypeId)
         {
-            if (sellTypeId == 0)
-                command = new SqlCommand("select * from SellType", connection);
-            else
-            {
-
-                command.Connection = connection;
-                command.CommandText = "select * from SellType where CAST(SellTypeId as varchar) like '%'+@Id+'%'";
-                command.Parameters.Clear();
-                command.Parameters.AddWithValue("@Id", sellTypeId.ToString());
-            }
+            command.Connection = connection;
+            command.Parameters.Clear();
+            command.CommandText = "select * from SellType where SellTypeId=@Id";
+            command.Parameters.AddWithValue("@Id",sellTypeId);
             connection.Open();
             adapter.SelectCommand = command;
             ds.Clear();

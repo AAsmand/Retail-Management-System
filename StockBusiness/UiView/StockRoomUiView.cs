@@ -29,7 +29,7 @@ namespace BusinessLayer.Business.BaseUIView
 
         public DataTable GetData()
         {
-            return stockRoomBusiness.GetStockRooms(_SRId,_itemId);
+            return _itemId == 0 ? stockRoomBusiness.GetStockRooms(_SRId) : stockRoomBusiness.GetItemStockRooms(_SRId, _itemId);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Project.Business
         }
         public List<ItemViewModel> GetItems()
         {
-            return itemRepository.GetData().Rows.Cast<DataRow>().Select(r => new ItemViewModel() { ItemId = (int)r["ItemId"], Title = r["Title"].ToString(), Description = r["Description"].ToString(), RefUnitId = (int)r["RefUnitId"], TimeStamp = (int)r["TimeStamp"], UserId = (int)r["CreatorUserId"], HasTracingFactor = !string.IsNullOrEmpty(r["HasTracingFactor"].ToString()) ? (bool)r["HasTracingFactor"] : false, TracingFactorId = r["TracingFactorId"].ToString(), UnitName = r["UnitName"].ToString(), TracingFactorTitle = r["TracingFactorTitle"].ToString(), Pic = r["pic"].ToString() }).ToList();
+            return itemRepository.GetItemsByFilter().Rows.Cast<DataRow>().Select(r => new ItemViewModel() { ItemId = (int)r["ItemId"], Title = r["Title"].ToString(), Description = r["Description"].ToString(), RefUnitId = (int)r["RefUnitId"], TimeStamp = (int)r["TimeStamp"], UserId = (int)r["CreatorUserId"], HasTracingFactor = !string.IsNullOrEmpty(r["HasTracingFactor"].ToString()) ? (bool)r["HasTracingFactor"] : false, TracingFactorId = r["TracingFactorId"].ToString(), UnitName = r["UnitName"].ToString(), TracingFactorTitle = r["TracingFactorTitle"].ToString(), Pic = r["pic"].ToString() }).ToList();
         }
         public bool EditItem(int itemId, string title, string description, int refUnitId, bool hasTracingFactor, string tracingFactorId, string newPic, string oldPic, Image image, bool isUpdatedImage)
         {
@@ -86,7 +86,7 @@ namespace Project.Business
         }
         public ItemViewModel GetItem(int itemId)
         {
-            DataTable item = itemRepository.FindItem(itemId);
+            DataTable item = itemRepository.GetItem(itemId);
             if (item.Rows.Count != 1)
             {
                 return null;
@@ -96,7 +96,7 @@ namespace Project.Business
 
         public DataTable GetData(int id=0)
         {
-            return itemRepository.GetData(id);
+            return itemRepository.GetItemsByFilter(id);
         }
     }
 }

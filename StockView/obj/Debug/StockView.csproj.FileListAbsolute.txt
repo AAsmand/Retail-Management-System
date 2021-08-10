@@ -23,3 +23,5 @@ C:\Users\ArefAs\source\repos\Project\StockView\obj\Debug\StockView.csproj.Genera
 C:\Users\ArefAs\source\repos\Project\StockView\obj\Debug\StockView.csproj.CopyComplete
 C:\Users\ArefAs\source\repos\Project\StockView\obj\Debug\StockView.exe
 C:\Users\ArefAs\source\repos\Project\StockView\obj\Debug\StockView.pdb
+C:\Users\ArefAs\source\repos\Project\StockView\bin\Debug\Castle.Core.dll
+C:\Users\ArefAs\source\repos\Project\StockView\bin\Debug\Castle.Core.xml

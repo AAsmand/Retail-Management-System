@@ -15,3 +15,5 @@ C:\Users\ArefAs\source\repos\Project\UserBusiness\obj\Debug\UserBusiness.csprojA
 C:\Users\ArefAs\source\repos\Project\UserBusiness\obj\Debug\UserBusiness.csproj.CopyComplete
 C:\Users\ArefAs\source\repos\Project\UserBusiness\obj\Debug\UserBusiness.dll
 C:\Users\ArefAs\source\repos\Project\UserBusiness\obj\Debug\UserBusiness.pdb
+C:\Users\ArefAs\source\repos\Project\UserBusiness\bin\Debug\Castle.Core.dll
+C:\Users\ArefAs\source\repos\Project\UserBusiness\bin\Debug\Castle.Core.xml

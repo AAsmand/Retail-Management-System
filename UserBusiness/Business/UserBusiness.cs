@@ -58,7 +58,7 @@ namespace Project.Business
         }
         public List<RoleViewModel> GetRole(string roleId)
         {
-            return roleRepository.GetRoles(roleId).Rows.Cast<DataRow>().Select(r => new RoleViewModel() { RoleId = r["RoleId"].ToString(), RoleName = r["RoleName"].ToString() }).ToList();
+            return roleRepository.GetRolesByFilter(roleId).Rows.Cast<DataRow>().Select(r => new RoleViewModel() { RoleId = r["RoleId"].ToString(), RoleName = r["RoleName"].ToString() }).ToList();
         }
         public bool AddUser(UserViewModel model)
         {

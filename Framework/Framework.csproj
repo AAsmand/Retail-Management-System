@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.4.1\lib\net40\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap, Version=4.2.0.402, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\structuremap.4.2.0.402\lib\net40\StructureMap.dll</HintPath>
     </Reference>
@@ -38,6 +41,7 @@
       <HintPath>..\packages\structuremap.4.2.0.402\lib\net40\StructureMap.Net4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -49,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBusiness\BaseBusiness.cs" />
+    <Compile Include="BaseBusiness\ConcurrencyInterceptor.cs" />
     <Compile Include="BaseBusiness\Interfaces\IBaseUiView.cs" />
     <Compile Include="BaseBusiness\Interfaces\IConcurrency.cs" />
     <Compile Include="BaseBusiness\Interfaces\IConcurrencyChecker.cs" />

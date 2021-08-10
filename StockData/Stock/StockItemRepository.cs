@@ -10,12 +10,8 @@ using Utility.Interfaces;
 
 namespace Project.Repositories
 {
-    public class StockItemRepository:BaseRepository, IStockItemRepository
+    public class StockItemRepository : BaseRepository, IStockItemRepository
     {
-        public StockItemRepository()
-        {
-        }
-
         public DataTable GetStockItem(int itemId, int stockRoomId, string tracingFactor)
         {
             command.Connection = connection;
@@ -58,7 +54,7 @@ namespace Project.Repositories
             }
             return null;
         }
-        
+
         public bool UpdateStockItem(int stockItemId, int ChangeValue)
         {
             command.Connection = connection;
@@ -95,16 +91,14 @@ namespace Project.Repositories
             connection.Close();
             return false;
         }
-        public DataTable GetStockItems(int itemId, int stockRoomId,string tracingFactor="")
+        public DataTable GetStockItemsByFilter(int itemId = 0, int stockRoomId = 0, string tracingFactor = "")
         {
             command.Connection = connection;
-            if (stockRoomId != 0)
-                command.CommandText = "select * from StockItem as si inner join StockRoom as sr on sr.SRId=si.SRId where si.ItemId=@ItemId and CAST(si.SRId as varchar) like '%'+@SRId+'%' and TracingFactor like '%'+@TracingFactor+'%'";
-            else
-                command.CommandText = "select * from StockItem as si inner join StockRoom as sr on sr.SRId=si.SRId where si.ItemId=@ItemId ";
+
+            command.CommandText = "select * from StockItem as si inner join StockRoom as sr on sr.SRId=si.SRId where si.ItemId=@ItemId and CAST(si.SRId as varchar) like '%'+@SRId+'%' and TracingFactor like '%'+@TracingFactor+'%'";
             command.Parameters.Clear();
-            command.Parameters.AddWithValue("@ItemId", itemId.ToString());
-            command.Parameters.AddWithValue("@SRId", stockRoomId.ToString());
+            command.Parameters.AddWithValue("@ItemId",itemId>0? itemId.ToString():"");
+            command.Parameters.AddWithValue("@SRId",stockRoomId>0? stockRoomId.ToString():"");
             command.Parameters.AddWithValue("@TracingFactor", tracingFactor);
             connection.Open();
             adapter.SelectCommand = command;
@@ -113,24 +107,6 @@ namespace Project.Repositories
             connection.Close();
             return ds.Tables["StockItem"];
         }
-        public DataTable GetStockRoomsForItem(int itemId, int stockRoomId)
-        {
-            command.Connection = connection;
-            if (stockRoomId != 0)
-                command.CommandText = "select distinct sr.SRId,sr.Title from StockItem as si inner join StockRoom as sr on sr.SRId=si.SRId where si.ItemId=@ItemId and CAST(si.SRId as varchar) like '%'+@SRId+'%'";
-            else
-                command.CommandText = "select distinct sr.SRId,sr.Title from StockItem as si inner join StockRoom as sr on sr.SRId=si.SRId where si.ItemId=@ItemId ";
-            command.Parameters.Clear();
-            command.Parameters.AddWithValue("@ItemId", itemId.ToString());
-            command.Parameters.AddWithValue("@SRId", stockRoomId.ToString());
-            connection.Open();
-            adapter.SelectCommand = command;
-            ds.Clear();
-            adapter.Fill(ds, "StockItem");
-            connection.Close();
-            return ds.Tables["StockItem"];
-        }
-
         public int AddStockItem(StockItemViewModel model)
         {
             command.Connection = connection;

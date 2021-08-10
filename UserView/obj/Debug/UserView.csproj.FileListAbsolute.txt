@@ -21,3 +21,5 @@ C:\Users\ArefAs\source\repos\Project\UserView\obj\Debug\UserView.csproj.Generate
 C:\Users\ArefAs\source\repos\Project\UserView\obj\Debug\UserView.csproj.CopyComplete
 C:\Users\ArefAs\source\repos\Project\UserView\obj\Debug\UserView.exe
 C:\Users\ArefAs\source\repos\Project\UserView\obj\Debug\UserView.pdb
+C:\Users\ArefAs\source\repos\Project\UserView\bin\Debug\Castle.Core.dll
+C:\Users\ArefAs\source\repos\Project\UserView\bin\Debug\Castle.Core.xml

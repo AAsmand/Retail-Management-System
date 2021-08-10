@@ -10,10 +10,6 @@ namespace Project.Repositories.Role
 {
     public class PermissionRepository:BaseRepository,IPermissionRepository
     {
-        public PermissionRepository()
-        {
-        }
-
         public DataTable GetRolesPermissions(int roleId)
         {
             command.Connection = connection;

@@ -10,7 +10,7 @@ namespace Project.Repositories
 {
     public class BuyInvoiceItemRepository:BaseRepository,IBuyInvoiceItemRepository
     {
-        public bool UpdateBuyInvoiceItem(DataTable table)
+        public bool UpdateBuyInvoiceItems(DataTable table)
         {
             ds.Tables.Clear();
             ds.Tables.Add(table);

@@ -29,7 +29,7 @@ namespace Project.Business
         }
         public List<SaleInvoiceViewModel> GetSellInvoices()
         {
-            return saleInvoiceRepository.GetData().Rows.Cast<DataRow>().Select(r => new SaleInvoiceViewModel() { SellInvoiceId = (int)r["SellInvoiceId"], SellTypeId = (int)r["SellTypeId"], CreatedDate = DateTime.Parse(r["CreatedDate"].ToString()), Customer = r["Customer"].ToString(), TimeStamp = (int)r["TimeStamp"], UserId = (int)r["UserId"],SellTypeTitle= r["SellTypeTitle"].ToString() }).ToList();
+            return saleInvoiceRepository.GetSaleInvoices().Rows.Cast<DataRow>().Select(r => new SaleInvoiceViewModel() { SellInvoiceId = (int)r["SellInvoiceId"], SellTypeId = (int)r["SellTypeId"], CreatedDate = DateTime.Parse(r["CreatedDate"].ToString()), Customer = r["Customer"].ToString(), TimeStamp = (int)r["TimeStamp"], UserId = (int)r["UserId"],SellTypeTitle= r["SellTypeTitle"].ToString() }).ToList();
         }
         public bool AddSellInvoice(SaleInvoiceViewModel model)
         {
@@ -37,15 +37,15 @@ namespace Project.Business
             {
                 try
                 {
-                    model.SellInvoiceId = saleInvoiceRepository.GetLastId() + 1;
-                    bool succsess = saleInvoiceRepository.AddItem(model);
+                    model.SellInvoiceId = saleInvoiceRepository.GetLastSaleInvoiceId() + 1;
+                    bool succsess = saleInvoiceRepository.AddSaleInvoice(model);
                     if (succsess)
                     {
                         foreach (SaleInvoiceItemDataRow item in model.ItemTable.Rows)
                         {
                             item["SellInvoiceId"] = model.SellInvoiceId;
                         }
-                        if (saleInvoiceItemRepository.UpdateSaleInvoiceItem(model.ItemTable) == true)
+                        if (saleInvoiceItemRepository.UpdateSaleInvoiceItems(model.ItemTable) == true)
                         {
                             bool StockUpdateSuccess = true;
                             foreach (SaleInvoiceItemDataRow row in model.ItemTable.Rows)
@@ -86,7 +86,7 @@ namespace Project.Business
                             if (!stockItemBusiness.UpdateStockItem(item.StockRoomId, item.ItemId, item.TracingFactor, item.Quantity)) return false;
                         }
                         if (!saleInvoiceItemRepository.RemoveSaleInvoiceItems(int.Parse(invoiceId))) return false;
-                        if (!saleInvoiceRepository.DeleteItem(int.Parse(invoiceId))) return false;
+                        if (!saleInvoiceRepository.DeleteSaleInvoice(int.Parse(invoiceId))) return false;
                     }
                     scope.Complete();
                     return true;

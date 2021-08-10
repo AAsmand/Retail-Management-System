@@ -9,7 +9,7 @@ namespace Utility.Interfaces
     public interface IRoleRepository:IBaseRepository
     {
         DataTable GetUserRoles(int userId);
-        DataTable GetRoles(string sameRoleId);
+        DataTable GetRolesByFilter(string sameRoleId);
         bool AddUserRole(int userId, int roleId);
         bool DeleteUserRoles(int userId);
         DataTable GetRole(int roleId);

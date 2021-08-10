@@ -16,7 +16,7 @@ namespace Project.Business
         }
         public DataTable GetRoles(int roleId)
         {
-            return roleRepository.GetRoles(roleId.ToString());
+            return roleRepository.GetRolesByFilter(roleId.ToString());
         }
     }
 }

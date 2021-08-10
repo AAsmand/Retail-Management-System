@@ -8,6 +8,6 @@ namespace Utility.Interfaces
 {
     public interface IUnitRepository:IBaseRepository
     {
-        DataTable GetData();
+        DataTable GetUnits();
     }
 }

@@ -14,3 +14,5 @@ C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Utility.csproj.GenerateRe
 C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Utility.csproj.CopyComplete
 C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Utility.dll
 C:\Users\ArefAs\source\repos\Project\Utility\obj\Debug\Utility.pdb
+C:\Users\ArefAs\source\repos\Project\Utility\bin\Debug\Castle.Core.dll
+C:\Users\ArefAs\source\repos\Project\Utility\bin\Debug\Castle.Core.xml

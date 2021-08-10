@@ -10,10 +10,7 @@ namespace Project.Repositories
 {
     public class UnitRepository:BaseRepository,IUnitRepository
     {
-        public UnitRepository()
-        {
-        }
-        public DataTable GetData()
+        public DataTable GetUnits()
         {
 
             command.Connection = connection;

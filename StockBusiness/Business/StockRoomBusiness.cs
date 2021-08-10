@@ -15,13 +15,13 @@ namespace Project.Business
         {
             this.stockRoomRepository = stockRoomRepository;
         }
-        public DataTable GetStockRoom(int id)
+        public DataTable GetStockRooms(int id)
         {
-            return stockRoomRepository.GetData(id);
+            return stockRoomRepository.GetStockRoomByFilter(id);
         }
-        public DataTable GetStockRooms(int SRId=0,int itemId=0)
+        public DataTable GetItemStockRooms(int SRId=0,int itemId=0)
         {
-            return stockRoomRepository.GetData(SRId, itemId);
+            return stockRoomRepository.GetItemStockRoomByFilter(SRId, itemId);
         }
     }
 }

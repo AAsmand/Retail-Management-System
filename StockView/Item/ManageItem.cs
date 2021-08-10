@@ -57,7 +57,9 @@ namespace Project
         }
         private void AddBtnTool_Click(object sender, EventArgs e)
         {
-            AddItem a = IOC.Container.GetInstance<AddItem>();
+            ExplicitArguments args = new ExplicitArguments();
+            args.SetArg("editMode", false);
+            AddItem a = IOC.Container.GetInstance<AddItem>(args);
             a.AddedEvent += RefreshBtn_Click;
             a.MdiParent = this.MdiParent;
             a.Show();
@@ -83,6 +85,7 @@ namespace Project
                     model.Pic = row.Cells["picAddress"].Value.ToString();
                     ExplicitArguments args = new ExplicitArguments();
                     args.SetArg("model", model);
+                    args.SetArg("editMode", true);
                     AddItem a = IOC.Container.GetInstance<AddItem>(args);
                     a.AddedEvent += RefreshBtn_Click;
                     a.MdiParent = this.MdiParent;

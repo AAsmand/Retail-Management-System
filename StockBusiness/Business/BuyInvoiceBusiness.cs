@@ -29,7 +29,7 @@ namespace Project.Business
         }
         public List<BuyInvoiceViewModel> GetBuyInvoices()
         {
-            return buyInvoiceRepository.GetData().Rows.Cast<DataRow>().Select(r => new BuyInvoiceViewModel() { BuyInvoiceId = r["BuyInvoiceId"].ToString(), SRId = r["SRId"].ToString(), CreatedDate = DateTime.Parse(r["CreatedDate"].ToString()), Supplier = r["Supplier"].ToString(), TimeStamp = (int)r["TimeStamp"], UserId = r["UserId"].ToString() }).ToList();
+            return buyInvoiceRepository.GetBuyInvoices().Rows.Cast<DataRow>().Select(r => new BuyInvoiceViewModel() { BuyInvoiceId = r["BuyInvoiceId"].ToString(), SRId = r["SRId"].ToString(), CreatedDate = DateTime.Parse(r["CreatedDate"].ToString()), Supplier = r["Supplier"].ToString(), TimeStamp = (int)r["TimeStamp"], UserId = r["UserId"].ToString() }).ToList();
         }
         public bool AddBuyInvoice(BuyInvoiceViewModel model)
         {
@@ -37,8 +37,8 @@ namespace Project.Business
             {
                 try
                 {
-                    model.BuyInvoiceId = (buyInvoiceRepository.GetLastId() + 1).ToString();
-                    bool succsess = buyInvoiceRepository.AddItem(model);
+                    model.BuyInvoiceId = (buyInvoiceRepository.GetLastBuyInvoiceId() + 1).ToString();
+                    bool succsess = buyInvoiceRepository.AddBuyInvoice(model);
                     if (succsess)
                     {
                         foreach (BuyInvoiceItemDataRow item in model.ItemList.Rows)
@@ -62,7 +62,7 @@ namespace Project.Business
                                 item.StockItemId = int.Parse(table.Rows[0]["StockItemId"].ToString());
                             }
                         }
-                        if (buyInvoiceItemRepository.UpdateBuyInvoiceItem(model.ItemList) == true)
+                        if (buyInvoiceItemRepository.UpdateBuyInvoiceItems(model.ItemList) == true)
                         {
                             foreach (BuyInvoiceItemDataRow item in model.ItemList.Rows)
                             {
@@ -95,7 +95,7 @@ namespace Project.Business
                             if (!stockItemBusiness.UpdateStockItem(item.StockItemId, item.Quantity * -1)) return false;
                         }
                         if (!buyInvoiceItemRepository.RemoveBuyInvoiceItems(int.Parse(id))) return false;
-                        if (!buyInvoiceRepository.DeleteItem(int.Parse(id))) return false;
+                        if (!buyInvoiceRepository.DeleteBuyInvoice(int.Parse(id))) return false;
                     }
                     scope.Complete();
                     return true;
@@ -109,7 +109,7 @@ namespace Project.Business
         }
         public StockRoomViewModel GetStockRoom(int stockRoomId)
         {
-            return stockRoomBusiness.GetStockRoom(stockRoomId).Rows.Cast<DataRow>().Select(r => new StockRoomViewModel() { SRId = (int)r["SRId"], Title = r["Title"].ToString(), Address = r["Address"].ToString() }).FirstOrDefault();
+            return stockRoomBusiness.GetStockRooms(stockRoomId).Rows.Cast<DataRow>().Select(r => new StockRoomViewModel() { SRId = (int)r["SRId"], Title = r["Title"].ToString(), Address = r["Address"].ToString() }).FirstOrDefault();
         }
     }
 }

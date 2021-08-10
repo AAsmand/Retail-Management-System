@@ -24,7 +24,7 @@ namespace Project.Business
 
         public DataTable GetData(int itemId=0,int SRId=0,string tracingFactor="")
         {
-            return stockItemRepository.GetStockItems(itemId,SRId,tracingFactor);
+            return stockItemRepository.GetStockItemsByFilter(itemId,SRId,tracingFactor);
         }
 
         public StockItemViewModel GetStockItem(int stockItem)

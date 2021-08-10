@@ -12,9 +12,6 @@ namespace Project.Repositories.User
 {
     public class UserRepository:BaseRepository,IUserRepository
     {
-        public UserRepository()
-        {
-        }
         public DataTable LoginUser(string username, string password)
         {
             command.Connection = connection;

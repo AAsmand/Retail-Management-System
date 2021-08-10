@@ -8,22 +8,14 @@ using Utility.Interfaces;
 
 namespace Project.Repositories
 {
-    public class TracingFactorRepository:BaseRepository,ITracingFactorRepository
+    public class TracingFactorRepository : BaseRepository, ITracingFactorRepository
     {
-        public TracingFactorRepository()
+        public DataTable GetTracingFactors()
         {
-        }
 
-        public DataTable GetData()
-        {
-            if (command == null)
-                command = new SqlCommand("select * from TracingFactor ", connection);
-            else
-            {
-                command.Connection = connection;
-                command.CommandText = "select * from TracingFactor";
-                command.Parameters.Clear();
-            }
+            command.Connection = connection;
+            command.CommandText = "select * from TracingFactor";
+            command.Parameters.Clear();
             connection.Open();
             adapter.SelectCommand = command;
             ds.Clear();

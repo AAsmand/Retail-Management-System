@@ -8,6 +8,7 @@ namespace Utility.Interfaces
 {
     public interface IStockRoomRepository
     {
-        DataTable GetData(int srId = 0, int itemId = 0);
+        DataTable GetItemStockRoomByFilter(int srId = 0, int itemId = 0);
+        DataTable GetStockRoomByFilter(int stockRoomId = 0);
     }
 }

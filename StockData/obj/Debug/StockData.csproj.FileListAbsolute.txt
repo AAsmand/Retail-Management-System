@@ -13,3 +13,5 @@ C:\Users\ArefAs\source\repos\Project\StockData\obj\Debug\StockData.csprojAssembl
 C:\Users\ArefAs\source\repos\Project\StockData\obj\Debug\StockData.csproj.CopyComplete
 C:\Users\ArefAs\source\repos\Project\StockData\obj\Debug\StockData.dll
 C:\Users\ArefAs\source\repos\Project\StockData\obj\Debug\StockData.pdb
+C:\Users\ArefAs\source\repos\Project\StockData\bin\Debug\Castle.Core.dll
+C:\Users\ArefAs\source\repos\Project\StockData\bin\Debug\Castle.Core.xml

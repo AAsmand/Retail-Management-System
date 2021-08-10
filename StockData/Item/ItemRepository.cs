@@ -11,22 +11,14 @@ using Utility.Interfaces;
 
 namespace Project.Repositories
 {
-    public  class ItemRepository:BaseRepository,IItemRepository
+    public class ItemRepository : BaseRepository, IItemRepository
     {
-        public ItemRepository()
+        public DataTable GetItemsByFilter(int itemId = 0)
         {
-        }
-        public DataTable GetData(int itemId=0)
-        {
-            if (itemId==0)
-                command = new SqlCommand("select ItemId,i.Title,Description,RefUnitId,HasTracingFactor,i.TracingFactorId,pic,CreatorUserId,u.UnitName,t.Title as TracingFactorTitle , CAST(i.TimeStamp as int) as TimeStamp from Item as i inner join unit as u on u.UnitId=RefUnitId left join TracingFactor as t on t.TracingFactorId=i.TracingFactorId", connection);
-            else
-            {
-                command.Connection = connection;
-                command.CommandText = "select ItemId,i.Title,Description,RefUnitId,HasTracingFactor,i.TracingFactorId,pic,CreatorUserId,u.UnitName ,t.Title as TracingFactorTitle , CAST(i.TimeStamp as int) as TimeStamp from Item as i inner join unit as u on u.UnitId=RefUnitId left join TracingFactor as t on t.TracingFactorId=i.TracingFactorId where CAST(ItemId as varchar) like '%'+@Id+'%'";
-                command.Parameters.Clear();
-                command.Parameters.AddWithValue("@Id", itemId.ToString());
-            }
+            command.Connection = connection;
+            command.Parameters.Clear();
+            command.CommandText = "select ItemId,i.Title,Description,RefUnitId,HasTracingFactor,i.TracingFactorId,pic,CreatorUserId,u.UnitName ,t.Title as TracingFactorTitle , CAST(i.TimeStamp as int) as TimeStamp from Item as i inner join unit as u on u.UnitId=RefUnitId left join TracingFactor as t on t.TracingFactorId=i.TracingFactorId where CAST(ItemId as varchar) like '%'+@Id+'%'";
+            command.Parameters.AddWithValue("@Id",itemId>0? itemId.ToString():"");
             connection.Open();
             adapter.SelectCommand = command;
             ds.Clear();
@@ -34,7 +26,7 @@ namespace Project.Repositories
             connection.Close();
             return ds.Tables["Item"];
         }
-        public  bool DeleteItem(int itemId)
+        public bool DeleteItem(int itemId)
         {
             command.Connection = connection;
             command.CommandText = "delete from Item where ItemId=@Id";
@@ -56,7 +48,7 @@ namespace Project.Repositories
             }
 
         }
-        public  bool AddItem(ItemViewModel model)
+        public bool AddItem(ItemViewModel model)
         {
             command.Connection = connection;
             command.Parameters.Clear();
@@ -72,7 +64,7 @@ namespace Project.Repositories
             command.Parameters.AddWithValue("@RefUnitId", model.RefUnitId);
             command.Parameters.AddWithValue("@HasTracingFactor", model.HasTracingFactor);
             command.Parameters.AddWithValue("@pic", model.Pic);
-            command.Parameters.AddWithValue("@CreatorUserId",UserModel.UserId);
+            command.Parameters.AddWithValue("@CreatorUserId", UserModel.UserId);
             connection.Open();
             if (command.ExecuteNonQuery() > 0)
             {
@@ -82,7 +74,7 @@ namespace Project.Repositories
             connection.Close();
             return false;
         }
-        public  bool EditItem(ItemViewModel model)
+        public bool EditItem(ItemViewModel model)
         {
             command.Connection = connection;
             command.Parameters.Clear();
@@ -110,7 +102,7 @@ namespace Project.Repositories
             connection.Close();
             return false;
         }
-        public  DataTable FindItem(int itemId)
+        public DataTable GetItem(int itemId)
         {
 
             command.Connection = connection;

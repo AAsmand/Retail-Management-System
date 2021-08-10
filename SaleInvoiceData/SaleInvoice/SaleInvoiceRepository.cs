@@ -13,13 +13,8 @@ namespace Project.Repositories
 {
     public class SaleInvoiceRepository:BaseRepository,ISaleInvoiceRepository
     {
-        public SaleInvoiceRepository()
+        public  DataTable GetSaleInvoices()
         {
-        }
-
-        public  DataTable GetData()
-        {
-
             command.Connection = connection;
             command.CommandText = "select SellInvoiceId,s.SellTypeId,st.SellTypeTitle,Customer,UserId,CreatedDate,CAST(TimeStamp as int) as TimeStamp from SellInvoice as s inner join SellType as st on s.SellTypeId=st.SellTypeId";
             command.Parameters.Clear();
@@ -30,7 +25,7 @@ namespace Project.Repositories
             connection.Close();
             return ds.Tables["SellInvoice"];
         }
-        public  bool DeleteItem(int sellInvoiceId)
+        public  bool DeleteSaleInvoice(int sellInvoiceId)
         {
             command.Connection = connection;
             command.CommandText = "delete from SellInvoice where SellInvoiceId=@Id";
@@ -52,8 +47,7 @@ namespace Project.Repositories
             }
 
         }
-
-        public  bool AddItem(SaleInvoiceViewModel model)
+        public  bool AddSaleInvoice(SaleInvoiceViewModel model)
         {
             command.Connection = connection;
             command.CommandText = "insert into SellInvoice(SellInvoiceId,SellTypeId,CreatedDate,Customer,UserId) Values(@SellInvoiceId,@SellTypeId,@CreatedDate,@Customer,@UserId)";
@@ -72,7 +66,7 @@ namespace Project.Repositories
             connection.Close();
             return false;
         }
-        public  int GetLastId()
+        public  int GetLastSaleInvoiceId()
         {
             command.Connection = connection;
             command.CommandText = "select Top 1 SellInvoiceId from SellInvoice order by SellInvoiceId desc";

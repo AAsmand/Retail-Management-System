@@ -35,3 +35,5 @@ C:\Users\ArefAs\source\repos\Project\Project\bin\Debug\UserData.pdb
 C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Run.csproj.CopyComplete
 C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.exe
 C:\Users\ArefAs\source\repos\Project\Project\obj\Debug\Project.pdb
+C:\Users\ArefAs\source\repos\Project\Project\bin\Debug\Castle.Core.dll
+C:\Users\ArefAs\source\repos\Project\Project\bin\Debug\Castle.Core.xml

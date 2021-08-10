@@ -8,7 +8,7 @@ namespace Utility.Interfaces
 {
     public interface IBuyInvoiceItemRepository:IBaseRepository
     {
-        bool UpdateBuyInvoiceItem(DataTable table);
+        bool UpdateBuyInvoiceItems(DataTable table);
         bool RemoveBuyInvoiceItems(int buyInvoiceId);
         DataTable GetBuyInvoiceItems(int buyInvoiceId);
 

@@ -8,6 +8,6 @@ namespace Utility.Interfaces
 {
     public interface ITracingFactorRepository:IBaseRepository
     {
-        DataTable GetData();
+        DataTable GetTracingFactors();
     }
 }
