@@ -1,4 +1,5 @@
-﻿using Framework.IOC;
+﻿using Framework;
+using Framework.IOC;
 using Project.Business;
 using Project.Models;
 using Project.Models.User;
@@ -15,9 +16,12 @@ using System.Windows.Forms;
 
 namespace Project
 {
-    public partial class ManageSellInvoice : Form
+    public partial class ManageSellInvoice : Form ,IMadule
     {
         ISaleInvoiceBusiness sellInvoiceBusiness;
+
+         string IMadule.Title { get => "مدیریت فروش";}
+         string IMadule.Name { get => "ManageSaleInvoice"; }
         public ManageSellInvoice(ISaleInvoiceBusiness sellInvoiceBusiness)
         {
             InitializeComponent();
@@ -83,6 +87,16 @@ namespace Project
                 MessageBox.Show("عملیات با شکست مواجه شد !", "ناموفق");
             }
                 
+        }
+
+        public void ShowForm(object sender, EventArgs args)
+        {
+            this.Show();
+            this.MdiParent = (Form)((ToolStripButton)sender).GetCurrentParent().Parent;
+        }
+        public Form GetForm()
+        {
+            return IOC.Container.GetInstance<ManageSellInvoice>();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Framework.IOC;
+﻿using Framework;
+using Framework.IOC;
 using Project.Business;
 using Project.Models;
 using Project.Models.User;
@@ -15,9 +16,13 @@ using System.Windows.Forms;
 
 namespace Project
 {
-    public partial class ManageBuyInvoice : Form
+    public partial class ManageBuyInvoice : Form,IMadule
     {
         IBuyInvoiceBusiness buyInvoiceBusiness;
+
+        string IMadule.Title => "مدیریت انبار";
+        string IMadule.Name { get => "ManageBuyInvoice"; }
+
         public ManageBuyInvoice(IBuyInvoiceBusiness buyInvoiceBusiness)
         {
             InitializeComponent();

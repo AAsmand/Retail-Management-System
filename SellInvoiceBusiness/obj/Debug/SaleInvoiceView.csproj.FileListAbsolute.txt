@@ -1,5 +1,3 @@
-C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\SellInvoiceBusiness.exe
-C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\SellInvoiceBusiness.pdb
 C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\Framework.dll
 C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\SaleInvoiceBusiness.dll
 C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\StockBusiness.dll
@@ -18,12 +16,14 @@ C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\StructureMap.
 C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\SaleInvoiceData.pdb
 C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\StockData.pdb
 C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\SaleInvoiceView.csprojAssemblyReference.cache
-C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\SellInvoiceBusiness.Properties.Resources.resources
 C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\Project.AddSellInvoice.resources
 C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\Project.ManageSellInvoice.resources
 C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\SaleInvoiceView.csproj.GenerateResource.cache
 C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\SaleInvoiceView.csproj.CopyComplete
-C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\SellInvoiceBusiness.exe
-C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\SellInvoiceBusiness.pdb
 C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\Castle.Core.dll
 C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\Castle.Core.xml
+C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\SaleInvoiceView.dll
+C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\bin\Debug\SaleInvoiceView.pdb
+C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\SaleInvoiceView.Properties.Resources.resources
+C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\SaleInvoiceView.dll
+C:\Users\ArefAs\source\repos\Project\SellInvoiceBusiness\obj\Debug\SaleInvoiceView.pdb

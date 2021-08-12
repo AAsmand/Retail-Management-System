@@ -1,4 +1,3 @@
-C:\Users\ArefAs\source\repos\Project\UserView\bin\Debug\UserView.exe
 C:\Users\ArefAs\source\repos\Project\UserView\bin\Debug\UserView.pdb
 C:\Users\ArefAs\source\repos\Project\UserView\bin\Debug\Framework.dll
 C:\Users\ArefAs\source\repos\Project\UserView\bin\Debug\UserBusiness.dll
@@ -19,7 +18,8 @@ C:\Users\ArefAs\source\repos\Project\UserView\obj\Debug\Project.Forms.User.AddUs
 C:\Users\ArefAs\source\repos\Project\UserView\obj\Debug\Project.Forms.User.ManageUsers.resources
 C:\Users\ArefAs\source\repos\Project\UserView\obj\Debug\UserView.csproj.GenerateResource.cache
 C:\Users\ArefAs\source\repos\Project\UserView\obj\Debug\UserView.csproj.CopyComplete
-C:\Users\ArefAs\source\repos\Project\UserView\obj\Debug\UserView.exe
 C:\Users\ArefAs\source\repos\Project\UserView\obj\Debug\UserView.pdb
 C:\Users\ArefAs\source\repos\Project\UserView\bin\Debug\Castle.Core.dll
 C:\Users\ArefAs\source\repos\Project\UserView\bin\Debug\Castle.Core.xml
+C:\Users\ArefAs\source\repos\Project\UserView\bin\Debug\UserView.dll
+C:\Users\ArefAs\source\repos\Project\UserView\obj\Debug\UserView.dll

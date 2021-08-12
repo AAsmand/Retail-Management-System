@@ -95,20 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework\Framework.csproj">
-      <Project>{94E8CB25-02C4-4BB7-A1DA-7304331ADAAB}</Project>
+      <Project>{94e8cb25-02c4-4bb7-a1da-7304331adaab}</Project>
       <Name>Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SellInvoiceBusiness\SaleInvoiceView.csproj">
-      <Project>{4fdc9382-1439-4ec5-a111-1cb3edddc8f9}</Project>
-      <Name>SaleInvoiceView</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\StockView\StockView.csproj">
-      <Project>{7096ae57-2cc8-4997-94ce-81ba1e61b9fb}</Project>
-      <Name>StockView</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UserView\UserView.csproj">
-      <Project>{d21015ee-744a-4f79-ae29-e166d2297a25}</Project>
-      <Name>UserView</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{d54a19f0-e4a8-41c5-80d1-2f0239baf421}</Project>

@@ -14,6 +14,10 @@ namespace Project.Business
         {
             repository = new TRepository();
         }
+        public virtual void Save()
+        {
+
+        }
         public bool IsValid(IConcurrency model)
         {
             return repository.IsNotConcurrent(model);

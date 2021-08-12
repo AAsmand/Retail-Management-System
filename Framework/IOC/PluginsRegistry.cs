@@ -8,17 +8,17 @@ using System.Text;
 
 namespace Framework.IOC
 {
-    class PluginsRegistry:Registry
+    class PluginsRegistry : Registry
     {
         public PluginsRegistry()
         {
-            string p = Path.Combine(Environment.CurrentDirectory, "Plugins");
+            string[] lines = File.ReadAllLines(Path.Combine(Environment.CurrentDirectory, "lock.txt"));
             this.Scan(scanner =>
             {
                 scanner.AssembliesFromPath(
-                    path: p
+                    path: Path.Combine(Environment.CurrentDirectory, "Plugins"),
+                    assemblyFilter:p=> !lines.Any(l => p.FullName.Contains(l))
                     );
-                //scanner.WithDefaultConventions();
                 scanner.Convention<CustomConvention>();
             });
         }

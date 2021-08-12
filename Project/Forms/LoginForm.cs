@@ -31,7 +31,6 @@ namespace Project.Forms.User
         {
             try
             {
-                
                 if(userBusiness.Login(UserTxt.Text,PassTxt.Text))
                 {
                     this.DialogResult = DialogResult.OK;

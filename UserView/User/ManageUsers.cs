@@ -1,4 +1,5 @@
-﻿using Framework.IOC;
+﻿using Framework;
+using Framework.IOC;
 using Project.Business;
 using Project.Models.User;
 using Project.Tools;
@@ -14,9 +15,13 @@ using System.Windows.Forms;
 
 namespace Project.Forms.User
 {
-    public partial class ManageUsers : Form
+    public partial class ManageUsers : Form , IMadule
     {
         private IUserBusiness userBusiness;
+
+         string IMadule.Title => "مدیریت کاربران و دسترسی";
+         string IMadule.Name => "ManageUser";
+
         public ManageUsers(IUserBusiness userBusiness)
         {
             InitializeComponent();

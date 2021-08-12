@@ -26,7 +26,6 @@ namespace Project
                 Application.Run(IOC.Container.GetInstance<MainForm>());
             }
         }
-
         public static void Exception_Handle(object sender, ThreadExceptionEventArgs e)
         {
             MessageBox.Show(e.Exception.Message, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);

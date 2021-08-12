@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Framework;
 using Framework.IOC;
 using Project.Business;
 using Project.Models;
@@ -18,9 +19,13 @@ using StructureMap.Pipeline;
 
 namespace Project
 {
-    public partial class ManageItem : Form
+    public partial class ManageItem : Form , IMadule
     {
         private IItemBusiness itemBusiness;
+
+        string IMadule.Title => "مدیریت کالا";
+        string IMadule.Name => "ManageItem";
+
         public ManageItem(IItemBusiness itemBusiness)
         {
             InitializeComponent();
@@ -52,6 +57,7 @@ namespace Project
         }
         private void ManageItem_Load(object sender, EventArgs e)
         {
+            
             BindItemData();
             ConfigureAccess();
         }

@@ -1,4 +1,3 @@
-C:\Users\ArefAs\source\repos\Project\StockView\bin\Debug\StockView.exe
 C:\Users\ArefAs\source\repos\Project\StockView\bin\Debug\StockView.pdb
 C:\Users\ArefAs\source\repos\Project\StockView\bin\Debug\Framework.dll
 C:\Users\ArefAs\source\repos\Project\StockView\bin\Debug\StockBusiness.dll
@@ -21,7 +20,8 @@ C:\Users\ArefAs\source\repos\Project\StockView\obj\Debug\Project.ManageItem.reso
 C:\Users\ArefAs\source\repos\Project\StockView\obj\Debug\StockView.Properties.Resources.resources
 C:\Users\ArefAs\source\repos\Project\StockView\obj\Debug\StockView.csproj.GenerateResource.cache
 C:\Users\ArefAs\source\repos\Project\StockView\obj\Debug\StockView.csproj.CopyComplete
-C:\Users\ArefAs\source\repos\Project\StockView\obj\Debug\StockView.exe
 C:\Users\ArefAs\source\repos\Project\StockView\obj\Debug\StockView.pdb
 C:\Users\ArefAs\source\repos\Project\StockView\bin\Debug\Castle.Core.dll
 C:\Users\ArefAs\source\repos\Project\StockView\bin\Debug\Castle.Core.xml
+C:\Users\ArefAs\source\repos\Project\StockView\bin\Debug\StockView.dll
+C:\Users\ArefAs\source\repos\Project\StockView\obj\Debug\StockView.dll

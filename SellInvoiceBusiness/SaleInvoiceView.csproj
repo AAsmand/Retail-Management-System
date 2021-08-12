@@ -5,9 +5,9 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4FDC9382-1439-4EC5-A111-1CB3EDDDC8F9}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>SellInvoiceBusiness</RootNamespace>
-    <AssemblyName>SellInvoiceBusiness</AssemblyName>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SaleInvoiceView</RootNamespace>
+    <AssemblyName>SaleInvoiceView</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -30,6 +30,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="StructureMap, Version=4.2.0.402, Culture=neutral, processorArchitecture=MSIL">
@@ -72,6 +75,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SellInvoice\AddSellInvoice.resx">
       <DependentUpon>AddSellInvoice.cs</DependentUpon>

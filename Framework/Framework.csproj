@@ -59,6 +59,7 @@
     <Compile Include="BaseBusiness\Interfaces\IConcurrencyChecker.cs" />
     <Compile Include="BaseRepository\BaseRepository.cs" />
     <Compile Include="BaseRepository\IBaseRepository.cs" />
+    <Compile Include="IMadule.cs" />
     <Compile Include="IOC\CustomConvention.cs" />
     <Compile Include="IOC\IOC.cs" />
     <Compile Include="IOC\PluginsRegistry.cs" />

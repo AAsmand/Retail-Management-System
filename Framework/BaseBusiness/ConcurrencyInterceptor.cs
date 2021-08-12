@@ -10,20 +10,15 @@ namespace Framework.BaseBusiness
     {
         public void Intercept(IInvocation invocation)
         {
-            invocation.Proceed();
-
-            if (invocation.Method.Name.StartsWith("BaseBusiness"))
+            var methodInfo = invocation.TargetType.GetMethod("IsValid");
+            //if (methodInfo == null)
+            //{
+            //    if (invocation.TargetType.BaseType != null)
+            //        //raisePropertyChangedEvent(invocation, propertyName, type.BaseType);
+            //}
+            //else
             {
-                var methodInfo = invocation.TargetType.GetMethod("IsValid");
-                //if (methodInfo == null)
-                //{
-                //    if (invocation.TargetType.BaseType != null)
-                //        //raisePropertyChangedEvent(invocation, propertyName, type.BaseType);
-                //}
-                //else
-                {
-                    methodInfo.Invoke(invocation.InvocationTarget,new object[]{ });
-                }
+                methodInfo.Invoke(invocation.InvocationTarget, new object[] { });
             }
         }
     }

@@ -24,20 +24,13 @@ namespace Project
         public event EventHandler<AddItemEventArg> AddedEvent;
         private IUnitBusiness unitBusiness;
         private ITracingFactorBusiness tracingFactorBusiness;
-        public AddItem(IUnitBusiness unitBusiness, ITracingFactorBusiness tracingFactorBusiness, IItemBusiness itemBus)
+        public AddItem(bool editMode,ItemViewModel model, IUnitBusiness unitBusiness, ITracingFactorBusiness tracingFactorBusiness, IItemBusiness itemBus)
         {
             InitializeComponent();
             this.itemBus = itemBus;
             this.unitBusiness = unitBusiness;
             this.tracingFactorBusiness = tracingFactorBusiness;
             HasTracingFactor.Checked = true;
-        }
-        public AddItem(bool editMode, ItemViewModel model, IUnitBusiness unitBusiness, ITracingFactorBusiness tracingFactorBusiness, IItemBusiness itemBus)
-        {
-            InitializeComponent();
-            this.itemBus = itemBus;
-            this.unitBusiness = unitBusiness;
-            this.tracingFactorBusiness = tracingFactorBusiness;
             if (editMode)
             {
                 Model = model;
